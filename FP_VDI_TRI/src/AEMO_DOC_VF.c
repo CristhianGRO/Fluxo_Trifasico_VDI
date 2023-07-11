@@ -51,6 +51,7 @@ int main(int argc, char** argv) {
     long int numeroBarras, numeroTrafos, numeroChaves;
     //leituraBarrasSimplicado(&grafoSDR, &numeroBarras);
     leituraBarrasSimplicadoModificada(&grafoSDR, &numeroBarras);
+    leituraBarrasFasesConectadas(&grafoSDR, &numeroBarras);
 //    HeapProfilerDump("após dados de barras linhas e trafos");
     resultadoLeitura =  leituraDadosAlimentadores(&dadosAlimentadorSDR);
 //    HeapProfilerDump("após dado: error: ld returned 1 exit statuss de alimentadores");

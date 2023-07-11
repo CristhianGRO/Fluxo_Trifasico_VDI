@@ -1088,7 +1088,7 @@ void leituraBarrasSimplicado(GRAFO **grafoSDRParam, long int *numeroBarras)
 }
 
 /*
- * Por Leandro: Modificada para ler informações de prioridade de atendimento de cada barra
+ * Por Cristhian: Função modificada para que leia as informações relevantes para o FP.
  */
 void leituraBarrasSimplicadoModificada(GRAFO **grafoSDRParam, long int *numeroBarras)
 {
@@ -1098,9 +1098,7 @@ void leituraBarrasSimplicadoModificada(GRAFO **grafoSDRParam, long int *numeroBa
     long int contador;
     long int barra, setor;
     char buffer[5000];
-    TIPOCONSUMIDOR consumidor;
-    
-    int contadorBarras=0, consumidorSemPrioridade =0, consumidorPrioridadeBaixa =0,	consumidorPrioridadeIntermediaria= 0,consumidorPrioridadeAlta=0;
+    int ignorar = 0, contadorBarras = 0;
 
     arquivo = fopen("barras_m.dad","r+" );
     if (arquivo == NULL) {
@@ -1119,32 +1117,72 @@ void leituraBarrasSimplicadoModificada(GRAFO **grafoSDRParam, long int *numeroBa
     }    
     for (contador = 1; contador <= numeroBarras[0]; contador++) {
         fgets(buffer, 5000, arquivo);
-        sscanf(buffer, "%ld %ld %d %lf %lf %d", &barra,  &setor, &tipo, &p, &q, &consumidor);
+        sscanf(buffer, "%ld %ld %d %lf %lf %d", &barra,  &setor, &tipo, &p, &q, &ignorar);
         (*grafoSDRParam)[barra].idNo = barra;
         (*grafoSDRParam)[barra].idSetor = setor;
         (*grafoSDRParam)[barra].tipoNo = tipo;
         (*grafoSDRParam)[barra].valorPQ.p = p;
         (*grafoSDRParam)[barra].valorPQ.q = q;
-        (*grafoSDRParam)[barra].priorizacoes.prioridadeConsumidor = consumidor;
-        
-//        if((*grafoSDRParam)[barra].valorPQ.p > 0){
-//        	contadorBarras++;
-//			if(consumidor == 0)
-//				consumidorSemPrioridade++;
-//			if(consumidor == 1)
-//				consumidorPrioridadeBaixa++;
-//			if(consumidor == 2)
-//				consumidorPrioridadeIntermediaria++;
-//			if(consumidor == 3)
-//				consumidorPrioridadeAlta++;
-//        }
-
     }
+    fclose(arquivo);
+}
 
-//    printf("Barras com carga: %d\nCons. Sem P.: %d\nCons. P. Baixa: %d\nCons. P. Intermed.: %d\nCons. P. Alta: %d\n", contadorBarras, consumidorSemPrioridade, consumidorPrioridadeBaixa,	consumidorPrioridadeIntermediaria,consumidorPrioridadeAlta);
-//    printf("\n");
-//    printf("\n");
-//    printf("\n");
+/*
+ * Por Cristhian: Função modificada para que leia as informações relevantes para o FP.
+ */
+void leituraBarrasFasesConectadas(GRAFO **grafoSDRParam, long int *numeroBarras)
+{
+    FILE *arquivo;
+    int tipo;
+    double p, q;
+    long int contador;
+    long int barra, setor;
+    short int fases;
+    char buffer[5000];
+    int contadorBarras = 0;
+
+    arquivo = fopen("barrasFases.dad","r+" );
+    if (arquivo == NULL) {
+        printf("Erro na abertura do arquivo barrasFases.dad");
+        exit(1);
+    }
+    fgets(buffer, 5000, arquivo);
+    sscanf(buffer, "%ld", numeroBarras);
+
+    for (contador = 1; contador <= numeroBarras[0]; contador++) {
+        fgets(buffer, 5000, arquivo);
+        sscanf(buffer, "%ld %ld %d", &barra,  &setor, &fases);
+        (*grafoSDRParam)[barra].idNo = barra;
+        (*grafoSDRParam)[barra].idSetor = setor;
+
+        //Verifica quais fases conectam-se ao nó e atribui o objeto TIPOFASES correspondente
+        switch(fases){
+            case 100:
+                (*grafoSDRParam)[barra].tipoFases = A;
+            break;
+            case 010:
+                (*grafoSDRParam)[barra].tipoFases = B;
+            break;
+            case 001:
+                (*grafoSDRParam)[barra].tipoFases = C;
+            break;
+            case 110:
+                (*grafoSDRParam)[barra].tipoFases = AB;
+            break;
+            case 101:
+                (*grafoSDRParam)[barra].tipoFases = AC;
+            break;
+            case 011:
+                (*grafoSDRParam)[barra].tipoFases = BC;
+            break;
+            case 111:
+                (*grafoSDRParam)[barra].tipoFases = ABC;
+            break;
+            default:
+                printf("Erro na leitura das fases - Valor invalido na barra %ld dp setor %ld\n",barra,setor);
+            break;
+        }
+    }
     fclose(arquivo);
 }
 
