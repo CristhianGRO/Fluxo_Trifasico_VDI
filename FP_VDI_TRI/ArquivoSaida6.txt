@@ -1,0 +1,774 @@
+Falta_Simples	13_	Infactivel	1	0	0	110	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	1	56	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	3	8	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	4	1727	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	0	952	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	1	1	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	2	42	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	3	439	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	4	374	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	2	0	56	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	2	1	271	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	2	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	2	3	488	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	2	4	151	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	3	0	271	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	3	1	94	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	3	2	14467	-1	13	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	3	3	138	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	3	4	14735	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	4	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	4	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	4	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	4	3	36	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	4	4	27	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	6	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	6	1	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	6	2	585	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	6	3	888	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	6	4	1703	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	0	1073	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	1	601	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	2	215	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	3	186	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	4	123	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	8	0	18323	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	8	1	13780	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	8	2	25633	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	8	3	17919	-1	13	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	8	4	16475	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	9	0	21790	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	9	1	19298	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	9	2	20693	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	9	3	21411	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	9	4	24744	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	12	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	0	123	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	1	186	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	2	601	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	3	888	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	4	1073	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	0	4392	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	1	775	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	2	215	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	3	585	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	4	1432	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	15	0	29384	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	15	1	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	3	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	15	4	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	5	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	6	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	7	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	15	8	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	15	9	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	0	29384	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	16	1	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	3	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	16	4	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	5	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	6	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	7	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	16	8	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	16	9	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	0	29384	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	17	1	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	3	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	17	4	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	5	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	6	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	7	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	17	8	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	17	9	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	18	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	2	28568	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	3	29155	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	4	29263	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	5	29307	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	6	28242	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	7	27593	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	8	29236	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	9	29295	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	10	29091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	11	29352	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	12	27600	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	13	28917	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	14	29380	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	15	29255	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	16	24195	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	17	29098	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	18	28357	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	19	29160	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	19	0	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	1	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	19	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	3	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	4	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	5	29382	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	6	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	19	7	29357	-1	15	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	19	8	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	9	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	10	29348	-1	21	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	11	29167	-1	23	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	12	29096	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	13	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	14	29186	-1	27	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	15	29325	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	16	29365	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	17	29378	-1	31	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	18	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	0	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	1	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	20	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	3	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	4	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	5	29382	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	6	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	20	7	29357	-1	15	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	20	8	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	9	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	10	29348	-1	21	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	11	29167	-1	23	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	12	29096	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	13	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	14	29186	-1	27	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	15	29325	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	16	29365	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	17	29378	-1	31	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	18	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	0	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	1	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	21	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	3	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	4	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	5	29382	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	6	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	21	7	29357	-1	15	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	21	8	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	9	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	10	29348	-1	21	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	11	29167	-1	23	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	12	29096	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	13	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	14	29186	-1	27	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	15	29325	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	16	29365	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	17	29378	-1	31	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	18	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	22	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	22	2	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	22	3	28568	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	4	29155	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	5	27593	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	6	29263	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	7	29236	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	8	29307	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	9	28242	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	10	29295	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	11	23232	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	12	29091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	13	29380	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	14	27600	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	15	28138	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	16	29352	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	17	29331	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	18	29367	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	19	29383	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	23	2	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	23	3	28568	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	4	29155	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	5	27593	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	6	29263	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	7	29236	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	8	29307	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	9	28242	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	10	29295	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	11	23232	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	12	29091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	13	29380	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	14	27600	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	15	28138	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	16	29352	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	17	29331	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	18	29367	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	19	29383	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	24	0	23705	-1	9	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	24	1	26685	-1	7	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	1	24	2	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	3	29340	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	4	27997	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	5	29310	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	6	23734	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	7	27525	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	8	29125	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	9	27996	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	10	29221	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	11	28273	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	12	29177	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	13	23733	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	14	29376	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	15	29351	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	16	18694	-1	9	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	1	24	17	25475	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	18	29146	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	19	28466	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	20	29137	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	21	24814	-1	11	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	24	22	27777	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	23	18311	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	24	27775	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	25	24689	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	26	27564	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	27	29159	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	28	28223	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	29	28837	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	30	25400	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	31	28583	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	32	23721	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	33	28800	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	34	24480	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	35	28095	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	36	22447	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	37	25476	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	38	27509	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	39	29371	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	25	0	118	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	25	1	1216	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	25	2	130	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	25	3	15	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	25	4	147	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	0	0	110	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	1	56	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	3	8	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	0	4	1727	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	0	952	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	1	1	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	2	42	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	3	439	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	1	4	374	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	2	0	56	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	2	1	271	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	2	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	2	3	488	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	2	4	151	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	3	0	271	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	3	1	94	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	3	2	14467	-1	13	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	3	3	138	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	3	4	14735	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	4	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	4	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	4	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	4	3	36	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	4	4	27	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	6	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	6	1	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	6	2	585	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	6	3	888	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	6	4	1703	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	0	1073	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	1	601	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	2	215	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	3	186	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	7	4	123	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	8	0	18323	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	8	1	13780	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	8	2	25633	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	8	3	17919	-1	13	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	8	4	16475	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	9	0	21790	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	9	1	19298	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	9	2	20693	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	9	3	21411	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	9	4	24744	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	12	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	0	123	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	1	186	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	2	601	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	3	888	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	13	4	1073	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	0	4392	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	1	775	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	2	215	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	3	585	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	14	4	1432	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	15	0	29384	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	15	1	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	3	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	15	4	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	5	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	6	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	15	7	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	15	8	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	15	9	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	0	29384	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	16	1	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	3	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	16	4	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	5	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	6	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	16	7	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	16	8	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	16	9	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	0	29384	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	17	1	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	3	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	17	4	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	5	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	6	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	17	7	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	17	8	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	17	9	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	18	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	2	28568	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	3	29155	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	4	29263	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	5	29307	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	6	28242	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	7	27593	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	8	29236	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	9	29295	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	10	29091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	11	29352	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	12	27600	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	13	28917	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	14	29380	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	15	29255	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	16	24195	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	17	29098	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	18	28357	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	18	19	29160	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	19	0	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	1	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	19	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	3	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	4	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	5	29382	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	6	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	19	7	29357	-1	15	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	19	8	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	9	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	10	29348	-1	21	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	11	29167	-1	23	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	12	29096	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	13	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	14	29186	-1	27	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	15	29325	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	16	29365	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	19	17	29378	-1	31	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	19	18	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	0	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	1	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	20	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	3	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	4	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	5	29382	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	6	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	20	7	29357	-1	15	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	20	8	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	9	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	10	29348	-1	21	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	11	29167	-1	23	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	12	29096	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	13	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	14	29186	-1	27	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	15	29325	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	16	29365	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	20	17	29378	-1	31	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	20	18	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	0	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	1	29395	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	21	2	29387	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	3	29394	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	4	29392	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	5	29382	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	6	29388	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	21	7	29357	-1	15	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	21	8	29386	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	9	29397	-1	19	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	10	29348	-1	21	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	11	29167	-1	23	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	12	29096	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	13	29390	-1	25	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	14	29186	-1	27	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	15	29325	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	16	29365	-1	29	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	21	17	29378	-1	31	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	21	18	29399	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	22	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	22	2	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	22	3	28568	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	4	29155	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	5	27593	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	6	29263	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	7	29236	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	8	29307	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	9	28242	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	10	29295	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	11	23232	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	12	29091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	13	29380	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	14	27600	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	15	28138	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	16	29352	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	17	29331	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	18	29367	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	22	19	29383	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	23	2	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	23	3	28568	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	4	29155	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	5	27593	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	6	29263	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	7	29236	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	8	29307	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	9	28242	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	10	29295	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	11	23232	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	12	29091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	13	29380	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	14	27600	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	15	28138	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	16	29352	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	17	29331	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	18	29367	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	23	19	29383	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	24	0	23705	-1	9	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	24	1	26685	-1	7	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	1	24	2	29327	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	3	29340	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	4	27997	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	5	29310	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	6	23734	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	7	27525	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	8	29125	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	9	27996	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	10	29221	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	11	28273	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	12	29177	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	13	23733	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	14	29376	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	15	29351	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	16	18694	-1	9	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	1	24	17	25475	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	18	29146	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	19	28466	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	20	29137	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	21	24814	-1	11	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	24	22	27777	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	23	18311	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	24	27775	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	25	24689	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	26	27564	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	27	29159	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	28	28223	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	29	28837	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	30	25400	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	31	28583	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	32	23721	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	33	28800	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	34	24480	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	35	28095	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	36	22447	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	37	25476	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	38	27509	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	24	39	29371	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	25	0	118	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	25	1	1216	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	1	25	2	130	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	1	25	3	15	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	1	25	4	147	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	0	0	22187	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	0	1	12	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	0	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	0	3	24831	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	0	4	22314	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	1	0	12990	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	1	1	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	1	2	2306	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	1	3	2041	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	1	4	477	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	2	0	40	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	2	1	2451	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	2	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	2	3	8	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	2	4	6	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	3	0	30047	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	3	1	306	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	3	2	10	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	3	3	1748	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	3	4	29350	-1	13	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	4	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	4	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	4	2	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	4	3	288	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	4	4	8	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	6	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	6	1	1	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	6	2	434	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	6	3	309	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	6	4	429	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	7	0	72	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	7	1	424	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	7	2	79	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	7	3	15	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	7	4	1189	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	8	0	27006	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	8	1	16951	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	8	2	25261	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	8	3	14048	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	8	4	16708	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	9	0	24033	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	9	1	26766	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	9	2	24898	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	9	3	14106	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	9	4	24786	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	12	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	13	0	15	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	13	1	72	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	13	2	1189	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	13	3	424	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	13	4	434	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	14	0	429	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	14	1	823	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	14	2	523	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	14	3	79	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	14	4	13288	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	0	30098	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	1	30100	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	15	2	30102	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	15	3	30103	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	15	4	30104	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	15	5	30105	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	6	30106	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	7	30108	-1	15	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	15	8	30109	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	9	30110	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	10	30111	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	11	30112	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	12	30114	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	15	13	30116	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	15	14	30117	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	15	30118	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	15	16	30120	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	15	17	30122	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	15	18	30124	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	16	0	30098	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	1	30100	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	16	2	30102	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	16	3	30103	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	16	4	30104	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	16	5	30105	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	6	30106	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	7	30108	-1	15	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	16	8	30109	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	9	30110	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	10	30111	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	11	30112	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	12	30114	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	16	13	30116	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	16	14	30117	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	15	30118	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	16	16	30120	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	16	17	30122	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	16	18	30124	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	17	0	30098	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	1	30100	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	17	2	30102	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	17	3	30103	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	17	4	30104	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	17	5	30105	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	6	30106	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	7	30108	-1	15	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	17	8	30109	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	9	30110	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	10	30111	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	11	30112	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	12	30114	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	17	13	30116	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	17	14	30117	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	15	30118	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	17	16	30120	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	17	17	30122	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	17	18	30124	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	18	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	2	29595	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	3	30030	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	4	29461	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	5	29803	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	6	29820	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	7	30019	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	8	29608	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	9	29836	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	10	30053	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	11	30004	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	12	28363	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	13	29990	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	14	30072	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	15	29813	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	16	27042	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	17	29789	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	18	30091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	18	19	30106	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	19	0	29516	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	19	1	30082	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	19	2	30122	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	19	3	30111	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	19	4	30112	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	19	5	30085	-1	11	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	19	6	30102	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	19	7	29998	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	8	30039	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	9	30100	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	19	10	30108	-1	15	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	11	30124	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	19	12	30095	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	13	30049	-1	21	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	14	30097	-1	21	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	15	29815	-1	23	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	16	29863	-1	23	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	17	30120	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	18	30058	-1	27	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	19	19	29980	-1	29	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	20	0	29516	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	20	1	30082	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	20	2	30122	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	20	3	30111	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	20	4	30112	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	20	5	30085	-1	11	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	20	6	30102	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	20	7	29998	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	8	30039	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	9	30100	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	20	10	30108	-1	15	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	11	30124	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	20	12	30095	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	13	30049	-1	21	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	14	30097	-1	21	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	15	29815	-1	23	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	16	29863	-1	23	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	17	30120	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	18	30058	-1	27	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	20	19	29980	-1	29	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	21	0	29516	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	21	1	30082	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	21	2	30122	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	21	3	30111	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	21	4	30112	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	21	5	30085	-1	11	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	21	6	30102	-1	11	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	21	7	29998	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	8	30039	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	9	30100	-1	15	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	21	10	30108	-1	15	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	11	30124	-1	17	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	21	12	30095	-1	19	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	13	30049	-1	21	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	14	30097	-1	21	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	15	29815	-1	23	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	16	29863	-1	23	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	17	30120	-1	25	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	18	30058	-1	27	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	21	19	29980	-1	29	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Infactivel	2	22	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	22	2	29516	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	22	3	29595	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	4	30030	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	5	29461	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	6	30019	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	7	29608	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	8	29803	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	9	29820	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	10	29836	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	11	16135	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	12	30053	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	13	30072	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	14	27520	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	15	28363	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	16	30004	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	17	29990	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	18	30082	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	22	19	30091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	0	2	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	1	3	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	23	2	29516	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	23	3	29595	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	4	30030	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	5	29461	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	6	30019	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	7	29608	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	8	29803	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	9	29820	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	10	29836	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	11	16135	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	12	30053	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	13	30072	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	14	27520	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	15	28363	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	16	30004	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	17	29990	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	18	30082	-1	5	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	23	19	30091	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Factivel	2	24	0	25250	-1	9	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	24	1	28715	-1	7	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	2	24	2	29516	-1	3	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	3	28714	-1	9	2979.90	|	Setores_Cortados:	18 19 14 	|	Barras_Cortadas:	5 6 7 
+Falta_Simples	13_	Factivel	2	24	4	29995	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	5	18390	-1	9	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	2	24	6	29019	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	7	27387	-1	11	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	24	8	28352	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	9	29616	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	10	26990	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	11	24918	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	12	29904	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	13	20822	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	14	28692	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	15	29563	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	16	29701	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	17	29970	-1	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	18	30122	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	19	19752	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	20	27397	-1	9	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	2	24	21	27704	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	22	25300	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	23	25525	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	24	26360	-1	9	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	2	24	25	26086	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	26	18553	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	27	8635	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	28	23732	-1	11	2979.90	|	Setores_Cortados:	18 19 14 	|	Barras_Cortadas:	5 6 7 
+Falta_Simples	13_	Factivel	2	24	29	24266	-1	11	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	24	30	29123	-1	13	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	24	31	29403	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	32	7191	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	33	26210	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	34	28547	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	35	23508	-1	9	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	36	29258	-1	11	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	2	24	37	30021	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	38	12371	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	24	39	29952	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	25	0	26	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	25	1	184	-1	7	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Infactivel	2	25	2	502	-1	13	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	25	3	45	-1	9	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	
+Falta_Simples	13_	Infactivel	2	25	4	86	-1	7	0.00	|	Setores_Cortados:		|	Barras_Cortadas:	

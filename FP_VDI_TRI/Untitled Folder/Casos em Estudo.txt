@@ -1,0 +1,80 @@
+Seed	42	Set.Falta	_2_
+	
+	SEQUENCIA DE CHAVEAMENTO
+Abrir	Fechar	Car. de Rede(%)	Car. de Trafo(%)	Queda de Tensão(%)	Manobras Manuais	Manobras Remotas	ID do Indivíduo
+  997	-1
+  1006	-1	0.00	inf	0.00	1	1	9
+  -1	3129	82.63	68.91	6.65	1	2	22
+
+
+	CARGAS FORA DE SERVIÇO E NUMERO DE MANOBRAS
+ID Config.	PNS_SP	PNS_PB	PNS_PI	PNS_PA	Mnaobras Manuais	Manobras Remotas	ENS_SP	ENS_PB	ENS_PI	ENS_PA
+9	4047.52	88.11	131.74	84.24	1	1	10456.09	227.61	340.33	217.63
+22	0.00	0.00	0.00	0.00	1	2	56.22	1.22	1.83	1.17
+
+__________________________________________________________________________________________________________________________________
+Seed	1	Set.Falta	_2_
+
+	SEQUENCIA DE CHAVEAMENTO
+Abrir	Fechar	Car. de Rede(%)	Car. de Trafo(%)	Queda de Tensão(%)	Manobras Manuais	Manobras Remotas	ID do Indivíduo
+  997	-1
+  1006	-1	0.00	inf	0.00	1	1	9
+  996	3129	80.82	68.45	6.43	2	2	43
+  -1	996	82.63	68.91	6.65	1	2	53
+
+
+	CARGAS FORA DE SERVIÇO E NUMERO DE MANOBRAS
+ID Config.	PNS_SP	PNS_PB	PNS_PI	PNS_PA	Mnaobras Manuais	Manobras Remotas	ENS_SP	ENS_PB	ENS_PI	ENS_PA
+9	4047.52	88.11	131.74	84.24	1	1	10456.09	227.61	340.33	217.63
+43	171.28	0.00	3.33	0.00	2	2	2111.41	37.93	63.89	36.27
+53	0.00	0.00	0.00	0.00	1	2	1814.05	37.93	58.11	36.27
+
+__________________________________________________________________________________________________________________________________
+Seed	50	Set.Falta	_2_
+
+	SEQUENCIA DE CHAVEAMENTO
+Abrir	Fechar	Car. de Rede(%)	Car. de Trafo(%)	Queda de Tensão(%)	Manobras Manuais	Manobras Remotas	ID do Indivíduo
+  997	-1
+  1006	-1	0.00	inf	0.00	1	1	9
+  1000	3129	71.59	66.12	5.03	2	2	18
+  -1	1000	82.63	68.91	6.65	1	2	49
+
+
+	CARGAS FORA DE SERVIÇO E NUMERO DE MANOBRAS
+ID Config.	PNS_SP	PNS_PB	PNS_PI	PNS_PA	Mnaobras Manuais	Manobras Remotas	ENS_SP	ENS_PB	ENS_PI	ENS_PA
+9	4047.52	88.11	131.74	84.24	1	1	10456.09	227.61	340.33	217.63
+18	1065.19	0.00	3.33	0.00	2	2	4035.80	37.93	63.89	36.27
+49	0.00	0.00	0.00	0.00	1	2	2186.51	37.93	58.11	36.27
+
+__________________________________________________________________________________________________________________________________
+Seed	1	Set.Falta	_4_
+
+	SEQUENCIA DE CHAVEAMENTO
+Abrir	Fechar	Car. de Rede(%)	Car. de Trafo(%)	Queda de Tensão(%)	Manobras Manuais	Manobras Remotas	ID do Indivíduo
+  999	-1
+  996	-1	0.00	inf	0.00	2	0	9
+  168	3129	65.55	64.59	4.27	3	1	22
+  -1	168	80.82	68.45	6.43	2	1	73
+
+____________________________________________________________________________________________________________________________________
+	CARGAS FORA DE SERVIÇO E NUMERO DE MANOBRAS
+ID Config.	PNS_SP	PNS_PB	PNS_PI	PNS_PA	Mnaobras Manuais	Manobras Remotas	ENS_SP	ENS_PB	ENS_PI	ENS_PA
+9	3876.24	88.11	128.41	84.24	2	0	10013.62	227.61	331.72	217.63
+22	1478.13	0.00	0.00	0.00	3	1	4851.03	37.93	55.29	36.27
+73	0.00	0.00	0.00	0.00	2	1	2284.83	37.93	55.29	36.27
+
+Seed	2	Set.Falta	_816_
+
+
+	SEQUENCIA DE CHAVEAMENTO
+Abrir	Fechar	Car. de Rede(%)	Car. de Trafo(%)	Queda de Tensão(%)	Manobras Manuais	Manobras Remotas	ID do Indivíduo
+  2619	-1
+  2617	-1	0.00	46.48	0.00	2	0	9
+
+
+	CARGAS FORA DE SERVIÇO E NUMERO DE MANOBRAS
+ID Config.	PNS_SP	PNS_PB	PNS_PI	PNS_PA	Mnaobras Manuais	Manobras Remotas	ENS_SP	ENS_PB	ENS_PI	ENS_PA
+9	6147.39	0.00	0.00	90.22	2	0	15880.77	0.00	0.00	233.07
+
+
+

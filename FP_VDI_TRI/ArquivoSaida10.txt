@@ -1,0 +1,9 @@
+Falta_Simples	13_	Factivel	1	-1	-1	23705	0	9	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	-1	-1	26685	0	7	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	1	-1	-1	29340	0	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	1	-1	-1	23705	0	9	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	1	-1	-1	26685	0	7	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	1	-1	-1	29340	0	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
+Falta_Simples	13_	Factivel	2	-1	-1	25250	0	9	2494.80	|	Setores_Cortados:	18 14 	|	Barras_Cortadas:	5 7 
+Falta_Simples	13_	Factivel	2	-1	-1	28715	0	7	3465.00	|	Setores_Cortados:	18 19 20 14 	|	Barras_Cortadas:	5 6 28 7 
+Falta_Simples	13_	Factivel	2	-1	-1	29995	0	5	6652.80	|	Setores_Cortados:	18 19 20 14 15 16 17 	|	Barras_Cortadas:	5 6 28 7 8 27 26 
