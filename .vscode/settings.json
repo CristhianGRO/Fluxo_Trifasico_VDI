@@ -1,0 +1,13 @@
+{
+    "cmake.configureOnOpen": true,
+    "files.associations": {
+        "funcoesauxiliares.h": "c",
+        "funcoesheuristica.h": "c",
+        "aemt.h": "c",
+        "funcoesrnp.h": "c",
+        "funcoesproblema.h": "c",
+        "funcoesinicializacao.h": "c",
+        "funcoessetor.h": "c",
+        "funcoesleituradados.h": "c"
+    }
+}

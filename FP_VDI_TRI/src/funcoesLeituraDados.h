@@ -30,6 +30,7 @@ void leituraListaChaves(LISTACHAVES **listaChavesParam, long int *numeroChaves, 
 void leituraSetorBarra(GRAFO *grafoSDRParam);
 void leituraBarrasSimplicado(GRAFO **grafoSDRParam, long int *numeroBarras);
 void leituraBarrasSimplicadoModificada(GRAFO **grafoSDRParam, long int *numeroBarras);
+void leituraBarrasFasesConectadas(GRAFO **grafoSDRParam, long int *numeroBarras);
 void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE **maximoCorrenteParam, long int numeroBarrasParam, 
         DADOSALIMENTADOR *dadosAlimentador, long int numeroAlimentadores);
 void leituraVetorTaps(int *tapsParam, DADOSREGULADOR *dadosReguladorParam, long int numeroReguladoresParam, long int numeroBarrasParam);

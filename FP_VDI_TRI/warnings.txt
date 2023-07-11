@@ -1,0 +1,32 @@
+ninja: Entering directory `.\build'
+[1/2] Compiling C object FP_VDI_TRI.exe.p/src_funcoesLeituraDados.c.obj
+In file included from ../src/funcoesLeituraDados.h:11,
+                 from ../src/funcoesLeituraDados.c:13:
+../src/data_structures.h:73:2: warning: "/*" within comment [-Wcomment]
+   73 |  /**
+      |   
+../src/funcoesLeituraDados.c: In function 'leituraListaChaves':
+../src/funcoesLeituraDados.c:979:26: warning: unused variable 'contadorCCR' [-Wunused-variable]
+  979 |     int contadorCCM = 0, contadorCCR = 0;
+      |                          ^~~~~~~~~~~
+../src/funcoesLeituraDados.c:979:9: warning: unused variable 'contadorCCM' [-Wunused-variable]
+  979 |     int contadorCCM = 0, contadorCCR = 0;
+      |         ^~~~~~~~~~~
+../src/funcoesLeituraDados.c:975:11: warning: unused variable 'data' [-Wunused-variable]
+  975 |     char *data;
+      |           ^~~~
+../src/funcoesLeituraDados.c: In function 'leituraBarrasSimplicadoModificada':
+../src/funcoesLeituraDados.c:1101:22: warning: unused variable 'contadorBarras' [-Wunused-variable]
+ 1101 |     int ignorar = 0, contadorBarras = 0;
+      |                      ^~~~~~~~~~~~~~
+../src/funcoesLeituraDados.c: In function 'leituraBarrasFasesConectadas':
+../src/funcoesLeituraDados.c:1153:34: warning: format '%d' expects argument of type 'int *', but argument 5 has type 'short int *' [-Wformat=]
+ 1153 |         sscanf(buffer, "%ld %ld %d %lf %lf %lf %lf %lf %lf" , &barra,  &setor, &fases, &pA, &qA, &pB, &qB, &pC, &qC);
+      |                                 ~^                                             ~~~~~~
+      |                                  |                                             |
+      |                                  int *                                         short int *
+      |                                 %hd
+../src/funcoesLeituraDados.c:1141:9: warning: unused variable 'contadorBarras' [-Wunused-variable]
+ 1141 |     int contadorBarras = 0;
+      |         ^~~~~~~~~~~~~~
+[2/2] Linking target FP_VDI_TRI.exe

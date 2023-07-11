@@ -52,9 +52,10 @@ int main(int argc, char** argv) {
     //leituraBarrasSimplicado(&grafoSDR, &numeroBarras);
     leituraBarrasSimplicadoModificada(&grafoSDR, &numeroBarras);
     leituraBarrasFasesConectadas(&grafoSDR, &numeroBarras);
-//    HeapProfilerDump("após dados de barras linhas e trafos");
-    resultadoLeitura =  leituraDadosAlimentadores(&dadosAlimentadorSDR);
-//    HeapProfilerDump("após dado: error: ld returned 1 exit statuss de alimentadores");
+
+    return EXIT_SUCCESS;
+
+    /*
     resultadoLeitura =  leituraDadosReguladoresTensao(&dadosReguladorSDR);
     leituraTrafos(&dadosTrafoSDR, &numeroTrafos);
     alimentadoresPorTrafo(dadosTrafoSDR, numeroTrafos, dadosAlimentadorSDR, numeroAlimentadores); //Por Leandro:
@@ -115,11 +116,8 @@ int main(int argc, char** argv) {
     fclose(arquivoTeste);
 
 
-
-
-
-
     return (EXIT_SUCCESS);
+    */
 }
 
 

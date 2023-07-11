@@ -29,6 +29,7 @@
  Define a constante para o valor máximo do tipo float
  */
 //#define MAXFLOAT  100007.999999
+#define fatorPonderacaoManobras  10.0
 
 /**
  * Define o passo de ajuste pelo regulador de tensão
@@ -53,6 +54,22 @@
 #define maxCarregamentoRede 100.00
 #define maxCarregamentoTrafo 100.00
 #define maxQuedaTensao 10.0
+/*
+  * Define o tempo (em HORAS) necessário para operação de chaves Manuais e Automáticas
+  * A fonte destas informações é o seguinte artigo:
+  * Zidan, A.; El-Saadany, E. F. A cooperative multiagent framework for self-healing mechanisms in distribution systems. IEEE Transactions on Smart Grid, v. 3, n. 3, p. 1525–1539, 2012.
+  */
+#define tempoOperacaoChaveManual 0.4166666666667 //Por Leandro: tempo, em HORAS, necessário para operação de uma chave do tipo manual. Enquivale a 25 MINUTOS (FONTE: Zidan, A.; El-Saadany, E. F. A cooperative multiagent framework for self-healing mechanisms in distribution systems. IEEE Transactions on Smart Grid, v. 3, n. 3, p. 1525–1539, 2012.)
+#define tempoOperacaoChaveAutomatica 0.0138888888889 //Por Leandro: tempo, em HORAS, necessário para operação de uma chave do tipo automática. Equivale a 50 SEGUNDOS (FONTE: Zidan, A.; El-Saadany, E. F. A cooperative multiagent framework for self-healing mechanisms in distribution systems. IEEE Transactions on Smart Grid, v. 3, n. 3, p. 1525–1539, 2012.)
+
+ /**
+  * Por Leandro: Define o tempo (em HORAS) estimado para Restauração da Causa de UMA falha. O tempo total estimada a recuperação de várias faltas simultâneas
+  * será calculado a partir dessa constante na biblioteca "funcoesHeuristica.c"
+  */
+ #define TEMPO_DE_RESTAURACAO_DA_FALHA 4
+
+/**
+ * 
  /**
   * Define os limites superiores relaxados para as restrições Carregamento de Trafo e Queda de Tensão.
   */
@@ -226,7 +243,10 @@ typedef struct {
   double q; /**< Valor do tipo double indicando o valor Q da barra. */
 } PQ;
 
-
+typedef struct {
+  double p[3];
+  double q[3];
+} PQTRIFASICO;
 
 
 /**
@@ -304,6 +324,7 @@ typedef struct {
   long int idNo; /**< Valor inteiro sequencial atribuído a cada nó/barra do SDR. */
   TIPONO tipoNo; /**< Classificação do tipo de cada nó do SDR. */
   TIPOFASES tipoFases; /**< Classificação das fases conectadas a cada nó do SDR. */
+  PQTRIFASICO pqTrifasico; /**< Classificação das fases conectadas a cada nó do SDR. */
   int numeroAdjacentes; /**< Indica o tamanho da lista de adjacentes do nó. */
   NOADJACENTE *adjacentes; /**< Lista dos nós adjacentes. */
   PQ valorPQ; /**< Array com 24 posições, uma para cada hora do dia contendo os valores de P e Q. */
