@@ -25,6 +25,15 @@
  Define a constante para o valor máximo do tipo inteiro
  */
 #define MAXINT    100007
+/**
+ Define a constante para o valor máximo do tipo float
+ */
+//#define MAXFLOAT  100007.999999
+/**
+ Define o fator para ponderação das manobras automáticas em relação as manobras manuais.
+ *Por exemplo, com fatorPonderacaoManobras = 10, considera-se uma manobrabra automáticas 10 vezes mais rápida que uma manobra manual. 
+ */
+#define fatorPonderacaoManobras  10.0
 
 /**
  * Define o passo de ajuste pelo regulador de tensão
@@ -56,6 +65,20 @@
 #define maxCarregamentoTrafoR 150.00 //restrição relaxada
 #define maxQuedaTensaoR 20.0 //restrição relaxada
 
+ /*
+  * Define o tempo (em HORAS) necessário para operação de chaves Manuais e Automáticas
+  * A fonte destas informações é o seguinte artigo:
+  * Zidan, A.; El-Saadany, E. F. A cooperative multiagent framework for self-healing mechanisms in distribution systems. IEEE Transactions on Smart Grid, v. 3, n. 3, p. 1525–1539, 2012.
+  */
+#define tempoOperacaoChaveManual 0.4166666666667 //Por Leandro: tempo, em HORAS, necessário para operação de uma chave do tipo manual. Enquivale a 25 MINUTOS (FONTE: Zidan, A.; El-Saadany, E. F. A cooperative multiagent framework for self-healing mechanisms in distribution systems. IEEE Transactions on Smart Grid, v. 3, n. 3, p. 1525–1539, 2012.)
+#define tempoOperacaoChaveAutomatica 0.0138888888889 //Por Leandro: tempo, em HORAS, necessário para operação de uma chave do tipo automática. Equivale a 50 SEGUNDOS (FONTE: Zidan, A.; El-Saadany, E. F. A cooperative multiagent framework for self-healing mechanisms in distribution systems. IEEE Transactions on Smart Grid, v. 3, n. 3, p. 1525–1539, 2012.)
+
+ /**
+  * Por Leandro: Define o tempo (em HORAS) estimado para Restauração da Causa de UMA falha. O tempo total estimada a recuperação de várias faltas simultâneas
+  * será calculado a partir dessa constante na biblioteca "funcoesHeuristica.c"
+  */
+ #define TEMPO_DE_RESTAURACAO_DA_FALHA 4
+
 /**
  * @brief A enumeração BOOLEAN é utilizada para definir o tipo BOOL.
  *
@@ -85,7 +108,6 @@ typedef enum  {
 	capacitor, /**< Indica as barras que representam capacitores. */
 	raizAlimentador /**< Indica que a barra é raiz de alimentador. */
 } TIPONO;
-
 
 
 /**
