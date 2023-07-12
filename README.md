@@ -1,5 +1,5 @@
 <div align="center">
-    <img src=".github/Imagens/linhaTrifasica.png" style="width: 50vw">
+    <img src=".\.github\Imagens\linhaTrifasica.png" style="width: 50vw">
     
      Fluxo de Carga Trifásico pelo Método de 
      Varredura Direta Inversa, utilizando a 
