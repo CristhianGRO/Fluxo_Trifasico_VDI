@@ -311,7 +311,7 @@ void leituraTrafos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos)
         printf("Erro -- Nao foi possivel alocar espaco de memoria para os dados de trafos do SDR !!!!");
         exit(1); 
     }
-    
+
     //Leitura dos dados de cada trafo
     for(contador = 1; contador <= numeroTrafos[0]; contador++)
     {
@@ -348,16 +348,18 @@ void leituraTrafosTrifasicos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTr
     long int contador; //Variável contador para controlar a leitura dos dados de trafos
     int identificadorTrafo; //Variável para o identificador do trafo
     int identificadorSubEstacao; //Variável para o identificador da subestação
-    double capacidade; //Variável para leitura da capacidade do trafo
-    double tensaoReal; //Variável para leitura da tensão real do trafo
     double impedancia;
-    char* tipoTrafo = Malloc(char, 10);
+    char tipoTrafo[10];
     FILE *arquivo;
-    arquivo = fopen("dadosTrafoTrifasicos.dad","r+" );
+    arquivo = fopen("dadosTrafosTrifasicos.dad","r+" );
     if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo dadosTrafo.dad");
+        printf("Erro na abertura do arquivo dadosTrafosTrifasicos.dad");
         exit(1);
     }
+    //Leitura do bloco de caracteres do arquivo
+    fgets(blocoLeitura, 300, arquivo);
+     //Leitura do número de trafos do SDR
+    sscanf(blocoLeitura, "%ld",&tamTrafos);
     //Leitura dos dados trifasicos de cada trafo
     for(contador = 1; contador <= numeroTrafos[0]; contador++)
     {
@@ -370,7 +372,6 @@ void leituraTrafosTrifasicos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTr
         (*dadosTrafoSDRParam)[contador].idSubEstacao = identificadorSubEstacao;
 
         TIPOSTRAFOS enumTipo;
-
         //Define o TIPOTRAFO da barra baseado na string lida no arquivo
         if     (strcmp(tipoTrafo, "YYat"    ) == 0)   enumTipo = YYat;
         else if(strcmp(tipoTrafo, "YatY"    ) == 0)   enumTipo = YatY;
@@ -383,7 +384,6 @@ void leituraTrafosTrifasicos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTr
         else if(strcmp(tipoTrafo, "YD"      ) == 0)   enumTipo = YD;
 
         (*dadosTrafoSDRParam)[contador].tipoTransformador = enumTipo;
-        printf("%s", (*dadosTrafoSDRParam)[contador].tipoTransformador);
     }
 }
 

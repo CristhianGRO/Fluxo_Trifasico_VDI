@@ -23,7 +23,7 @@ O objetivo desse material é possibilitar que outros pesquisadores do tema utili
 <br><br>
 
 # 💾 Download
-Baixe os dados deste repositório em formato `.zip` [através deste link](https://github.com/CristhianGRO)
+Baixe os dados deste repositório em formato `.zip` [através deste link](https://github.com/CristhianGRO/Fluxo_Trifasico_VDI/archive/refs/heads/main.zip)
 
 
 <br><br>
