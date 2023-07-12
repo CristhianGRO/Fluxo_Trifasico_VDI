@@ -348,7 +348,6 @@ void leituraTrafosTrifasicos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTr
     long int contador; //Variável contador para controlar a leitura dos dados de trafos
     int identificadorTrafo; //Variável para o identificador do trafo
     int identificadorSubEstacao; //Variável para o identificador da subestação
-    double impedancia;
     char tipoTrafo[10];
     FILE *arquivo;
     arquivo = fopen("dadosTrafosTrifasicos.dad","r+" );
@@ -1269,19 +1268,19 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
     char buffer[5000];
     long int indiceBarras, barra, barraAdj;
     int indiceAdjacente, numeroAdjacentes, indiceAlimentador;
-    double resistencia, reatancia, maxCorrente;
+    double resistenciaA, resistenciaB, resistenciaC, reatanciaA, reatanciaB, reatanciaC, maxCorrenteA, maxCorrenteB, maxCorrenteC;
     BOOL barraAlimentador;
     arquivo = fopen("matrizImpedanciaCorrente.dad","r+" );
     if (arquivo == NULL) {
         printf("Erro na abertura do arquivo matrizImpedanciaCorrente.dad");
         exit(1);
     }
-    
+
     if (((*maximoCorrenteParam) = (MATRIZMAXCORRENTE *) malloc((numeroBarrasParam + 4) * sizeof (MATRIZMAXCORRENTE))) == NULL) {
         printf("Erro -- Nao foi possivel alocar espaco de memoria para a matriz de máximo de corrente !!!!");
         exit(1);
     }
-    
+
     //aloca a memória para a matriz Z 
     if (((*ZParam) = (MATRIZCOMPLEXA *) malloc((numeroBarrasParam + 4) * sizeof (MATRIZCOMPLEXA))) == NULL) {
         printf("Erro -- Nao foi possivel alocar espaco de memoria para a matriz Z !!!!");
@@ -1298,7 +1297,7 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
     (*maximoCorrenteParam)[0].numeroAdjacentes = 1;
     //aloca o espaço para os dados dos adjacentes.
     (*maximoCorrenteParam)[0].noAdjacentes = (CELULACORRENTE *) malloc(1 * sizeof (CELULACORRENTE));
-    
+
     //barra ficticia para o regulador do alimentador 1 no fluxo em anel
     (*ZParam)[numeroBarrasParam+1].idNo = numeroBarrasParam+1;
     (*ZParam)[numeroBarrasParam+1].numeroAdjacentes = 2;
@@ -1309,7 +1308,7 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
     (*maximoCorrenteParam)[numeroBarrasParam+1].numeroAdjacentes = 2;
     //aloca o espaço para os dados dos adjacentes.
     (*maximoCorrenteParam)[numeroBarrasParam+1].noAdjacentes = (CELULACORRENTE *) malloc(2 * sizeof (CELULACORRENTE));
-    
+
     //barra ficticia para o regulador do alimentador 2 no fluxo em anel
     (*ZParam)[numeroBarrasParam+2].idNo = numeroBarrasParam+2;
     (*ZParam)[numeroBarrasParam+2].numeroAdjacentes = 2;
@@ -1320,8 +1319,8 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
     (*maximoCorrenteParam)[numeroBarrasParam+2].numeroAdjacentes = 2;
     //aloca o espaço para os dados dos adjacentes.
     (*maximoCorrenteParam)[numeroBarrasParam+2].noAdjacentes = (CELULACORRENTE *) malloc(2 * sizeof (CELULACORRENTE));
-    
-    
+
+
     //barra ficticia para ligar a subestacao ao modelo do anel
     (*ZParam)[numeroBarrasParam+3].idNo = numeroBarrasParam+3;
     (*ZParam)[numeroBarrasParam+3].numeroAdjacentes = 3;
@@ -1332,8 +1331,8 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
     (*maximoCorrenteParam)[numeroBarrasParam+3].numeroAdjacentes = 3;
     //aloca o espaço para os dados dos adjacentes.
     (*maximoCorrenteParam)[numeroBarrasParam+3].noAdjacentes = (CELULACORRENTE *) malloc(3 * sizeof (CELULACORRENTE));
-    
-    
+
+
     for(indiceBarras = 1; indiceBarras <= numeroBarrasParam; indiceBarras++)
     {
         fgets(buffer, 5000, arquivo);
@@ -1369,13 +1368,19 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
         for(indiceAdjacente = 0; indiceAdjacente < numeroAdjacentes; indiceAdjacente++)
         {
             fgets(buffer, 5000, arquivo);
-            sscanf(buffer, "%ld %lf %lf %lf", &barraAdj, &resistencia, &reatancia, &maxCorrente);
+            sscanf(buffer, "%ld %lf %lf %lf %lf %lf %lf %lf %lf %lf", &barraAdj, &resistenciaA,  &reatanciaA, &maxCorrenteA, &resistenciaB, &reatanciaB, &maxCorrenteB,&resistenciaC, &reatanciaC, &maxCorrenteC);
            // printf("%ld \t %ld \t %lf \t %lf \t %lf\n", barra, barraAdj, resistencia, reatancia, maxCorrente);
             (*ZParam)[barra].noAdjacentes[indiceAdjacente].idNo = barraAdj;
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor = resistencia + ij * reatancia;
+
+            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[0] = resistenciaA+ ij * reatanciaA;
+            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[1] = resistenciaB+ ij * reatanciaB;
+            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[2] = resistenciaC+ ij * reatanciaC;
+
             (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].idNo = barraAdj;
-            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor = maxCorrente;
-            
+
+            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor[0] = maxCorrenteA;
+            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor[1] = maxCorrenteB;
+            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor[2] = maxCorrenteC;
         }
     }
     

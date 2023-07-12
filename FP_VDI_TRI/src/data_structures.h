@@ -748,7 +748,7 @@ typedef struct{
 
 typedef struct{
  long int idNo; /**< Identificador da barra do SDR. */
- double valor; /**< Valor double do máximo de corrente. */
+ double valor[3]; /**< Valor double do máximo de corrente. */
 }CELULACORRENTE;
 
 /**
@@ -771,7 +771,7 @@ typedef struct{
 
 typedef struct{
  long int idNo; /**< Inteiro que identifica cada barra destino no SDR. */
- __complex__ double valor; /**< Valor complexo com a impedância. */
+ __complex__ double valor[3]; /**< Valor complexo com a impedância. */
 }CELULACOMPLEXA;
 
 /**

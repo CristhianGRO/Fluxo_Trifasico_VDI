@@ -57,12 +57,10 @@ int main(int argc, char** argv) {
     resultadoLeitura =  leituraDadosReguladoresTensao(&dadosReguladorSDR);
 
     leituraTrafos(&dadosTrafoSDR, &numeroTrafos);
+
     leituraTrafosTrifasicos(&dadosTrafoSDR, &numeroTrafos);
 
-    //alimentadoresPorTrafo(dadosTrafoSDR, numeroTrafos, dadosAlimentadorSDR, numeroAlimentadores);
-    return EXIT_SUCCESS;
-
-    /*
+    alimentadoresPorTrafo(dadosTrafoSDR, numeroTrafos, dadosAlimentadorSDR, numeroAlimentadores);
 
     leituraListaChaves(&listaChaves, &numeroChaves, &estadoInicial);
 
@@ -70,9 +68,20 @@ int main(int argc, char** argv) {
 
     leituraRNPSetores(&rnpSetores, numeroSetores);
 
+    leituraMatrizImpedanciaCorrente(&Z, &maximoCorrente, numeroBarras, dadosAlimentadorSDR, numeroAlimentadores);
+
+    return EXIT_SUCCESS;
+
+    /*
+
+    
+    
+
+    
+
    //imprimeListaChaves(listaChaves, numeroChaves);
 
-   leituraMatrizImpedanciaCorrente(&Z, &maximoCorrente, numeroBarras, dadosAlimentadorSDR, numeroAlimentadores);
+   
 
    int numeroAlimentadoresFicticios = 0; //Por Leandro:
    (configuracaoInicial) = alocaIndividuoModificada(numeroAlimentadores, numeroAlimentadoresFicticios, idConfiguracao, 1, numeroTrafos, numeroSetores);
