@@ -342,16 +342,30 @@ typedef struct {
  * com base nas restrições operacionais.
  */
 
+typedef enum{
+  YYat,
+  YatY,
+  YatYat,
+  YY,
+  DD,
+  DY,
+  DYat,
+  YatD,
+  YD
+} TIPOSTRAFOS;
+
 typedef struct {
   int idTrafo; /**< Valor inteiro sequencial atribuído a cada trafo do SDR. */
   int idSubEstacao; /**< Valor inteiro sequencial atribuído a cada subestação do SDR. */
   double capacidade; /**< Indica a capacidade de potência em MVA do trafo. */
   __complex__ double tensaoReal; /**< Indica a tensão suportada pelo trafo. */
   double impedancia; /**< Indica a impedância do trafo. */
-
+  TIPOSTRAFOS tipoTransformador;
   int numeroAlimentadores; /**< Por Leandro: Valor inteiro que quantifica o número de alimentadores conectados a um trafo. */
   int *alimentador; /**< Por Leandro: Vetor que armazena o índice dos Alimentadores conectados ao um trafo. */
 } DADOSTRAFO;
+
+
 
 /**
  * @brief Armazena as informações de cada alimentador que compõem o SDR.

@@ -327,6 +327,67 @@ void leituraTrafos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos)
         (*dadosTrafoSDRParam)[contador].impedancia = (impedancia/100)*(tensaoReal*tensaoReal)/capacidade;
     }
 }
+
+/**
+ * @brief Função para a leitura do arquivo dadosTrafoTrifasicos.dad, relativo as informações trifasicas dos trafos. 
+ *
+ * Essa função realiza a leitura dos dados trifasicos relativos aos trafos do sistema. Nessa função é alocada a estrutura que armazena os dados dos trafos.
+ * Para isso ao função recebe como parâmetro de entrada e saída e um ponteiro para o ponteiro do tipo DADOSTRAFO, @p **dadosTrafoSDRParam .
+ * A função retorna @c void.
+ * 
+ * @param dadosTrafoSDRParam é um ponteiro para o ponteiro da estrutura do tipo do DADOSTRAFO, onde os dados do trafo são retornados.
+ * @param numeroTrafos inteiro contendo o número total de trafos do SDR.
+ * @return void
+  * @note
+ */
+
+void leituraTrafosTrifasicos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos)
+{
+    char blocoLeitura[300];  //Variável para leitura do bloco de caracteres do arquivo
+    long int tamTrafos; //Variável para ler o número de trafos do SDR
+    long int contador; //Variável contador para controlar a leitura dos dados de trafos
+    int identificadorTrafo; //Variável para o identificador do trafo
+    int identificadorSubEstacao; //Variável para o identificador da subestação
+    double capacidade; //Variável para leitura da capacidade do trafo
+    double tensaoReal; //Variável para leitura da tensão real do trafo
+    double impedancia;
+    char* tipoTrafo = Malloc(char, 10);
+    FILE *arquivo;
+    arquivo = fopen("dadosTrafoTrifasicos.dad","r+" );
+    if (arquivo == NULL) {
+        printf("Erro na abertura do arquivo dadosTrafo.dad");
+        exit(1);
+    }
+    //Leitura dos dados trifasicos de cada trafo
+    for(contador = 1; contador <= numeroTrafos[0]; contador++)
+    {
+         //Leitura do bloco de caracteres do arquivo
+        fgets(blocoLeitura, 300, arquivo);
+         //Leitura de cada informação dos dados dos trafos na string blocoLeitura
+        sscanf(blocoLeitura,"%d %d %s", &identificadorTrafo, &identificadorSubEstacao, tipoTrafo);
+        //Inserção na estrutura de dados dos trafos das informações lidas.
+        (*dadosTrafoSDRParam)[contador].idTrafo = identificadorTrafo;
+        (*dadosTrafoSDRParam)[contador].idSubEstacao = identificadorSubEstacao;
+
+        TIPOSTRAFOS enumTipo;
+
+        //Define o TIPOTRAFO da barra baseado na string lida no arquivo
+        if     (strcmp(tipoTrafo, "YYat"    ) == 0)   enumTipo = YYat;
+        else if(strcmp(tipoTrafo, "YatY"    ) == 0)   enumTipo = YatY;
+        else if(strcmp(tipoTrafo, "YatYat"  ) == 0)   enumTipo = YatYat;
+        else if(strcmp(tipoTrafo, "YY"      ) == 0)   enumTipo = YY;
+        else if(strcmp(tipoTrafo, "DD"      ) == 0)   enumTipo = DD;
+        else if(strcmp(tipoTrafo, "DY"      ) == 0)   enumTipo = DY;
+        else if(strcmp(tipoTrafo, "DYat"    ) == 0)   enumTipo = DYat;
+        else if(strcmp(tipoTrafo, "YatD"    ) == 0)   enumTipo = YatD;
+        else if(strcmp(tipoTrafo, "YD"      ) == 0)   enumTipo = YD;
+
+        (*dadosTrafoSDRParam)[contador].tipoTransformador = enumTipo;
+        printf("%s", (*dadosTrafoSDRParam)[contador].tipoTransformador);
+    }
+}
+
+
 /**
  * @brief Função para imprimir os dados lidos sobre o SDR representado na forma de um grafo.
  *
@@ -1131,7 +1192,7 @@ void leituraBarrasSimplicadoModificada(GRAFO **grafoSDRParam, long int *numeroBa
 /*
  * Por Cristhian: Função modificada para que leia as informações relevantes para o FP.
  */
-void leituraBarrasFasesConectadas(GRAFO **grafoSDRParam, long int *numeroBarras)
+void leituraBarrasTrifasicas(GRAFO **grafoSDRParam, long int *numeroBarras)
 {
     FILE *arquivo;
     double pA, qA, pB, qB, pC, qC;
@@ -1141,9 +1202,9 @@ void leituraBarrasFasesConectadas(GRAFO **grafoSDRParam, long int *numeroBarras)
     char buffer[5000];
     int contadorBarras = 0;
 
-    arquivo = fopen("barrasFases.dad","r+" );
+    arquivo = fopen("barrasTrifasicas.dad","r+" );
     if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo barrasFases.dad");
+        printf("Erro na abertura do arquivo barrasTrifasicas.dad");
         exit(1);
     }
     fgets(buffer, 5000, arquivo);
@@ -1156,43 +1217,46 @@ void leituraBarrasFasesConectadas(GRAFO **grafoSDRParam, long int *numeroBarras)
         (*grafoSDRParam)[barra].idSetor = setor;
 
         //Verifica quais fases conectam-se ao nó e atribui o objeto TIPOFASES correspondente
+        TIPOFASES enumFases;
+
         switch(fases){
             case 100:
-                (*grafoSDRParam)[barra].tipoFases = A;
+                enumFases = A;
             break;
             //Esse valor é equivalente a 010
             case 10:
-                (*grafoSDRParam)[barra].tipoFases = B;
+                enumFases = B;
             break;
             case 001:
-                (*grafoSDRParam)[barra].tipoFases = C;
+                enumFases = C;
             break;
             case 110:
-                (*grafoSDRParam)[barra].tipoFases = AB;
+                enumFases= AB;
             break;
             case 101:
-                (*grafoSDRParam)[barra].tipoFases = AC;
+                enumFases = AC;
             break;
             //Esse valor é equivalente a 011
             case 11:
-                (*grafoSDRParam)[barra].tipoFases = BC;
+                enumFases = BC;
             break;
             case 111:
-                (*grafoSDRParam)[barra].tipoFases = ABC;
+                enumFases = ABC;
             break;
             default:
                 printf("Erro na leitura das fases - Valor invalido na barra %ld do setor %ld\n",barra,setor);
             break;
         }
-    }
-    //Salva os dados de demanda de potência por fase, para cada barra.
-    (*grafoSDRParam)[barra].pqTrifasico.p[0] = pA;
-    (*grafoSDRParam)[barra].pqTrifasico.p[1] = pB;
-    (*grafoSDRParam)[barra].pqTrifasico.p[2] = pC;
+        (*grafoSDRParam)[barra].tipoFases = enumFases;
+        //Salva os dados de demanda de potência por fase, para cada barra.
+        (*grafoSDRParam)[barra].pqTrifasico.p[0] = pA;
+        (*grafoSDRParam)[barra].pqTrifasico.p[1] = pB;
+        (*grafoSDRParam)[barra].pqTrifasico.p[2] = pC;
 
-    (*grafoSDRParam)[barra].pqTrifasico.q[0] = qA;
-    (*grafoSDRParam)[barra].pqTrifasico.q[1] = qB;
-    (*grafoSDRParam)[barra].pqTrifasico.q[2] = qC;
+        (*grafoSDRParam)[barra].pqTrifasico.q[0] = qA;
+        (*grafoSDRParam)[barra].pqTrifasico.q[1] = qB;
+        (*grafoSDRParam)[barra].pqTrifasico.q[2] = qC;
+    }
 
     fclose(arquivo);
 }

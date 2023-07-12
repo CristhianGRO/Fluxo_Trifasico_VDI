@@ -1,11 +1,11 @@
 /*
  ============================================================================
- Name        : AEMO_DOC_VF.c
- Author      : Leandro
+ Name        : main.c
+ Author      : Cristhian (Adaptado de Leandro)
  Version     : 1
  Copyright   : Your copyright notice
- Description : Este é o versão final do AEMO proposto no doutorado
- Created on 24 de Fevereiro de 2018
+ Description : Esta é a implementação do algoritmo de fluxo de carga trifásico pelo método de varredura direta inversa
+ Created on 11 de Julho de 2023
  ============================================================================
  */
 
@@ -14,7 +14,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
-#include <locale.h>    /* Biblioteca necessÃƒÂ¡ria para uso de configuraÃƒÂ§ÃƒÂµes regionais. */
+#include <locale.h>    /* Biblioteca necessaria para configuracoes regionais. */
 //#include <gperftools/profiler.h>
 #include "funcoesLeituraDados.h"
 #include "funcoesSetor.h"
@@ -51,16 +51,18 @@ int main(int argc, char** argv) {
     long int numeroBarras, numeroTrafos, numeroChaves;
     //leituraBarrasSimplicado(&grafoSDR, &numeroBarras);
     leituraBarrasSimplicadoModificada(&grafoSDR, &numeroBarras);
-    leituraBarrasFasesConectadas(&grafoSDR, &numeroBarras);
 
+    leituraBarrasTrifasicas(&grafoSDR, &numeroBarras);
+
+    resultadoLeitura =  leituraDadosReguladoresTensao(&dadosReguladorSDR);
+
+    leituraTrafos(&dadosTrafoSDR, &numeroTrafos);
+    leituraTrafosTrifasicos(&dadosTrafoSDR, &numeroTrafos);
+
+    //alimentadoresPorTrafo(dadosTrafoSDR, numeroTrafos, dadosAlimentadorSDR, numeroAlimentadores);
     return EXIT_SUCCESS;
 
     /*
-    resultadoLeitura =  leituraDadosReguladoresTensao(&dadosReguladorSDR);
-    leituraTrafos(&dadosTrafoSDR, &numeroTrafos);
-    alimentadoresPorTrafo(dadosTrafoSDR, numeroTrafos, dadosAlimentadorSDR, numeroAlimentadores); //Por Leandro:
-
-    //srand(time(NULL));
 
     leituraListaChaves(&listaChaves, &numeroChaves, &estadoInicial);
 

@@ -15,6 +15,7 @@ void leituraLinhas(FILE *arquivo, GRAFO *grafoSDRParam, long int *numeroChaves);
 
 //void leituraTrafos(FILE *arquivo, DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos);
 void leituraTrafos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos);
+void leituraTrafosTrifasicos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos);
 BOOL leituraDadosAlimentadores(DADOSALIMENTADOR **dadosAlimentadorSDRParam);
 BOOL leituraDadosReguladoresTensao(DADOSREGULADOR **dadosReguladorSDRParam);
 void imprimeGrafo(GRAFO *grafoSDRParam, long int numeroBarras);
@@ -30,7 +31,7 @@ void leituraListaChaves(LISTACHAVES **listaChavesParam, long int *numeroChaves, 
 void leituraSetorBarra(GRAFO *grafoSDRParam);
 void leituraBarrasSimplicado(GRAFO **grafoSDRParam, long int *numeroBarras);
 void leituraBarrasSimplicadoModificada(GRAFO **grafoSDRParam, long int *numeroBarras);
-void leituraBarrasFasesConectadas(GRAFO **grafoSDRParam, long int *numeroBarras);
+void leituraBarrasFasesCleituraBarrasTrifasicas(GRAFO **grafoSDRParam, long int *numeroBarras);
 void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE **maximoCorrenteParam, long int numeroBarrasParam, 
         DADOSALIMENTADOR *dadosAlimentador, long int numeroAlimentadores);
 void leituraVetorTaps(int *tapsParam, DADOSREGULADOR *dadosReguladorParam, long int numeroReguladoresParam, long int numeroBarrasParam);
