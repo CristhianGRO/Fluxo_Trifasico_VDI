@@ -748,7 +748,7 @@ typedef struct{
 
 typedef struct{
  long int idNo; /**< Identificador da barra do SDR. */
- double valor[3]; /**< Valor double do máximo de corrente. */
+ double valor; /**< Valor double do máximo de corrente para o trecho. */
 }CELULACORRENTE;
 
 /**
@@ -767,11 +767,12 @@ typedef struct{
  * @brief Armazena os valores complexos para cada para de barra.
  *
  * Esta estrutura é utilizada para armazenar a célula de valores complexos para cálculo do fluxo de carga.
+ * Cristhian: adicionada dimensão 3x3 da matriz impedância para casos trifásicos 
  */
 
 typedef struct{
  long int idNo; /**< Inteiro que identifica cada barra destino no SDR. */
- __complex__ double valor[3]; /**< Valor complexo com a impedância. */
+ __complex__ double valor[3][3]; /**< Valor complexo com a impedância. */
 }CELULACOMPLEXA;
 
 /**

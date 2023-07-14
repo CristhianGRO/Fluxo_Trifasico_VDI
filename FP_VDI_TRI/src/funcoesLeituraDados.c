@@ -1268,11 +1268,12 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
     char buffer[5000];
     long int indiceBarras, barra, barraAdj;
     int indiceAdjacente, numeroAdjacentes, indiceAlimentador;
-    double resistenciaA, resistenciaB, resistenciaC, reatanciaA, reatanciaB, reatanciaC, maxCorrenteA, maxCorrenteB, maxCorrenteC;
+    double resistencias[6], reatancias[6],ampacidade;
     BOOL barraAlimentador;
-    arquivo = fopen("matrizImpedanciaCorrente.dad","r+" );
+    int iterador,iteradorAuxiliar,contador=0;
+    arquivo = fopen("matrizImpedanciaCorrenteTrifasicos.dad","r+" );
     if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo matrizImpedanciaCorrente.dad");
+        printf("Erro na abertura do arquivo matrizImpedanciaCorrenteTrifasicos.dad");
         exit(1);
     }
 
@@ -1368,22 +1369,24 @@ void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE
         for(indiceAdjacente = 0; indiceAdjacente < numeroAdjacentes; indiceAdjacente++)
         {
             fgets(buffer, 5000, arquivo);
-            sscanf(buffer, "%ld %lf %lf %lf %lf %lf %lf %lf %lf %lf", &barraAdj, &resistenciaA,  &reatanciaA, &maxCorrenteA, &resistenciaB, &reatanciaB, &maxCorrenteB,&resistenciaC, &reatanciaC, &maxCorrenteC);
-           // printf("%ld \t %ld \t %lf \t %lf \t %lf\n", barra, barraAdj, resistencia, reatancia, maxCorrente);
+            sscanf(buffer, "%ld %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf", &barraAdj, &ampacidade, &resistencias[0],&reatancias[0],&resistencias[1],&reatancias[1],&resistencias[2],&reatancias[2],&resistencias[3],&reatancias[3],&resistencias[4],&reatancias[4],&resistencias[5],&reatancias[5]);
+
             (*ZParam)[barra].noAdjacentes[indiceAdjacente].idNo = barraAdj;
+            //Adicionando os elementos da matriz impedancia da triangular superior
+            for(iterador=0;iterador<3;iterador++){
+                for(iteradorAuxiliar=iterador;iteradorAuxiliar<3;iteradorAuxiliar++){
+                    (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[contador] + ij*reatancias[contador];
+                    contador++;
+                }
+            }
+            //Adicionando os elementos da matriz impedancia da triangular inferior
+            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[1] + ij*reatancias[1];
+            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[2] + ij*reatancias[2];
+            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[4] + ij*reatancias[4];
 
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[0] = resistenciaA+ ij * reatanciaA;
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[1] = resistenciaB+ ij * reatanciaB;
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[2] = resistenciaC+ ij * reatanciaC;
-
-            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].idNo = barraAdj;
-
-            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor[0] = maxCorrenteA;
-            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor[1] = maxCorrenteB;
-            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor[2] = maxCorrenteC;
+            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor = ampacidade;
         }
     }
-    
     fclose(arquivo);
 
 }
@@ -1398,7 +1401,7 @@ void leituraVetorTaps(int *tapsParam, DADOSREGULADOR *dadosReguladorParam, long 
         printf("Erro na abertura do arquivo matrizImpedanciaCorrente.dad");
         exit(1);
     }
-    
+
     for (indiceNo1 = 1; indiceNo1 <= numeroBarrasParam+4; indiceNo1++) {
         tapsParam[indiceNo1] = 0;
     }
