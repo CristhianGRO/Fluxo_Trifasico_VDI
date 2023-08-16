@@ -304,12 +304,16 @@ void leituraTrafos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos)
     sscanf(blocoLeitura, "%ld",&tamTrafos);
     //Atribui o número de trafos lido do arquivo para a variável global numeroTrafos
     numeroTrafos[0] = tamTrafos;
+
     //Aloca a memória para armazenar os dados dos trafos do SDR e verifica se o processo foi concluído com sucesso. 
     //Caso não seja possível alocar a memória encerra o programa.
+
     if (((*dadosTrafoSDRParam) = (DADOSTRAFO *)malloc( (tamTrafos+1) * sizeof(DADOSTRAFO)))==NULL)
     {
         printf("Erro -- Nao foi possivel alocar espaco de memoria para os dados de trafos do SDR !!!!");
         exit(1); 
+    }else{
+        (*dadosTrafoSDRParam) = (DADOSTRAFO *)malloc( (tamTrafos+1) * sizeof(DADOSTRAFO));
     }
 
     //Leitura dos dados de cada trafo
@@ -318,71 +322,13 @@ void leituraTrafos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos)
          //Leitura do bloco de caracteres do arquivo
         fgets(blocoLeitura, 300, arquivo);
          //Leitura de cada informação dos dados dos trafos na string blocoLeitura
-        sscanf(blocoLeitura,"%d %d %lf %lf %lf", &identificadorTrafo, &identificadorSubEstacao, &capacidade, &tensaoReal, &impedancia);
+        sscanf(blocoLeitura,"%d %d %lf %lf", &identificadorTrafo, &identificadorSubEstacao, &capacidade, &tensaoReal, &impedancia);
         //Inserção na estrutura de dados dos trafos das informações lidas.
         (*dadosTrafoSDRParam)[contador].idTrafo = identificadorTrafo;
         (*dadosTrafoSDRParam)[contador].idSubEstacao = identificadorSubEstacao;
         (*dadosTrafoSDRParam)[contador].capacidade = capacidade;
         (*dadosTrafoSDRParam)[contador].tensaoReal = tensaoReal;
         (*dadosTrafoSDRParam)[contador].impedancia = (impedancia/100)*(tensaoReal*tensaoReal)/capacidade;
-    }
-}
-
-/**
- * @brief Função para a leitura do arquivo dadosTrafoTrifasicos.dad, relativo as informações trifasicas dos trafos. 
- *
- * Essa função realiza a leitura dos dados trifasicos relativos aos trafos do sistema. Nessa função é alocada a estrutura que armazena os dados dos trafos.
- * Para isso ao função recebe como parâmetro de entrada e saída e um ponteiro para o ponteiro do tipo DADOSTRAFO, @p **dadosTrafoSDRParam .
- * A função retorna @c void.
- * 
- * @param dadosTrafoSDRParam é um ponteiro para o ponteiro da estrutura do tipo do DADOSTRAFO, onde os dados do trafo são retornados.
- * @param numeroTrafos inteiro contendo o número total de trafos do SDR.
- * @return void
-  * @note
- */
-
-void leituraTrafosTrifasicos(DADOSTRAFO **dadosTrafoSDRParam, long int *numeroTrafos)
-{
-    char blocoLeitura[300];  //Variável para leitura do bloco de caracteres do arquivo
-    long int tamTrafos; //Variável para ler o número de trafos do SDR
-    long int contador; //Variável contador para controlar a leitura dos dados de trafos
-    int identificadorTrafo; //Variável para o identificador do trafo
-    int identificadorSubEstacao; //Variável para o identificador da subestação
-    char tipoTrafo[10];
-    FILE *arquivo;
-    arquivo = fopen("dadosTrafosTrifasicos.dad","r+" );
-    if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo dadosTrafosTrifasicos.dad");
-        exit(1);
-    }
-    //Leitura do bloco de caracteres do arquivo
-    fgets(blocoLeitura, 300, arquivo);
-     //Leitura do número de trafos do SDR
-    sscanf(blocoLeitura, "%ld",&tamTrafos);
-    //Leitura dos dados trifasicos de cada trafo
-    for(contador = 1; contador <= numeroTrafos[0]; contador++)
-    {
-         //Leitura do bloco de caracteres do arquivo
-        fgets(blocoLeitura, 300, arquivo);
-         //Leitura de cada informação dos dados dos trafos na string blocoLeitura
-        sscanf(blocoLeitura,"%d %d %s", &identificadorTrafo, &identificadorSubEstacao, tipoTrafo);
-        //Inserção na estrutura de dados dos trafos das informações lidas.
-        (*dadosTrafoSDRParam)[contador].idTrafo = identificadorTrafo;
-        (*dadosTrafoSDRParam)[contador].idSubEstacao = identificadorSubEstacao;
-
-        TIPOSTRAFOS enumTipo;
-        //Define o TIPOTRAFO da barra baseado na string lida no arquivo
-        if     (strcmp(tipoTrafo, "YYat"    ) == 0)   enumTipo = YYat;
-        else if(strcmp(tipoTrafo, "YatY"    ) == 0)   enumTipo = YatY;
-        else if(strcmp(tipoTrafo, "YatYat"  ) == 0)   enumTipo = YatYat;
-        else if(strcmp(tipoTrafo, "YY"      ) == 0)   enumTipo = YY;
-        else if(strcmp(tipoTrafo, "DD"      ) == 0)   enumTipo = DD;
-        else if(strcmp(tipoTrafo, "DY"      ) == 0)   enumTipo = DY;
-        else if(strcmp(tipoTrafo, "DYat"    ) == 0)   enumTipo = DYat;
-        else if(strcmp(tipoTrafo, "YatD"    ) == 0)   enumTipo = YatD;
-        else if(strcmp(tipoTrafo, "YD"      ) == 0)   enumTipo = YD;
-
-        (*dadosTrafoSDRParam)[contador].tipoTransformador = enumTipo;
     }
 }
 
@@ -912,12 +858,11 @@ void leituraListaAdjacenciaSetores(GRAFOSETORES **grafoSetoresParam, long int *n
     }
     fgets(buffer, 5000, arquivo);
     sscanf(buffer, "numero	setores	%ld", numeroSetores);
-    
     if (((*grafoSetoresParam) = (GRAFOSETORES *)malloc((numeroSetores[0]+1)*sizeof (GRAFOSETORES)))==NULL)
     {
         printf("ERRO: alocacacao grafo da lista de adjacencias de setores!!!!");
         exit(1);
-    }        
+    }
     for(contador = 1; contador<=numeroSetores[0]; contador++)
     {
         fgets(buffer, 5000, arquivo);
@@ -954,6 +899,7 @@ void leituraListaAdjacenciaSetores(GRAFOSETORES **grafoSetoresParam, long int *n
         fgets(buffer, 5000, arquivo);
     }
     fclose(arquivo);
+   // exit(0);
 }
 
 void leituraRNPSetores(RNPSETORES **rnpSetores, long int numeroSetores)
@@ -971,25 +917,27 @@ void leituraRNPSetores(RNPSETORES **rnpSetores, long int numeroSetores)
         printf("Não foi possível alocar a lista de RNP de setores");
         exit(1);
     }
-   
+
     arquivo = fopen("rnpsetores.dad","r+" );
     if (arquivo == NULL) {
         printf("Erro na abertura do arquivo rnpsetores.dad");
         exit(1);
     }
+    //printf("numeroSetores: %d\n", numeroSetores);   
     for (contador = 0; contador < numeroSetores; contador++) {
         fgets(buffer, 30000, arquivo);
         sscanf(buffer, "Identificador	Setor: %ld RNPs %d", &idNo, &numeroRnp);
         (*rnpSetores)[idNo].rnps = Malloc(RNPSETOR, (numeroRnp + 1));
         (*rnpSetores)[idNo].idSetor = idNo;
         (*rnpSetores)[idNo].numeroRNPs = numeroRnp;
-        
+        //printf("numeroRNPs do setor %d: %d\n", contador, numeroRnp);
         for(contadorAdj = 0; contadorAdj < numeroRnp; contadorAdj++)
         {
             fgets(buffer, 30000, arquivo);
             sscanf(buffer, "Origem %ld numero	nos %d", &idAdj, &numeroNos);
             (*rnpSetores)[idNo].rnps[contadorAdj].nos = Malloc(NORNP, (numeroNos));
             (*rnpSetores)[idNo].rnps[contadorAdj].numeroNos = numeroNos;
+            //printf("numeroNos: %d\n", numeroNos);   
             (*rnpSetores)[idNo].rnps[contadorAdj].idSetorOrigem = idAdj;
             fgets(buffer, 30000, arquivo);
             data = buffer;
@@ -1069,7 +1017,7 @@ void leituraListaChaves(LISTACHAVES **listaChavesParam, long int *numeroChaves, 
         (*listaChavesParam)[codigo].tipoChave = tipoChave;
         strcpy((*listaChavesParam)[codigo].codOperacional,codOperacional);
         (*estadoInicial)[codigo] = estado;
-
+        
 //        if((*listaChavesParam)[codigo].tipoChave == 0)
 //        	contadorCCM++;
 //        if((*listaChavesParam)[codigo].tipoChave == 1)
@@ -1077,7 +1025,6 @@ void leituraListaChaves(LISTACHAVES **listaChavesParam, long int *numeroChaves, 
 
 
     }
-
 //    printf("CCM: %d\n CCR: %d", contadorCCM, contadorCCR);
 //    printf("\n");
 //    printf("\n");
@@ -1147,249 +1094,7 @@ void leituraBarrasSimplicado(GRAFO **grafoSDRParam, long int *numeroBarras)
     fclose(arquivo);
 }
 
-/*
- * Por Cristhian: Função modificada para que leia as informações relevantes para o FP.
- */
-void leituraBarrasSimplicadoModificada(GRAFO **grafoSDRParam, long int *numeroBarras)
-{
-    FILE *arquivo;
-    int tipo;
-    double p, q;
-    long int contador;
-    long int barra, setor;
-    char buffer[5000];
-    int ignorar = 0, contadorBarras = 0;
 
-    arquivo = fopen("barras_m.dad","r+" );
-    
-    if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo barras_m.dad");
-        exit(1);
-    }
-    fgets(buffer, 5000, arquivo);
-    sscanf(buffer, "%ld", numeroBarras);
-    
-     //realiza a alocação da estrutura em grafo para armazenar o SDR e verifica se o processo foi bem sucedido
-    //caso não seja possível realizar a alocação o programa é encerrado
-    if (((*grafoSDRParam) = (GRAFO *)malloc( (numeroBarras[0]+1) * sizeof(GRAFO)))==NULL)
-    {
-        printf("Erro -- Nao foi possivel alocar espaco de memoria para o grafo do SDR !!!!");
-        exit(1); 
-    }    
-    for (contador = 1; contador <= numeroBarras[0]; contador++) {
-        fgets(buffer, 5000, arquivo);
-        sscanf(buffer, "%ld %ld %d %lf %lf %d", &barra,  &setor, &tipo, &p, &q, &ignorar);
-        (*grafoSDRParam)[barra].idNo = barra;
-        (*grafoSDRParam)[barra].idSetor = setor;
-        (*grafoSDRParam)[barra].tipoNo = tipo;
-        (*grafoSDRParam)[barra].valorPQ.p = p;
-        (*grafoSDRParam)[barra].valorPQ.q = q;
-    }
-    fclose(arquivo);
-}
-
-/*
- * Por Cristhian: Função modificada para que leia as informações relevantes para o FP.
- */
-void leituraBarrasTrifasicas(GRAFO **grafoSDRParam, long int *numeroBarras)
-{
-    FILE *arquivo;
-    double pA, qA, pB, qB, pC, qC;
-    long int contador;
-    long int barra, setor;
-    int fases;
-    char buffer[5000];
-    int contadorBarras = 0;
-
-    arquivo = fopen("barrasTrifasicas.dad","r+" );
-    if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo barrasTrifasicas.dad");
-        exit(1);
-    }
-    fgets(buffer, 5000, arquivo);
-    sscanf(buffer, "%ld", numeroBarras);
-
-    for (contador = 1; contador <= numeroBarras[0]; contador++) {
-        fgets(buffer, 5000, arquivo);
-        sscanf(buffer, "%ld %ld %d %lf %lf %lf %lf %lf %lf" , &barra,  &setor, &fases, &pA, &qA, &pB, &qB, &pC, &qC);
-        (*grafoSDRParam)[barra].idNo = barra;
-        (*grafoSDRParam)[barra].idSetor = setor;
-
-        //Verifica quais fases conectam-se ao nó e atribui o objeto TIPOFASES correspondente
-        TIPOFASES enumFases;
-
-        switch(fases){
-            case 100:
-                enumFases = A;
-            break;
-            //Esse valor é equivalente a 010
-            case 10:
-                enumFases = B;
-            break;
-            case 001:
-                enumFases = C;
-            break;
-            case 110:
-                enumFases= AB;
-            break;
-            case 101:
-                enumFases = AC;
-            break;
-            //Esse valor é equivalente a 011
-            case 11:
-                enumFases = BC;
-            break;
-            case 111:
-                enumFases = ABC;
-            break;
-            default:
-                printf("Erro na leitura das fases - Valor invalido na barra %ld do setor %ld\n",barra,setor);
-            break;
-        }
-        (*grafoSDRParam)[barra].tipoFases = enumFases;
-        //Salva os dados de demanda de potência por fase, para cada barra.
-        (*grafoSDRParam)[barra].pqTrifasico.p[0] = pA;
-        (*grafoSDRParam)[barra].pqTrifasico.p[1] = pB;
-        (*grafoSDRParam)[barra].pqTrifasico.p[2] = pC;
-
-        (*grafoSDRParam)[barra].pqTrifasico.q[0] = qA;
-        (*grafoSDRParam)[barra].pqTrifasico.q[1] = qB;
-        (*grafoSDRParam)[barra].pqTrifasico.q[2] = qC;
-    }
-
-    fclose(arquivo);
-}
-
-
-void leituraMatrizImpedanciaCorrente(MATRIZCOMPLEXA **ZParam,  MATRIZMAXCORRENTE **maximoCorrenteParam, long int numeroBarrasParam, 
-        DADOSALIMENTADOR *dadosAlimentador, long int numeroAlimentadores)
-{
-    FILE *arquivo;
-    char buffer[5000];
-    long int indiceBarras, barra, barraAdj;
-    int indiceAdjacente, numeroAdjacentes, indiceAlimentador;
-    double resistencias[6], reatancias[6],ampacidade;
-    BOOL barraAlimentador;
-    int iterador,iteradorAuxiliar,contador=0;
-    arquivo = fopen("matrizImpedanciaCorrenteTrifasicos.dad","r+" );
-    if (arquivo == NULL) {
-        printf("Erro na abertura do arquivo matrizImpedanciaCorrenteTrifasicos.dad");
-        exit(1);
-    }
-
-    if (((*maximoCorrenteParam) = (MATRIZMAXCORRENTE *) malloc((numeroBarrasParam + 4) * sizeof (MATRIZMAXCORRENTE))) == NULL) {
-        printf("Erro -- Nao foi possivel alocar espaco de memoria para a matriz de máximo de corrente !!!!");
-        exit(1);
-    }
-
-    //aloca a memória para a matriz Z 
-    if (((*ZParam) = (MATRIZCOMPLEXA *) malloc((numeroBarrasParam + 4) * sizeof (MATRIZCOMPLEXA))) == NULL) {
-        printf("Erro -- Nao foi possivel alocar espaco de memoria para a matriz Z !!!!");
-        exit(1);
-    }
-    fgets(buffer, 5000, arquivo);
-
-    (*ZParam)[0].idNo = 0;
-    (*ZParam)[0].numeroAdjacentes = 1;
-    //aloca o vetor de adjacente do tindicePo celulacomplexa para conter os valores necessários
-    (*ZParam)[0].noAdjacentes = (CELULACOMPLEXA *) malloc(1 * sizeof (CELULACOMPLEXA));
-
-    (*maximoCorrenteParam)[0].idNo = 0;
-    (*maximoCorrenteParam)[0].numeroAdjacentes = 1;
-    //aloca o espaço para os dados dos adjacentes.
-    (*maximoCorrenteParam)[0].noAdjacentes = (CELULACORRENTE *) malloc(1 * sizeof (CELULACORRENTE));
-
-    //barra ficticia para o regulador do alimentador 1 no fluxo em anel
-    (*ZParam)[numeroBarrasParam+1].idNo = numeroBarrasParam+1;
-    (*ZParam)[numeroBarrasParam+1].numeroAdjacentes = 2;
-    //aloca o vetor de adjacente do tindicePo celulacomplexa para conter os valores necessários
-    (*ZParam)[numeroBarrasParam+1].noAdjacentes = (CELULACOMPLEXA *) malloc(2 * sizeof (CELULACOMPLEXA));
-
-    (*maximoCorrenteParam)[numeroBarrasParam+1].idNo = numeroBarrasParam+1;
-    (*maximoCorrenteParam)[numeroBarrasParam+1].numeroAdjacentes = 2;
-    //aloca o espaço para os dados dos adjacentes.
-    (*maximoCorrenteParam)[numeroBarrasParam+1].noAdjacentes = (CELULACORRENTE *) malloc(2 * sizeof (CELULACORRENTE));
-
-    //barra ficticia para o regulador do alimentador 2 no fluxo em anel
-    (*ZParam)[numeroBarrasParam+2].idNo = numeroBarrasParam+2;
-    (*ZParam)[numeroBarrasParam+2].numeroAdjacentes = 2;
-    //aloca o vetor de adjacente do tindicePo celulacomplexa para conter os valores necessários
-    (*ZParam)[numeroBarrasParam+2].noAdjacentes = (CELULACOMPLEXA *) malloc(2 * sizeof (CELULACOMPLEXA));
-
-    (*maximoCorrenteParam)[numeroBarrasParam+2].idNo = numeroBarrasParam+2;
-    (*maximoCorrenteParam)[numeroBarrasParam+2].numeroAdjacentes = 2;
-    //aloca o espaço para os dados dos adjacentes.
-    (*maximoCorrenteParam)[numeroBarrasParam+2].noAdjacentes = (CELULACORRENTE *) malloc(2 * sizeof (CELULACORRENTE));
-
-
-    //barra ficticia para ligar a subestacao ao modelo do anel
-    (*ZParam)[numeroBarrasParam+3].idNo = numeroBarrasParam+3;
-    (*ZParam)[numeroBarrasParam+3].numeroAdjacentes = 3;
-    //aloca o vetor de adjacente do tindicePo celulacomplexa para conter os valores necessários
-    (*ZParam)[numeroBarrasParam+3].noAdjacentes = (CELULACOMPLEXA *) malloc(3 * sizeof (CELULACOMPLEXA));
-
-    (*maximoCorrenteParam)[numeroBarrasParam+3].idNo = numeroBarrasParam+3;
-    (*maximoCorrenteParam)[numeroBarrasParam+3].numeroAdjacentes = 3;
-    //aloca o espaço para os dados dos adjacentes.
-    (*maximoCorrenteParam)[numeroBarrasParam+3].noAdjacentes = (CELULACORRENTE *) malloc(3 * sizeof (CELULACORRENTE));
-
-
-    for(indiceBarras = 1; indiceBarras <= numeroBarrasParam; indiceBarras++)
-    {
-        fgets(buffer, 5000, arquivo);
-        sscanf(buffer, "%ld %d", &barra, &numeroAdjacentes);
-        //verifica se a barra é de um alimentador
-        barraAlimentador = false;
-        indiceAlimentador = 1;
-        while ((indiceAlimentador <= numeroAlimentadores) && !barraAlimentador) {
-            if (dadosAlimentador[indiceAlimentador].barraAlimentador == barra)
-            {
-                barraAlimentador = true;
-            }
-            indiceAlimentador++;
-        }
-        (*ZParam)[barra].idNo = barra;
-        (*ZParam)[barra].numeroAdjacentes = numeroAdjacentes;
-        (*maximoCorrenteParam)[barra].idNo = barra;
-        (*maximoCorrenteParam)[barra].numeroAdjacentes = numeroAdjacentes;
-        if (barraAlimentador) {
-            //aloca o vetor de adjacente do tindicePo celulacomplexa para conter os valores necessários
-            (*ZParam)[barra].noAdjacentes = (CELULACOMPLEXA *) malloc((numeroAdjacentes + 1) * sizeof (CELULACOMPLEXA));
-
-
-            //aloca o espaço para os dados dos adjacentes.
-            (*maximoCorrenteParam)[barra].noAdjacentes = (CELULACORRENTE *) malloc((numeroAdjacentes + 1) * sizeof (CELULACORRENTE));
-        } else {
-            //aloca o vetor de adjacente do tindicePo celulacomplexa para conter os valores necessários
-            (*ZParam)[barra].noAdjacentes = (CELULACOMPLEXA *) malloc(numeroAdjacentes * sizeof (CELULACOMPLEXA));
-
-            //aloca o espaço para os dados dos adjacentes.
-            (*maximoCorrenteParam)[barra].noAdjacentes = (CELULACORRENTE *) malloc(numeroAdjacentes * sizeof (CELULACORRENTE));
-        }
-        for(indiceAdjacente = 0; indiceAdjacente < numeroAdjacentes; indiceAdjacente++)
-        {
-            fgets(buffer, 5000, arquivo);
-            sscanf(buffer, "%ld %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf", &barraAdj, &ampacidade, &resistencias[0],&reatancias[0],&resistencias[1],&reatancias[1],&resistencias[2],&reatancias[2],&resistencias[3],&reatancias[3],&resistencias[4],&reatancias[4],&resistencias[5],&reatancias[5]);
-
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].idNo = barraAdj;
-            //Adicionando os elementos da matriz impedancia da triangular superior
-            for(iterador=0;iterador<3;iterador++){
-                for(iteradorAuxiliar=iterador;iteradorAuxiliar<3;iteradorAuxiliar++){
-                    (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[contador] + ij*reatancias[contador];
-                    contador++;
-                }
-            }
-            //Adicionando os elementos da matriz impedancia da triangular inferior
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[1] + ij*reatancias[1];
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[2] + ij*reatancias[2];
-            (*ZParam)[barra].noAdjacentes[indiceAdjacente].valor[iterador][iteradorAuxiliar] = resistencias[4] + ij*reatancias[4];
-
-            (*maximoCorrenteParam)[barra].noAdjacentes[indiceAdjacente].valor = ampacidade;
-        }
-    }
-    fclose(arquivo);
-
-}
 
 void leituraVetorTaps(int *tapsParam, DADOSREGULADOR *dadosReguladorParam, long int numeroReguladoresParam, long int numeroBarrasParam) {
     long int contador, nLinhas, indiceNo1, indiceNo2, indiceRegulador;

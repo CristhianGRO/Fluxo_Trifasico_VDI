@@ -931,11 +931,15 @@ RNPSETOR buscaRNPSetor(RNPSETORES *rnpSetoresParam, long int idSetor1, long int 
 {
     int indice = 0;
     //realiza a busca pela rnp
-   // printf("setor1 %ld setor2 %ld numeroRNPS %d\n", idSetor1, idSetor2,rnpSetoresParam[idSetor1].numeroRNPs);
+    //printf("setor1 %ld setor2 %ld numeroRNPS %d\n", idSetor1, idSetor2,rnpSetoresParam[idSetor1].numeroRNPs);
+    
+    
     while (indice < rnpSetoresParam[idSetor1].numeroRNPs && rnpSetoresParam[idSetor1].rnps[indice].idSetorOrigem != idSetor2)
         indice++;
-    if (indice < rnpSetoresParam[idSetor1].numeroRNPs)
+    if (indice < rnpSetoresParam[idSetor1].numeroRNPs){
         return rnpSetoresParam[idSetor1].rnps[indice];
+    }
+    
 }
 
 /**

@@ -2,15 +2,15 @@ project('FP_VDI_TRI', 'c')
 
 SourceFiles = [
     'src/main.c',
-    'src/aemt.c',
     'src/funcoesAuxiliares.c',
     'src/funcoesChaveamento.c',
-    'src/funcoesHeuristica.c',
+    'src/funcoesRNP.c',
     'src/funcoesInicializacao.c',
     'src/funcoesLeituraDados.c',
+    'src/funcoesHeuristica.c',
     'src/funcoesProblema.c',
-    'src/funcoesRNP.c',
     'src/funcoesSetor.c',
+    'src/funcoesTrifasicas.c',
 ]
 
 # Desabilitar -Wunused-but-set-variable
@@ -40,5 +40,5 @@ add_global_arguments('-Wno-unused-variable', language: 'c')
 executable(
     'FP_VDI_TRI',
     SourceFiles,
-    link_args: ['-lm', '-pthread']
+    link_args: ['-lm']
 )

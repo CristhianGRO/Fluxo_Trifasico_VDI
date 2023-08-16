@@ -110,7 +110,7 @@ void buscaChaveIsolaFalta(GRAFOSETORES *grafoSetoresParam, long int idConfigurac
         long int *idChaveFechada, long int setorFaltaParam, long int noAnteriorFalta,
         int numeroManobras, LISTACHAVES *listaChavesParam);
 BOOL verificaFactibilidade(CONFIGURACAO configuracaoParam, int limiteCarregamentoRede, int limiteCarregamentoTrafo, int limiteQuedaTensao);
-BOOL verificaFactibilidadeSequenciaChaveamento(CONFIGURACAO *configuracoesParam, VETORPI *vetorPiParam, long int idConfiguracaoParam);//Por Leandro
+
 BOOL verificaFactibilidadeAlimentador(CONFIGURACAO configuracaoParam, long int indiceRNPParam, int limiteCarregamentoRede, int limiteCarregamentoTrafo, int limiteQuedaTensao, DADOSALIMENTADOR *dadosAlimentadorParam, DADOSTRAFO *dadosTrafoParam); //Por Leandro
 //long int melhorSolucao(CONFIGURACAO *configuracoesParam, VETORTABELA *tabelasParam);
 void isolaRestabeleceTodasOpcoes(GRAFOSETORES *grafoSetoresParam, long int idConfiguracaoParam,
@@ -172,12 +172,6 @@ void fluxoPotenciaAnel(GRAFO *grafoSDRParam, long int numeroBarrasParam, DADOSAL
         CONFIGURACAO *configuracoesParam, long int indiceConfiguracao, RNPSETORES *matrizB, double SBase,
         MATRIZCOMPLEXA *ZParam, int *tapReguladores, DADOSREGULADOR *dadosRegulador, MATRIZMAXCORRENTE * maximoCorrenteParam, int numeroTrafos, int numeroAlimentadores,
         int rnpA, int rnpP, long int barraDe, long int barraPara, MATRIZPI *matrizPiParam, VETORPI *vetorPiParam,long int setorBarraDe, long int setorBarraPara);
-BOOL verificaFactibilidadeAnel(CONFIGURACAO *configuracaoParam, long int idSetorP,
-        long int idSetorA, long int rnpP, long int rnpA,
-        GRAFO *grafoSDRParam, long int numeroBarrasParam, DADOSALIMENTADOR *dadosAlimentadorParam, DADOSTRAFO *dadosTrafoParam,
-        long int indiceConfiguracao, RNPSETORES *matrizB, double SBase, long int numeroSetores,
-        MATRIZCOMPLEXA *ZParam, int *indiceReguladores, DADOSREGULADOR *dadosRegulador,
-        MATRIZMAXCORRENTE * maximoCorrenteParam, int numeroTrafos, int numeroAlimentadores);
 void gravaDadosEletricosVariosTestes(char *nomeArquivo, CONFIGURACAO *configuracaoParam, int seed, char *nomeSetorFalta, long int idMelhorConfiguracaoAposBE, 
         long int idMelhorConfiguracaoAposEvolutivo, double tempoBE, double tempoEvolutivo, long int melhorSolucao, double tempoChaveamento);
 void carregamentoPerdasModificada(CONFIGURACAO *configuracaoParam, int indiceRNP, RNPSETORES *matrizB,
@@ -221,10 +215,26 @@ void copiaDadosEletricosObjetivos(CONFIGURACAO *configuracoesParam, CONFIGURACAO
 		long int idNovoIndividuo, RNPSETORES *rnpSetoresParam, long int numeroBarrasParam, int numeroTrafosParam, BOOL copiarDadosEletricosParam);//Por Leandro
 BOOL determinaFlagManobrasAlivio(CONFIGURACAO *configuracoesParam, MATRIZPI *matrizPiParam, VETORPI *vetorPiParam, long int idConfiguracaoParam);//Por Leandro
 void mostraSequenciaChaveamentoIndividuo(long int idConfiguracaoParam, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam); //Por Leandro
-void imprimeSequenciaChaveamentoIndividuo(int seedParam, long int *setorFaltaParam, int numeroSetorFaltaParam, long int idConfiguracaoParam, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam, char *nomeArquivoParam);//Por Leandro
 void imprimeSequenciaChaveamentoIndividuoSumarizada(int seedParam, char tipoFaltaParam[20], char setoresFaltaParam[2000], long int idConfiguracaoParam, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam, char *nomeArquivoParam);//Leandro
 void imprimeSequenciaChaveamentoSolucoesFinais(int seedParam, long int *setorFaltaParam, int numeroSetorFaltaParam, FRONTEIRAS fronteiraParetoParam, long int *idIndividuosFinaisParam, int numeroSolucoesFinaisObtidas, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam);// Por Leandro
 void imprimeFronteiraPareto(int seedParam, long int *setorFaltaParam, int numeroSetorFaltaParam, FRONTEIRAS fronteiraParam, CONFIGURACAO *configuracoesParam);//Por Leandro
 void mostraInformacoesIndividuoSequenciaCorrigida(long int idConfiguracaoParam, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam,  CONFIGURACAO *configuracoesChavParam);// Por Leandro
+
+//====================FUNÇÕES TRIFÁSICAS==============================================================================
+//Cristhian: Funcoes adicionadas para tornar o algoritmo trifásico
+
+void verificaPresencaDeFaseNo(int* presencaDeFases, TIPOFASES tipoFases);
+
+void fluxoCargaAlimentadorTrifasico(int numeroBarrasParam, CONFIGURACAO *configuracoesParam,
+        __complex__ double VFParam, int indiceRNP, int indiceConfiguracao, RNPSETORES *matrizB,
+        MATRIZCOMPLEXA *ZParam, MATRIZMAXCORRENTE *maximoCorrenteParam, int *indiceRegulador,
+        DADOSREGULADOR *dadosRegulador, int maximoIteracoes);
+
+void correnteJusanteTrifasico(int idRNP, int carga, int iteracao, CONFIGURACAO configuracaoParam, RNPSETORES *matrizB, int *indiceRegulador, DADOSREGULADOR *dadosRegulador);
+void tensaoQuedaTensaoModificada(long int* pior, int indiceRNP, CONFIGURACAO configuracaoParam, double VFParam, RNPSETORES *matrizB,
+        MATRIZCOMPLEXA *ZParam, int *indiceRegulador, DADOSREGULADOR *dadosReguladorSDR);
+
+//====================================================================================================================
+
 #endif	/* FUNCOESPROBLEMA_H */
 

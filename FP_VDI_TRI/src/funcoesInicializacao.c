@@ -164,6 +164,7 @@ void buscaProfundidadeSetores(int idSetorParam, BOOL *visitadoParam,RNP *rnpPara
  * @param alimentadoresParam
  * @param populacaoParam
  */
+/*
 void constroiIndividuoInicial(GRAFOSETORES *grafoSetoresParam, 
         GRAFO *grafoSDRParam, LISTACHAVES *listaChavesParam, 
         DADOSALIMENTADOR *alimentadoresParam, CONFIGURACAO *populacaoParam)
@@ -193,7 +194,7 @@ void constroiIndividuoInicial(GRAFOSETORES *grafoSetoresParam,
         buscaProfundidadeSetores(idSetorAlimentador, visitado,&populacaoParam[idIndividuoInicial].rnp[(indice-1)], profundidade, &indiceRNP, grafoSetoresParam, listaChavesParam);
     }
 }
-
+*/
 /**
  * Aloca memória e inicializa os arrays de dados elétricos da configuração
  * @param grafoSDRParam
@@ -204,6 +205,8 @@ void constroiIndividuoInicial(GRAFOSETORES *grafoSetoresParam,
  * @param VFParam
  * @param modeloFluxoCarga
  */
+/*Cristhian: função não utilizada nos algoritmos monofásicos e trifásicos
+//==============================================================================
 void inicializaDadosEletricos(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam, int sBaseParam, double VFParam, int modeloFluxoCarga) {
     long int contadorBarras;
     int sinal = 1;
@@ -219,10 +222,11 @@ void inicializaDadosEletricos(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesP
        //transforma em modelo monofásico...
        configuracoesParam[indiceConfiguracaoParam].dadosEletricos.potencia[contadorBarras] = (configuracoesParam[indiceConfiguracaoParam].dadosEletricos.potencia[contadorBarras]*sBaseParam)/3.0;
        configuracoesParam[indiceConfiguracaoParam].dadosEletricos.vBarra[contadorBarras] = VFParam;
-       configuracoesParam[indiceConfiguracaoParam].dadosEletricos.corrente[contadorBarras] = conj(configuracoesParam[indiceConfiguracaoParam].dadosEletricos.potencia[contadorBarras] / configuracoesParam[indiceConfiguracaoParam].dadosEletricos.vBarra[contadorBarras]);
-           
+       configuracoesParam[indiceConfiguracaoParam].dadosEletricos.corrente[contadorBarras] = conj(configuracoesParam[indiceConfiguracaoParam].dadosEletricos.potencia[contadorBarras] / configuracoesParam[indiceConfiguracaoParam].dadosEletricos.vBarra[contadorBarras]); 
     }
 }
+*/
+/*
 /**
  * Inicializa os dados elétricos da configuração para o alimentador informado como parâmetro.
  * @param grafoSDRParam
@@ -234,6 +238,7 @@ void inicializaDadosEletricos(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesP
  * @param dadosAlimentadorParam
  * @param matrizB
  */
+/*
 void inicializaDadosEletricosPorAlimentador(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam, int sBaseParam, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, RNPSETORES *matrizB) {
     long int noS, noR, noN;
    __complex__ double VF;
@@ -285,8 +290,7 @@ void inicializaDadosEletricosPorAlimentador(GRAFO *grafoSDRParam, CONFIGURACAO *
         }
     }
 }
-
-
+*/
 
 /*void inicializaDadosDePriorizacaoPorAlimentador(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam, int sBaseParam, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, RNPSETORES *matrizB) {
     long int noS, noR, noN;
@@ -315,7 +319,7 @@ void inicializaDadosEletricosPorAlimentador(GRAFO *grafoSDRParam, CONFIGURACAO *
         }
     }
 }*/
-
+/*
 void inicializaDadosEletricosChaveamento(RNPSETORES *matrizB, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, 
         long int numeroBarrasParam, int sBaseParam) 
 {
@@ -369,8 +373,8 @@ void inicializaDadosEletricosChaveamento(RNPSETORES *matrizB, DADOSTRAFO *dadosT
         }
     }
 }
-
-
+*/
+/*
 void imprimeDadosEletricos(CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam) 
 {
     long int contadorBarras;
@@ -383,7 +387,7 @@ void imprimeDadosEletricos(CONFIGURACAO *configuracoesParam, long int indiceConf
      
     }
 }
-
+*/
 
 /* Por Leandro:
  * Descrição: Aloca espaço para o novo item ".alimentador" inserido no struct "DADOSTRAFO"
@@ -400,7 +404,7 @@ void alimentadoresPorTrafo(DADOSTRAFO *dadosTrafoParam, long int numeroTrafosPar
         exit(1);
     }*/
 
-
+    
     for (indice = 1; indice <= numeroTrafosParam; indice++) {
 
     	dadosTrafoTemporario[indice].alimentador =  Malloc(int, numeroAlimentadoresParam+1);

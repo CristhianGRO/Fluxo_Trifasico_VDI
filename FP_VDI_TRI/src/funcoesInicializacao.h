@@ -21,18 +21,22 @@ int buscaChave(LISTACHAVES *listaChavesParam, int idNo1, int idNo2, long int num
 
 void buscaProfundidadeSetores(int idSetorParam, BOOL *visitadoParam,RNP *rnpParam, int profundidade, int *indice, GRAFOSETORES *grafoSetoresParam, LISTACHAVES *listaChavesParam);
 
-void constroiIndividuoInicial(GRAFOSETORES *grafoSetoresParam, GRAFO *grafoSDRParam, LISTACHAVES *listaChavesParam, DADOSALIMENTADOR *alimentadoresParam, CONFIGURACAO *populacaoParam);
+//void constroiIndividuoInicial(GRAFOSETORES *grafoSetoresParam, GRAFO *grafoSDRParam, LISTACHAVES *listaChavesParam, DADOSALIMENTADOR *alimentadoresParam, CONFIGURACAO *populacaoParam);
 void imprimeDadosEletricos(CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam) ;
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
 void imprimeListaChaves(LISTACHAVES *listaChavesParam, long int numeroChaves);
-void inicializaDadosEletricosPorAlimentador(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam, int sBaseParam, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, RNPSETORES *matrizB);
-void inicializaDadosEletricosChaveamento(RNPSETORES *matrizB, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, 
-        long int numeroBarrasParam, int sBaseParam);
+//void inicializaDadosEletricosPorAlimentador(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam, int sBaseParam, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, RNPSETORES *matrizB);
+
+//void inicializaDadosEletricosChaveamento(RNPSETORES *matrizB, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam, int sBaseParam);
 
 void alimentadoresPorTrafo(DADOSTRAFO *dadosTrafoParam, long int numeroTrafosParam, DADOSALIMENTADOR *dadosAlimentadorParam, long int numeroAlimentadoresParam); //Por Leandro
+
+//CRISTHIAN: FUNÇÕES TRIFASICAS ============================================================================================
+
+void inicializaDadosEletricosPorAlimentadorTrifasico(GRAFO *grafoSDRParam, CONFIGURACAO *configuracoesParam, long int indiceConfiguracaoParam, long int numeroBarrasParam, int sBaseParam, DADOSTRAFO *dadosTrafoParam, DADOSALIMENTADOR *dadosAlimentadorParam, RNPSETORES *matrizB);
 
 #ifdef	__cplusplus
 }

@@ -344,223 +344,6 @@ void obtemConfiguracaoOrigemDestino(CONFIGURACAO *configuracoesParam, long int i
 }
 
 /**
- * Por Leandro:
- * Descrição: esta função realiza a reconstrução e avaliação de um indivíduo obtido pela busca heurística que possui ao menos uma chave que retornou, posteriormente, ao seu estado inicial.
- * Durante a correção de sequência de chaveamento, podem ocorrer situações em que ao menos uma das chaves envolvidas na correção da sequência
- * está no primeiro indivíduo da sequência, o qual foi gerado pela Busca Heurística (Exaustiva).
- * A reconstrução de um novo primeiro indivíduo da sequência exige uma função especial porque, para a sua obtenção, é excepcionalmente necessário isolar o setor em falta,
- * detectar os setores que não podem restaurados e reconectar em alguma árvore os setores possíveis de serem restaurados.
- * Esta função também avalia este novo indivíduo gerado.
- *
- * Nesta função as ações para isolação e reconexão de consumidores desligados são guiadas pelas informações já salvas no vetor PI e não pelo conjunto de
- * setores em falta e topologia inicial da rede.
- *
- *@param
- *@param
- *@param
- *@param
- *@param
- *@param
- *@param
- *@param
- *@param
- */
-void obtemAvaliaConfiguracaoIsolaRestabelece(CONFIGURACAO *configuracoesParam, long int idNovaConfiguracaoParam, MATRIZPI *matrizPiParam,
-		VETORPI *vetorPiParam, GRAFOSETORES *grafoSetoresParam, LISTACHAVES *listaChavesParam, ESTADOCHAVE *estadoInicialParam, DADOSTRAFO *dadosTrafoParam,
-		int numeroTrafosParam, int *indiceReguladorParam, DADOSREGULADOR *dadosReguladorParam, DADOSALIMENTADOR *dadosAlimentadorParam, RNPSETORES *rnpSetoresParam,
-		MATRIZCOMPLEXA *ZParam, MATRIZMAXCORRENTE *maximoCorrenteParam, long int numeroBarrasParam, GRAFO *grafoSDRParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam) {
-	NOSPRA *nosPRA;
-	BOOL *estadoInicialCA, *estadoInicialCF, flag;
-	RNP rnpOrigem, rnpDestino;
-	long int *idChaveAberta, *idChaveFechada, idConfiguracaoBase;
-	long int idAncestral, consumidoresSemFornecimento = 0, consumidoresEspeciaisSemFornecimento = 0, idNo;
-	int noA, noR, noP, indiceL, indiceP, indiceA, indiceR, rnpA, rnpP, rnpR, rnp, tamanhoTemporario;
-    int indice1, indiceAux, casoManobra, contadorChav, *rnpsModificadas, numeroRNPsModificadas, *rnpsFalta, numeroRNPsFalta, contador, ultimaPosicaoVerificada, indice, numeroSetoresRemovidos;
-
-	estadoInicialCA = malloc((vetorPiParam[idNovaConfiguracaoParam].numeroManobras + 1)*sizeof(BOOL));
-	estadoInicialCF = malloc((vetorPiParam[idNovaConfiguracaoParam].numeroManobras + 1)*sizeof(BOOL));
-	nosPRA = malloc((vetorPiParam[idNovaConfiguracaoParam].numeroManobras + 1) * sizeof(NOSPRA));
-	rnpsModificadas = malloc((2*vetorPiParam[idNovaConfiguracaoParam].numeroManobras)*sizeof(int));
-	numeroRNPsModificadas = 0;
-
-	rnpsFalta = malloc((vetorPiParam[idNovaConfiguracaoParam].numeroManobras)*sizeof(int));
-	numeroRNPsFalta = 0;
-
-	idAncestral = vetorPiParam[idNovaConfiguracaoParam].idAncestral;
-	idChaveAberta = vetorPiParam[idNovaConfiguracaoParam].idChaveAberta;
-	idChaveFechada = vetorPiParam[idNovaConfiguracaoParam].idChaveFechada;
-
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.manobrasAutomaticas 					 = configuracoesParam[idAncestral].objetivo.manobrasAutomaticas;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.manobrasManuais 						 = configuracoesParam[idAncestral].objetivo.manobrasManuais;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.contadorManobrasTipo.comCargaAutomatica = configuracoesParam[idAncestral].objetivo.contadorManobrasTipo.comCargaAutomatica;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.contadorManobrasTipo.comCargaManual 	 = configuracoesParam[idAncestral].objetivo.contadorManobrasTipo.comCargaManual;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.contadorManobrasTipo.curtoAutomatica	 = configuracoesParam[idAncestral].objetivo.contadorManobrasTipo.curtoAutomatica;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.contadorManobrasTipo.curtoManual 		 = configuracoesParam[idAncestral].objetivo.contadorManobrasTipo.curtoManual;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.contadorManobrasTipo.seca 				 = configuracoesParam[idAncestral].objetivo.contadorManobrasTipo.seca;
-
-	flag = true;
-    for(contadorChav = 0; contadorChav < vetorPiParam[idNovaConfiguracaoParam].numeroManobras; contadorChav++){
-		noP = vetorPiParam[idNovaConfiguracaoParam].nos[contadorChav].p;
-		noA = vetorPiParam[idNovaConfiguracaoParam].nos[contadorChav].a;
-		noR = vetorPiParam[idNovaConfiguracaoParam].nos[contadorChav].r;
-		recuperaPosicaoPRAModificada(noP, noA, noR, &rnpP, &rnpA, &rnpR, &indiceP, &indiceR, &indiceA, idAncestral, matrizPiParam, vetorPiParam);
-
-	    //Salva as rnps alteradas a fim de executar o fluxo de carga somente nas mesmas
-	    contador = 0;
-	    while (contador < numeroRNPsModificadas && rnpsModificadas[contador] != rnpP)
-	        contador++;
-		if(rnpP >=0 && contador == numeroRNPsModificadas){
-			rnpsModificadas[contador] = rnpP;
-			numeroRNPsModificadas++;
-		}
-	    contador = 0;
-	    while (contador < numeroRNPsModificadas && rnpsModificadas[contador] != rnpA)
-	        contador++;
-		if(rnpA >=0){
-			rnpsModificadas[contador] = rnpA;
-			numeroRNPsModificadas++;
-		}
-
-		if(noA < 0 && noR < 0 && rnpA < 0 && rnpP >=0){ //Se verdade, significa que a trinca em questão é para isolar um setor em falta
-			if(contadorChav == 0)
-				idConfiguracaoBase = idAncestral;
-			else
-				idConfiguracaoBase = idNovaConfiguracaoParam;
-
-			casoManobra = 1;
-			estadoInicialCA[contadorChav] = false;
-			estadoInicialCF[contadorChav] = false;
-			nosPRA[contadorChav].a = noA;
-			nosPRA[contadorChav].p = noP;
-			nosPRA[contadorChav].r = noR;
-
-			//ROTINA PARA CALCULAR OS PARES DE MANOBRAS
-			numeroManobrasRestabelecimentoModificada(configuracoesParam, idChaveAberta[contadorChav], idChaveFechada[contadorChav], listaChavesParam,
-					idNovaConfiguracaoParam, estadoInicialParam, &estadoInicialCA[contadorChav], &estadoInicialCF[contadorChav], idNovaConfiguracaoParam, &casoManobra);
-
-			copiaListaRnps(configuracoesParam, idNovaConfiguracaoParam, idConfiguracaoBase);
-			insereRNPLista(&configuracoesParam[idNovaConfiguracaoParam], rnpP);
-
-		    contador = 0;
-		    while(contador < numeroRNPsFalta && rnpsFalta[contador] != rnpP)
-		        contador++;
-			if(rnpP >=0 && contador == numeroRNPsFalta){
-				rnpsFalta[contador] = rnpP;
-				numeroRNPsFalta++;
-			}
-
-		}
-		else{
-			if(flag == true)
-				idConfiguracaoBase = idAncestral;
-			else
-				idConfiguracaoBase = idNovaConfiguracaoParam;
-
-			indiceL = limiteSubArvore(configuracoesParam[idConfiguracaoBase].rnp[rnpP], indiceP);
-
-			nosPRA[contadorChav].a = noA;
-			nosPRA[contadorChav].p = noP;
-			nosPRA[contadorChav].r = noR;
-
-			//ROTINA PARA CALCULAR OS PARES DE MANOBRAS
-			numeroManobrasRestabelecimentoModificada(configuracoesParam, idChaveAberta[contadorChav], idChaveFechada[contadorChav], listaChavesParam,
-					idNovaConfiguracaoParam, estadoInicialParam, &estadoInicialCA[contadorChav], &estadoInicialCF[contadorChav], idNovaConfiguracaoParam, &casoManobra);
-
-			tamanhoTemporario = indiceL - indiceP + 1;
-			//realiza a alocação das RNPs que serão alteradas
-			alocaRNP(configuracoesParam[idConfiguracaoBase].rnp[rnpA].numeroNos + tamanhoTemporario, &rnpDestino);
-			alocaRNP(configuracoesParam[idConfiguracaoBase].rnp[rnpP].numeroNos - tamanhoTemporario, &rnpOrigem);
-			//obtém a nova rnp de destino
-			constroiRNPDestino(configuracoesParam, rnpP, rnpA, indiceL, indiceP, indiceA, indiceR, matrizPiParam, idConfiguracaoBase, &rnpDestino, idNovaConfiguracaoParam);
-			constroiRNPOrigemRestabelecimento(configuracoesParam, rnpP, indiceL, indiceP, matrizPiParam, idConfiguracaoBase, &rnpOrigem, idNovaConfiguracaoParam);
-
-			//###############   ARMAZENA O PONTEIRO PARA FLORESTA    ###############
-			configuracoesParam[idNovaConfiguracaoParam].rnp[rnpA] = rnpDestino;
-			configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP] = rnpOrigem;
-			insereRNPLista(&configuracoesParam[idNovaConfiguracaoParam], rnpA);
-			for (indice1 = 0; indice1 < configuracoesParam[idConfiguracaoBase].numeroRNP; indice1++) {
-				if (indice1 != rnpA && indice1 != rnpP)
-					configuracoesParam[idNovaConfiguracaoParam].rnp[indice1] = configuracoesParam[idConfiguracaoBase].rnp[indice1];
-				else
-					configuracoesParam[idNovaConfiguracaoParam].rnp[indice1].fitnessRNP = configuracoesParam[idConfiguracaoBase].rnp[indice1].fitnessRNP; // Isto é apenas um artifício de programação para esta função. Estes valores serão atualizados quando a rnp "indice1" for avaliada por um fluxo de carga
-			}
-			for (indice1 = 0; indice1 < configuracoesParam[idConfiguracaoBase].numeroRNPFicticia; indice1++) {
-				configuracoesParam[idNovaConfiguracaoParam].rnpFicticia[indice1] = configuracoesParam[idConfiguracaoBase].rnpFicticia[indice1];
-			}
-
-			flag = false;
-		}
-		//idConfiguracaoBase = idNovaConfiguracaoParam;
-    }
-
-	//Elimina Setor em Falta da estrutura e reduz o tamanho da arvore p
-	tamanhoTemporario = 1;
-
-	//remove os setores em falta e os que não puderam ser restabelecidos
-	for(indice = 0; indice < numeroRNPsFalta; indice++){ //percorre as RNPs que continha setores em Falta
-		rnpP = rnpsFalta[indice];
-
-		ultimaPosicaoVerificada = 0;
-		numeroSetoresRemovidos = 9999;
-		while(numeroSetoresRemovidos !=0){
-			numeroSetoresRemovidos = 0;
-			for(contador = ultimaPosicaoVerificada; contador < configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].numeroNos && numeroSetoresRemovidos == 0; contador++){
-				idNo = configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].nos[contador].idNo;
-				indiceAux = contador;
-
-				if(grafoSetoresParam[idNo].setorFalta == true){ //O setor "idNo" foi marcado como "setor em falta" (setor em falta ou setor que não pode ser restaurado)
-					indiceL = limiteSubArvore( configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP], indiceAux); //Busca o limite da subárvore enraizada em "idNo"
-					numeroSetoresRemovidos = indiceL - indiceAux + 1; //São removidos o setor "idNo" e os que estão a jusante do mesmo.
-
-					if(indiceL < configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].numeroNos - 1){ //Se após o último nó presente na subárvore enraizada em "idNo" ainda houveram setores armazenados em "rnpP", então copia-os excluindo os setore da subárvore enraizada em "idNo"
-						for(indice1 = indiceL + 1; indice1 < configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].numeroNos; indice1++){
-							configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].nos[indiceAux].idNo = configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].nos[indice1].idNo;
-							configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].nos[indiceAux].profundidade = configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].nos[indice1].profundidade;
-							adicionaColuna(matrizPiParam, configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].nos[indiceAux].idNo, idNovaConfiguracaoParam, rnpP, indiceAux);
-							indiceAux++;
-						}
-					}
-					configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].numeroNos = configuracoesParam[idNovaConfiguracaoParam].rnp[rnpP].numeroNos - numeroSetoresRemovidos;
-				}
-				ultimaPosicaoVerificada = contador;
-			}
-		}
-	}
-
-	//atualiza consumidores sem fornecimento
-	configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresSemFornecimento = consumidoresSemFornecimento;
-	configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresEspeciaisSemFornecimento = consumidoresEspeciaisSemFornecimento;
-	//insere no vetor Pi a nova solução
-/*	atualizaVetorPiModificada(vetorPiParam, idNovaConfiguracaoParam, idAncestral,
-			idChaveAberta, idChaveFechada, vetorPiParam[idNovaConfiguracaoParam].numeroManobras, casoManobra,
-			estadoInicialCA, estadoInicialCF, nosPRA, ESO);*/
-	//Executa o fluxo de carga nos Alimentadores modificados
-	for(contador = 0; contador < numeroRNPsModificadas; contador++){
-		if(contador == 0)
-			idAncestral = vetorPiParam[idNovaConfiguracaoParam].idAncestral;
-		else
-			idAncestral = idNovaConfiguracaoParam;
-
-		rnp = rnpsModificadas[contador];
-
-		avaliaConfiguracaoHeuristicaModificada(false, configuracoesParam, -1, rnp, idNovaConfiguracaoParam,
-			dadosTrafoParam, numeroTrafosParam, configuracoesParam[idAncestral].numeroRNP,
-			indiceReguladorParam, dadosReguladorParam, dadosAlimentadorParam, idAncestral, rnpSetoresParam,
-			ZParam, maximoCorrenteParam, numeroBarrasParam, false, grafoSDRParam,
-			sequenciaManobrasAlivioParam, listaChavesParam, vetorPiParam, false);
-	}
-	calculaEnergiaAtivaNaoSupridaPorNivelPrioridadeIndividuosIsolaRestabeleceTodasOpcoesHeuristica(configuracoesParam, vetorPiParam, matrizPiParam,
-			idNovaConfiguracaoParam, listaChavesParam, rnpSetoresParam, grafoSDRParam);
-
-
-	free(estadoInicialCA);
-	free(estadoInicialCF);
-	free(nosPRA);
-	free(rnpsModificadas);
-	free(rnpsFalta);
-}
-
-/**
  * Copia os dados de uma posição de um array to tipo VETORPI para uma nova posição de outro array do tipo VETORPI
  * @param vetorPiOriginal
  * @param vetorPiCopia
@@ -872,23 +655,21 @@ int retornaColunaPi(MATRIZPI *matrizPIParam, VETORPI *vetorPiParam, int idNoPara
     if (indice >= 0) {
         //busca nas colunas da matriz se existe uma coluna relativa a configuração informada
         indiceColuna = buscaBinariaColunaPI(matrizPIParam, indice, idConfiguracao, matrizPIParam[indice].numeroColunas - 1); //busca a coluna para a floresta desejada
-        
         //enquanto nao encontra a coluna para a configuração desejada repete a busca com o valor do ancestral
         //pois, se a coluna não existe para uma configuração isso indica que nó não mudou de posição em relação ao ancestral
         while (indiceColuna < 0) 
         {
-
             //recupera o ancestral
             idConfiguracao = vetorPiParam[idConfiguracao].idAncestral; // inFirstForest possui o nome da primeira floresta e pode ser diferente de zero
-
+            printf("\n\n%d\n\n",idConfiguracao);
             if (idConfiguracao >= 0)
                 //refaz a busca pelas colunas
                 indiceColuna = buscaBinariaColunaPI(matrizPIParam, indice, idConfiguracao, matrizPIParam[indice].numeroColunas - 1);
             else
                 exit(1);
 
+       
         }
-
         return indiceColuna;
     } else
         return -1;
@@ -906,15 +687,15 @@ int retornaColunaPi(MATRIZPI *matrizPIParam, VETORPI *vetorPiParam, int idNoPara
 void adicionaColuna(MATRIZPI *matrizPIParam, int idNoParam, int idConfiguracaoParam, int idRNPParam, int indiceParam) 
 {
     int indiceColuna, tamanho;
-
     indiceColuna = matrizPIParam[idNoParam].numeroColunas;
+    int i;
+
     if (indiceColuna > 0) {
         //verifica se já existe uma coluna na configuracao referente ao identficador de configuração passado como parâmetro
         if (matrizPIParam[idNoParam].colunas[indiceColuna - 1].idConfiguracao != idConfiguracaoParam) {
-
             if (matrizPIParam[idNoParam].numeroColunas + 2 == matrizPIParam[idNoParam].maximoColunas) {
                 tamanho = matrizPIParam[idNoParam].maximoColunas + 1000;
-                //printf("numero linhas %d tamanho %d\n",matrizPIParam[idNoParam].numeroColunas, tamanho);
+                // printf("numero linhas %d tamanho %d\n",matrizPIParam[idNoParam].numeroColunas, tamanho);
                 COLUNAPI *temporario;
                 temporario = (COLUNAPI *) realloc(matrizPIParam[idNoParam].colunas, (tamanho) * sizeof (COLUNAPI));
                 // printf("usei realloc \n");
@@ -940,6 +721,7 @@ void adicionaColuna(MATRIZPI *matrizPIParam, int idNoParam, int idConfiguracaoPa
         matrizPIParam[idNoParam].colunas[indiceColuna].idRNP = idRNPParam;
         matrizPIParam[idNoParam].colunas[indiceColuna].posicao = indiceParam;
         matrizPIParam[idNoParam].numeroColunas++;
+        
     }
 }
 
@@ -1077,6 +859,47 @@ int limiteSubArvore(RNP rnpParam, int indiceNoPParam)
 }
 
 /**
+ * 
+ * @param configuracoesParam
+ * @param idConfiguracaoNova
+ * @param idConfiguracaoAntiga
+ */
+void copiaListaRnps(CONFIGURACAO *configuracoesParam, long int idConfiguracaoNova, long int idConfiguracaoAntiga)
+{
+
+    int contador;
+    
+    //verifica se a rnp passada como parÃ¢metro nÃ£o pertence a lista
+    contador = 0;
+    while (contador < configuracoesParam[idConfiguracaoAntiga].numeroRNPsFalta)
+    {
+        configuracoesParam[idConfiguracaoNova].idRnpFalta[contador] = configuracoesParam[idConfiguracaoAntiga].idRnpFalta[contador];
+        contador++;
+    }
+    
+    configuracoesParam[idConfiguracaoNova].numeroRNPsFalta = configuracoesParam[idConfiguracaoAntiga].numeroRNPsFalta;
+}
+
+/*
+ * Por Leandro:
+ * Esta funÃ§Ã£o faz a desalocaÃ§Ã£o completa de uma variÃ¡vel do tipo "CONFIGURACOES".
+ *
+ *@param configuracoesParam Ã© a variÃ¡vel do tipo "CONFIGURACOES"
+ *@param numeroPosicoesAlocadasParam Ã© o nÃºmero de posiÃ§Ãµes a serem desalocadas
+ */
+void desalocacaoCompletaConfiguracao(CONFIGURACAO *configuracoesParam, long int numeroPosicoesAlocadasParam){
+	int contador;
+	for (contador = 0; contador < numeroPosicoesAlocadasParam; contador++) {
+		desalocaConfiguracaoModificadaTrifasico(configuracoesParam[contador]);
+	}
+	 if(configuracoesParam != NULL){
+		 free(configuracoesParam);
+		 configuracoesParam = 0;
+	 }
+	free(configuracoesParam);
+}
+
+/**
  * Esta função retorna um ponteiro para a lista de configurações. Recebe como parâmetros o número de RNPs de cada configuração
  * o identificador do individuo inicial e o número de configurações que compoem a lista.
  * 
@@ -1086,6 +909,7 @@ int limiteSubArvore(RNP rnpParam, int indiceNoPParam)
  * @param numeroTrafosParam
  * @return 
  */
+/*
 CONFIGURACAO* alocaIndividuo(int numeroRNPParam, long int idIndividuoInicialParam, long int numeroConfiguracoesParam, int numeroTrafosParam)
 {
     //aloca a lista de configurações o identificador do individuo inicial é somado ao numero de configurações para permitir o uso 
@@ -1110,7 +934,7 @@ CONFIGURACAO* alocaIndividuo(int numeroRNPParam, long int idIndividuoInicialPara
     }
     return individuo;
 }
-
+*/
 /* Leandro: esta função faz a inicialização das árvores temporárias. Note que o nome dos setores-raíz das duas
  * árvores foi definido sem qualquer relação com a numeração dos nós da rede.
  *
@@ -1148,107 +972,7 @@ void inicializaRNPsFicticias(CONFIGURACAO *configuracoesParam, long int idConfig
 	}
 }
 
-/**
- * Leandro: Esta função consiste na função "alocaIndividuo()" modificada pela inserção de uma linha de comando
- * para a aloção de espaço para RNPs Fictícias, as quais conectarão grupos de setores saudáveis desligados,
- * sendo que estes serão acessadas somentes pelo operador de corte (LSO)
- * e pelo operador de reconexão (LRO) e que armazenarão os setores saudáveis fora de serviço (os que foram inici-
- * almente desligados pela falta serão salvos RNP Fictícia 1 e os não afetados mas que foram cortados serão salvos
- * na RNP fictícia 2.
- * É importante observar que as RNP fictícias não serão contadas entre as RNPs do sistema, a fim de que estas sejam
- * acessadas somente pelo LSO e LRO e por nenhuma outra função. Em outras palavras, se estas RNPs fossem adicionadas
- * na mesma variável que salva as RNP reais (configuração[].rnp) elas poderia ser acessadas por qualquer função do
- * programa, o que poderia causar erros de processamento, uma vez que estas funções não precisam manipular as árvores
- * fictícias e não foram desenvolvidas para identíficá-las e evitar esta manipulação.
- * Desta forma, as modificações realizadas no código para a inserção de corte de carga são menores.
- *
- * @param numeroRNPParam
- * @param idIndividuoInicialParam
- * @param numeroConfiguracoesParam
- * @param numeroSetoresParam é o número total de setores da rede. Este parâmentro será passado para a função "inicializaRNPsFicticias()"
- * @return
- */
-CONFIGURACAO* alocaIndividuoModificada(int numeroRNPParam,  int numeroRNPFicticiaParam, long int idIndividuoInicialParam,
-		long int numeroConfiguracoesParam, int numeroTrafosParam, int numeroSetoresParam)
-{
-    //aloca a lista de configurações o identificador do individuo inicial é somado ao numero de configurações para permitir o uso
-    //do identificador como índice da lista.
-    CONFIGURACAO *individuo = Malloc(CONFIGURACAO, (numeroConfiguracoesParam+idIndividuoInicialParam));
-    long int indice, contador;
-    //percorre a lista de configurações fazendo a alocação do vetor de RNPs da configuração
-    for (indice = idIndividuoInicialParam; indice <(numeroConfiguracoesParam+idIndividuoInicialParam); indice++ )
-    {
-    	individuo[indice].dadosEletricos.potencia  = 0;
-    	individuo[indice].dadosEletricos.corrente = 0;
-    	individuo[indice].dadosEletricos.iJusante = 0;
-    	individuo[indice].dadosEletricos.vBarra = 0;
-//    	individuo[indice].ranqueamentoRnpsFicticias = 0;
-    	individuo[indice].objetivo.potenciaTrafo = 0;
 
-        individuo[indice].numeroRNP = numeroRNPParam;
-        individuo[indice].numeroRNPsFalta = 0;
-        individuo[indice].rnp = Malloc(RNP, individuo[indice].numeroRNP);
-		for (contador = 0; contador < individuo[indice].numeroRNP; contador++)
-			individuo[indice].rnp[contador].nos = 0;
-
-        individuo[indice].idRnpFalta = Malloc(int, individuo[indice].numeroRNP);
-        individuo[indice].idConfiguracao = indice;
-
-        individuo[indice].numeroRNPFicticia = numeroRNPFicticiaParam; //Por Leandro
-        if(numeroRNPFicticiaParam > 0){
-			individuo[indice].rnpFicticia = Malloc(RNP, individuo[indice].numeroRNPFicticia); // Leandro: realiza a alocação das árvores fictícias que salvarão os setores saudáveis fora de serviço (desligados e cortados)
-			for (contador = 0; contador < individuo[indice].numeroRNPFicticia; contador++)
-				individuo[indice].rnpFicticia[contador].nos = 0;
-        }
-
-//        individuo[indice].ranqueamentoRnpsFicticias = Malloc(long int, individuo[indice].numeroRNPFicticia);  // Leandro: aloca memória para a variável que armazenará o ranqueamento entre as RNPs Fictícias, as quais guiarão a aplicação do LRO
-
-        inicializaObjetivosModificada(&individuo[indice], numeroTrafosParam);
-        //inicializaRNPsFicticias(numeroSetoresParam, numeroRNPFicticiaParam, &individuo[indice]); //Leandro:realiza a inicialização das RNPs Fictícias
-        //imprimeIndicadoresEletricos(individuo[indice]);
-
-    }
-    return individuo;
-}
-
-/**
- * Leandro:
- *
- * @param numeroRNPParam
- * @param idIndividuoInicialParam
- * @param numeroConfiguracoesParam
- * @param numeroSetoresParam é o número total de setores da rede. Este parâmentro será passado para a função "inicializaRNPsFicticias()"
- * @return
- */
-void alocaIndividuoModificadaV2(CONFIGURACAO *individuo, int numeroRNPParam,  int numeroRNPFicticiaParam, long int idIndividuoInicialParam,
-		long int numeroConfiguracoesParam, int numeroTrafosParam, int numeroSetoresParam)
-{
-	long int indice;
-    //aloca a lista de configurações o identificador do individuo inicial é somado ao numero de configurações para permitir o uso
-    //do identificador como índice da lista.
-    individuo = Malloc(CONFIGURACAO, (numeroConfiguracoesParam+idIndividuoInicialParam));
-    //percorre a lista de configurações fazendo a alocação do vetor de RNPs da configuração
-    for (indice = idIndividuoInicialParam; indice <(numeroConfiguracoesParam+idIndividuoInicialParam); indice++ )
-    {
-    	individuo[indice].numeroRNP = numeroRNPParam;
-        individuo[indice].numeroRNPsFalta = 0;
-        individuo[indice].rnp = 0;
-        individuo[indice].rnp = Malloc(RNP, individuo[indice].numeroRNP);
-        individuo[indice].idRnpFalta = 0;
-        individuo[indice].idRnpFalta = Malloc(int, individuo[indice].numeroRNP);
-        individuo[indice].idConfiguracao = indice;
-
-        individuo[indice].numeroRNPFicticia = numeroRNPFicticiaParam; //Por Leandro
-        individuo[indice].rnpFicticia = 0;
-        individuo[indice].rnpFicticia = Malloc(RNP, individuo[indice].numeroRNPFicticia); // Leandro: realiza a alocação das árvores fictícias que salvarão os setores saudáveis fora de serviço (desligados e cortados)
-//        individuo[indice].ranqueamentoRnpsFicticias = Malloc(long int, individuo[indice].numeroRNPFicticia);  // Leandro: aloca memória para a variável que armazenará o ranqueamento entre as RNPs Fictícias, as quais guiarão a aplicação do LRO
-
-        inicializaObjetivosModificada(&individuo[indice], numeroTrafosParam);
-        //inicializaRNPsFicticias(numeroSetoresParam, numeroRNPFicticiaParam, &individuo[indice]); //Leandro:realiza a inicialização das RNPs Fictícias
-        //imprimeIndicadoresEletricos(individuo[indice]);
-
-    }
-}
 
 /**
  * Realiza a alocação do vetor de nós da RNP passada como parâmetro. Para isso recebe como parâmetro o número de nós que compõem a árvore
@@ -1370,100 +1094,6 @@ void desalocaConfiguracao(CONFIGURACAO configuracaoParam) {
     free(configuracaoParam.rnp);
 }
 
-
-/**
- * Por Leandro: consiste na função "desalocaConfiguracao()" modificada para:
- * 1) Liberar espaço alocado para outras variáveis para quais a função anterior não liberava
- *
- * @param configuracaoParam
- */
-void desalocaConfiguracaoModificada(CONFIGURACAO configuracaoParam) {
-    long int indice = 0;
-
-//    while (indice < configuracaoParam.numeroRNP) {  //Percorre o vetor de RNPs
-//        if(configuracaoParam.rnp[indice].nos!= NULL){
-//            free(configuracaoParam.rnp[indice].nos); // Libera memória ocupada por RNPs Reais
-//            configuracaoParam.rnp[indice].nos = 0;
-//        }
-//
-//        if(indice < configuracaoParam.numeroRNPFicticia){
-//			if(configuracaoParam.rnpFicticia[indice].nos!= NULL){
-//				free(configuracaoParam.rnpFicticia[indice].nos); // Libera memória ocupada por RNPs Ficticias
-//				configuracaoParam.rnpFicticia[indice].nos = 0;
-//			}
-//        }
-//        indice++;
-//    }
-    //libera a memória utilizada pelo vetor de RNPs
-    if(configuracaoParam.rnp != NULL){         free(configuracaoParam.rnp);                 configuracaoParam.rnp = 0;}
-    if(configuracaoParam.numeroRNPFicticia > 0)
-    	if(configuracaoParam.rnpFicticia != NULL){ free(configuracaoParam.rnpFicticia); configuracaoParam.rnpFicticia = 0;}
-
-    //Libera memória ocupada por outras variáveis
-    if(configuracaoParam.idRnpFalta != NULL){                free(configuracaoParam.idRnpFalta);                configuracaoParam.idRnpFalta                = 0;}
-//    if(configuracaoParam.ranqueamentoRnpsFicticias != NULL){ free(configuracaoParam.ranqueamentoRnpsFicticias); configuracaoParam.ranqueamentoRnpsFicticias = 0;}
-    if(configuracaoParam.dadosEletricos.corrente != NULL){   free(configuracaoParam.dadosEletricos.corrente);   configuracaoParam.dadosEletricos.corrente   = 0;}
-    if(configuracaoParam.dadosEletricos.iJusante != NULL){   free(configuracaoParam.dadosEletricos.iJusante);   configuracaoParam.dadosEletricos.iJusante   = 0;}
-    if(configuracaoParam.dadosEletricos.potencia != NULL){   free(configuracaoParam.dadosEletricos.potencia);   configuracaoParam.dadosEletricos.potencia   = 0;}
-    if(configuracaoParam.dadosEletricos.vBarra != NULL){     free(configuracaoParam.dadosEletricos.vBarra);     configuracaoParam.dadosEletricos.vBarra     = 0;}
-    if(configuracaoParam.objetivo.potenciaTrafo !=NULL){ 	 free(configuracaoParam.objetivo.potenciaTrafo);    configuracaoParam.objetivo.potenciaTrafo    = 0;}
-
-}
-
-/*
- * Por Leandro:
- * Esta função faz a desalocação completa de uma variável do tipo "CONFIGURACOES".
- *
- *@param configuracoesParam é a variável do tipo "CONFIGURACOES"
- *@param numeroPosicoesAlocadasParam é o número de posições a serem desalocadas
- */
-void desalocacaoCompletaConfiguracao(CONFIGURACAO *configuracoesParam, long int numeroPosicoesAlocadasParam){
-	int contador;
-	for (contador = 0; contador < numeroPosicoesAlocadasParam; contador++) {
-		desalocaConfiguracaoModificada(configuracoesParam[contador]);
-	}
-	 if(configuracoesParam != NULL){
-		 free(configuracoesParam);
-		 configuracoesParam = 0;
-	 }
-	free(configuracoesParam);
-}
-
-void desalocacaoCompletaConfiguracaoModificada(CONFIGURACAO **configuracoesParam, long int numeroPosicoesAlocadasParam){
-	int contador, indice;
-	for (contador = 0; contador < numeroPosicoesAlocadasParam; contador++) {
-
-		indice = 0;
-	    while (indice < (*configuracoesParam)[contador].numeroRNP) {  //Percorre o vetor de RNPs
-	        if((*configuracoesParam)[contador].rnp[indice].nos!= NULL){
-	        	(*configuracoesParam)[contador].rnp[indice].nos = NULL;
-	            free((*configuracoesParam)[contador].rnp[indice].nos); // Libera memória ocupada por RNPs Reais
-	        }
-
-	        if(indice < (*configuracoesParam)[contador].numeroRNPFicticia){
-				if((*configuracoesParam)[contador].rnpFicticia[indice].nos!= NULL){
-					(*configuracoesParam)[contador].rnpFicticia[indice].nos = NULL;
-					free((*configuracoesParam)[contador].rnpFicticia[indice].nos); // Libera memória ocupada por RNPs Ficticias
-				}
-	        }
-	        indice++;
-	    }
-	    //libera a memória utilizada pelo vetor de RNPs
-	    if((*configuracoesParam)[contador].rnp != NULL){         (*configuracoesParam)[contador].rnp = NULL;		 free((*configuracoesParam)[contador].rnp);}
-	    if((*configuracoesParam)[contador].rnpFicticia != NULL){ (*configuracoesParam)[contador].rnpFicticia = NULL; free((*configuracoesParam)[contador].rnpFicticia);}
-
-	    //Libera memória ocupada por outras variáveis
-	    if((*configuracoesParam)[contador].idRnpFalta != NULL){                (*configuracoesParam)[contador].idRnpFalta                = NULL; free((*configuracoesParam)[contador].idRnpFalta);}
-//	    if((*configuracoesParam)[contador].ranqueamentoRnpsFicticias != NULL){ (*configuracoesParam)[contador].ranqueamentoRnpsFicticias = NULL; free((*configuracoesParam)[contador].ranqueamentoRnpsFicticias);}
-	    if((*configuracoesParam)[contador].dadosEletricos.corrente != NULL){   (*configuracoesParam)[contador].dadosEletricos.corrente   = NULL; free((*configuracoesParam)[contador].dadosEletricos.corrente);}
-	    if((*configuracoesParam)[contador].dadosEletricos.iJusante != NULL){   (*configuracoesParam)[contador].dadosEletricos.iJusante   = NULL; free((*configuracoesParam)[contador].dadosEletricos.iJusante);}
-	    if((*configuracoesParam)[contador].dadosEletricos.potencia != NULL){   (*configuracoesParam)[contador].dadosEletricos.potencia   = NULL; free((*configuracoesParam)[contador].dadosEletricos.potencia);}
-	    if((*configuracoesParam)[contador].dadosEletricos.vBarra != NULL){     (*configuracoesParam)[contador].dadosEletricos.vBarra     = NULL; free((*configuracoesParam)[contador].dadosEletricos.vBarra);}
-	    if((*configuracoesParam)[contador].objetivo.potenciaTrafo !=NULL){ 	   (*configuracoesParam)[contador].objetivo.potenciaTrafo    = NULL; free((*configuracoesParam)[contador].objetivo.potenciaTrafo);}
-
-	}
- if((*configuracoesParam)!= NULL){ (*configuracoesParam) = NULL; free(*configuracoesParam);}
-}
 
 /**
  * Método responsável por fazer a alocação do vetor de MatrizPi para cada nó da configuração, e da matrizPi de cada nó.
@@ -2056,126 +1686,6 @@ void copiaPonteirosIndividuo(CONFIGURACAO *configuracoesParam, CONFIGURACAO *con
  * @param idIndividuoAtual inteiro com o identificador do indivíduo original
  * @param idNovoIndividuo inteiro com o identificador para a cópia
  */
-void copiaIndividuoMelhorada(CONFIGURACAO *configuracoesParam, CONFIGURACAO *configuracoesParam2, long int idIndividuoAtual,
-		long int idNovoIndividuo, MATRIZPI *matrizPIParam, RNPSETORES *rnpSetoresParam, long int numeroBarrasParam, int numeroTrafosParam){
-    int contadorRnp, contadorNos, contadorBarras, indiceI;
-    RNPSETOR rnpSetorSR;
-    long int noR, noS, noN;
-    long int *noProf; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
-    noProf = Malloc(long int, 200);
-
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.iJusante = 0;
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.corrente = 0;
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.potencia = 0;
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.vBarra = 0;
-    configuracoesParam2[idNovoIndividuo].objetivo.potenciaTrafo = 0;
-
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.iJusante = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.corrente = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.potencia = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-    configuracoesParam2[idNovoIndividuo].dadosEletricos.vBarra = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-    configuracoesParam2[idNovoIndividuo].objetivo.potenciaTrafo = malloc((numeroTrafosParam + 1) * sizeof (__complex__ double));
-
-    //Copia as RNPs
-    for(contadorRnp = 0; contadorRnp < configuracoesParam[idIndividuoAtual].numeroRNP; contadorRnp++)
-    {
-        alocaRNP(configuracoesParam[idIndividuoAtual].rnp[contadorRnp].numeroNos, &configuracoesParam2[idNovoIndividuo].rnp[contadorRnp]);
-        contadorNos = 0;
-        configuracoesParam2[idNovoIndividuo].rnp[contadorRnp].nos[contadorNos] = configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos];
-        adicionaColuna(matrizPIParam, configuracoesParam2[idNovoIndividuo].rnp[contadorRnp].nos[contadorNos].idNo, configuracoesParam2[idNovoIndividuo].idConfiguracao, contadorRnp, contadorNos);
-        noProf[configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos].profundidade] = configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos].idNo;
-        for (contadorNos = 1; contadorNos < configuracoesParam[idIndividuoAtual].rnp[contadorRnp].numeroNos; contadorNos++) {
-            configuracoesParam2[idNovoIndividuo].rnp[contadorRnp].nos[contadorNos] = configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos];
-            if (configuracoesParam2[idNovoIndividuo].rnp[contadorRnp].nos[contadorNos].idNo > 0)
-            	adicionaColuna(matrizPIParam, configuracoesParam2[idNovoIndividuo].rnp[contadorRnp].nos[contadorNos].idNo, configuracoesParam2[idNovoIndividuo].idConfiguracao, contadorRnp, contadorNos);
-
-            //Copia os valores dos "dados elétricos" para as barras presentes no Setor em questão
-            noS = configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos].idNo;
-            noR = noProf[configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos].profundidade - 1];
-            rnpSetorSR = buscaRNPSetor(rnpSetoresParam, noS, noR);
-            for (contadorBarras = 0; contadorBarras < rnpSetorSR.numeroNos; contadorBarras++) {
-            	noN = rnpSetorSR.nos[contadorBarras].idNo;
-            	configuracoesParam2[idNovoIndividuo].dadosEletricos.vBarra[noN] = configuracoesParam[idIndividuoAtual].dadosEletricos.vBarra[noN];
-            	configuracoesParam2[idNovoIndividuo].dadosEletricos.potencia[noN] = configuracoesParam[idIndividuoAtual].dadosEletricos.potencia[noN];
-            	configuracoesParam2[idNovoIndividuo].dadosEletricos.iJusante[noN] = configuracoesParam[idIndividuoAtual].dadosEletricos.iJusante[noN];
-            	configuracoesParam2[idNovoIndividuo].dadosEletricos.corrente[noN] = configuracoesParam[idIndividuoAtual].dadosEletricos.corrente[noN];
-            }
-            noProf[configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos].profundidade] = configuracoesParam[idIndividuoAtual].rnp[contadorRnp].nos[contadorNos].idNo;
-
-        }
-        configuracoesParam2[idNovoIndividuo].rnp[contadorRnp].fitnessRNP = configuracoesParam[idIndividuoAtual].rnp[contadorRnp].fitnessRNP;
-       // atualizaVetorPi(vetorPiParam, idNovoIndividuo,-1, NULL, NULL, 0,-1, NULL,NULL);
-    }
-    configuracoesParam2[idNovoIndividuo].numeroRNP = configuracoesParam[idIndividuoAtual].numeroRNP;
-    configuracoesParam2[idNovoIndividuo].numeroRNPsFalta = configuracoesParam[idIndividuoAtual].numeroRNPsFalta;
-    configuracoesParam2[idNovoIndividuo].idRnpFalta = Malloc(int, configuracoesParam2[idNovoIndividuo].numeroRNPsFalta);
-    for(contadorRnp = 0; contadorRnp < configuracoesParam[idIndividuoAtual].numeroRNPsFalta; contadorRnp++)
-    	configuracoesParam2[idNovoIndividuo].idRnpFalta[contadorRnp] = configuracoesParam[idIndividuoAtual].idRnpFalta[contadorRnp];
-
-
-    //Copia as RNPs Fictícias
-    for(contadorRnp = 0; contadorRnp < configuracoesParam[idIndividuoAtual].numeroRNPFicticia; contadorRnp++)
-    {
-        alocaRNP(configuracoesParam[idIndividuoAtual].rnpFicticia[contadorRnp].numeroNos, &configuracoesParam2[idNovoIndividuo].rnpFicticia[contadorRnp]);
-
-        for (contadorNos = 0; contadorNos < configuracoesParam[idIndividuoAtual].rnpFicticia[contadorRnp].numeroNos; contadorNos++){
-            configuracoesParam2[idNovoIndividuo].rnpFicticia[contadorRnp].nos[contadorNos] = configuracoesParam[idIndividuoAtual].rnpFicticia[contadorRnp].nos[contadorNos];
-            if (configuracoesParam2[idNovoIndividuo].rnpFicticia[contadorRnp].nos[contadorNos].idNo > 0)
-            	adicionaColuna(matrizPIParam, configuracoesParam2[idNovoIndividuo].rnpFicticia[contadorRnp].nos[contadorNos].idNo, configuracoesParam2[idNovoIndividuo].idConfiguracao, contadorRnp + configuracoesParam2[idNovoIndividuo].numeroRNP, contadorNos);
-        }
-
-        configuracoesParam2[idNovoIndividuo].rnpFicticia[contadorRnp].fitnessRNP = configuracoesParam[idIndividuoAtual].rnpFicticia[contadorRnp].fitnessRNP;
-    }
-    configuracoesParam2[idNovoIndividuo].numeroRNPFicticia = configuracoesParam[idIndividuoAtual].numeroRNPFicticia;
-
-    //copia os valores do objetivos
-    configuracoesParam2[idNovoIndividuo].objetivo.consumidoresEspeciaisSemFornecimento = configuracoesParam[idIndividuoAtual].objetivo.consumidoresEspeciaisSemFornecimento;
-    configuracoesParam2[idNovoIndividuo].objetivo.consumidoresSemFornecimento = configuracoesParam[idIndividuoAtual].objetivo.consumidoresSemFornecimento;
-    configuracoesParam2[idNovoIndividuo].objetivo.maiorCarregamentoRede = configuracoesParam[idIndividuoAtual].objetivo.maiorCarregamentoRede;
-    configuracoesParam2[idNovoIndividuo].objetivo.maiorCarregamentoTrafo = configuracoesParam[idIndividuoAtual].objetivo.maiorCarregamentoTrafo;
-    configuracoesParam2[idNovoIndividuo].objetivo.maiorDemandaAlimentador = configuracoesParam[idIndividuoAtual].objetivo.maiorDemandaAlimentador;
-    configuracoesParam2[idNovoIndividuo].objetivo.manobrasAutomaticas = configuracoesParam[idIndividuoAtual].objetivo.manobrasAutomaticas;
-    configuracoesParam2[idNovoIndividuo].objetivo.manobrasManuais = configuracoesParam[idIndividuoAtual].objetivo.manobrasManuais;
-    configuracoesParam2[idNovoIndividuo].objetivo.menorTensao = configuracoesParam[idIndividuoAtual].objetivo.menorTensao;
-    configuracoesParam2[idNovoIndividuo].objetivo.perdasResistivas = configuracoesParam[idIndividuoAtual].objetivo.perdasResistivas;
-    configuracoesParam2[idNovoIndividuo].objetivo.quedaMaxima = configuracoesParam[idIndividuoAtual].objetivo.quedaMaxima;
-    configuracoesParam2[idNovoIndividuo].objetivo.manobrasRestabelecimento = configuracoesParam[idIndividuoAtual].objetivo.manobrasRestabelecimento;
-    configuracoesParam2[idNovoIndividuo].objetivo.manobrasAlivio = configuracoesParam[idIndividuoAtual].objetivo.manobrasAlivio;
-    configuracoesParam2[idNovoIndividuo].objetivo.manobrasAposChaveamento = configuracoesParam[idIndividuoAtual].objetivo.manobrasAposChaveamento;
-    configuracoesParam2[idNovoIndividuo].objetivo.ponderacao = configuracoesParam[idIndividuoAtual].objetivo.ponderacao;
-    configuracoesParam2[idNovoIndividuo].objetivo.rank = configuracoesParam[idIndividuoAtual].objetivo.rank;
-    configuracoesParam2[idNovoIndividuo].objetivo.fronteira = configuracoesParam[idIndividuoAtual].objetivo.fronteira;
-    configuracoesParam2[idNovoIndividuo].objetivo.consumidoresEspeciaisTransferidos = configuracoesParam[idIndividuoAtual].objetivo.consumidoresEspeciaisTransferidos;
-    configuracoesParam2[idNovoIndividuo].objetivo.consumidoresDesligadosEmCorteDeCarga = configuracoesParam[idIndividuoAtual].objetivo.consumidoresDesligadosEmCorteDeCarga;
-    configuracoesParam2[idNovoIndividuo].objetivo.contadorManobrasTipo.comCargaAutomatica = configuracoesParam[idIndividuoAtual].objetivo.contadorManobrasTipo.comCargaAutomatica;
-    configuracoesParam2[idNovoIndividuo].objetivo.contadorManobrasTipo.comCargaManual = configuracoesParam[idIndividuoAtual].objetivo.contadorManobrasTipo.comCargaManual;
-    configuracoesParam2[idNovoIndividuo].objetivo.contadorManobrasTipo.curtoAutomatica = configuracoesParam[idIndividuoAtual].objetivo.contadorManobrasTipo.curtoAutomatica;
-    configuracoesParam2[idNovoIndividuo].objetivo.contadorManobrasTipo.curtoManual = configuracoesParam[idIndividuoAtual].objetivo.contadorManobrasTipo.curtoManual;
-    configuracoesParam2[idNovoIndividuo].objetivo.contadorManobrasTipo.seca = configuracoesParam[idIndividuoAtual].objetivo.contadorManobrasTipo.seca;
-    configuracoesParam2[idNovoIndividuo].objetivo.noMenorTensao = configuracoesParam[idIndividuoAtual].objetivo.noMenorTensao;
-    configuracoesParam2[idNovoIndividuo].objetivo.noMaiorCarregamentoRede = configuracoesParam[idIndividuoAtual].objetivo.noMaiorCarregamentoRede;
-    configuracoesParam2[idNovoIndividuo].objetivo.idTrafoMaiorCarregamento = configuracoesParam[idIndividuoAtual].objetivo.idTrafoMaiorCarregamento;
-    configuracoesParam2[idNovoIndividuo].objetivo.sobrecargaRede = configuracoesParam[idIndividuoAtual].objetivo.sobrecargaRede;
-    configuracoesParam2[idNovoIndividuo].objetivo.sobrecargaTrafo = configuracoesParam[idIndividuoAtual].objetivo.sobrecargaTrafo;
-    configuracoesParam2[idNovoIndividuo].objetivo.tempo = configuracoesParam[idIndividuoAtual].objetivo.tempo;
-
-    configuracoesParam2[idNovoIndividuo].objetivo.potenciaTotalNaoSuprida = configuracoesParam[idIndividuoAtual].objetivo.potenciaTotalNaoSuprida;
-    configuracoesParam2[idNovoIndividuo].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta          = configuracoesParam[idIndividuoAtual].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta;
-    configuracoesParam2[idNovoIndividuo].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria = configuracoesParam[idIndividuoAtual].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria;
-    configuracoesParam2[idNovoIndividuo].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa         = configuracoesParam[idIndividuoAtual].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa;
-    configuracoesParam2[idNovoIndividuo].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade           = configuracoesParam[idIndividuoAtual].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade;
-
-    configuracoesParam2[idNovoIndividuo].objetivo.energiaTotalNaoSuprida = configuracoesParam[idIndividuoAtual].objetivo.energiaTotalNaoSuprida;
-    configuracoesParam2[idNovoIndividuo].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta          = configuracoesParam[idIndividuoAtual].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta;
-    configuracoesParam2[idNovoIndividuo].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria = configuracoesParam[idIndividuoAtual].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria;
-    configuracoesParam2[idNovoIndividuo].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa         = configuracoesParam[idIndividuoAtual].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa;
-    configuracoesParam2[idNovoIndividuo].objetivo.energiaNaoSuprida.consumidoresSemPrioridade           = configuracoesParam[idIndividuoAtual].objetivo.energiaNaoSuprida.consumidoresSemPrioridade;
-
-    for (indiceI = 0; indiceI <= numeroTrafosParam; indiceI++)
-    	configuracoesParam2[idNovoIndividuo].objetivo.potenciaTrafo[indiceI] = configuracoesParam[idNovoIndividuo].objetivo.potenciaTrafo[indiceI];
-
-    free(noProf);
-}
 
 /**
  * Gera a nova representação nó-profundidade do alimentador que recebe o bloco de setores transferidos pelos operadores PAO E CAO. 

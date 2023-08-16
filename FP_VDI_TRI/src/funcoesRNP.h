@@ -17,7 +17,8 @@ extern "C" {
 #ifdef	__cplusplus
 }
 #endif
-
+void desalocacaoCompletaConfiguracao(CONFIGURACAO *configuracoesParam, long int numeroPosicoesAlocadasParam);
+void desalocacaoCompletaConfiguracaoModificada(CONFIGURACAO **configuracoesParam, long int numeroPosicoesAlocadasParam);
 void insereNos(NOSPRA *conjuntoNosParam, long int p, long int r, long int a, int iadj, int pos);
 void atualizaVetorPi(VETORPI *piParam, long int idIndividuoParam, long int idAncestralParam, long int *idChaveAbertaParam, 
         long int *idChaveFechadaParam, int numeroManobras, int casoManobra, BOOL *estadoInicialCA, BOOL *estadoInicialCF, NOSPRA *conjuntoNosParam);
@@ -34,7 +35,6 @@ void excluiColuna(MATRIZPI *matrizPIParam, int idNoParam, int idConfiguracaoPara
 int limiteSubArvore(RNP rnpParam, int indiceNoPParam);
 CONFIGURACAO* alocaIndividuo(int numeroRNPParam, long int idIndividuoInicialParam, long int numeroConfiguracoesParam, int numeroTrafosParam);
 void inicializaRNPsFicticias(CONFIGURACAO *configuracoesParam, long int idConfiguracaoParam, long int numeroRNPFicticiaParam, MATRIZPI *matrizPIParam, long int numeroSetoresParam);//Por Leandro
-CONFIGURACAO* alocaIndividuoModificada(int numeroRNPParam,  int numeroRNPFicticiaParam, long int idIndividuoInicialParam, long int numeroConfiguracoesParam, int numeroTrafosParam, int numeroSetoresParam);
 void alocaIndividuoModificadaV2(CONFIGURACAO *individuo, int numeroRNPParam,  int numeroRNPFicticiaParam, long int idIndividuoInicialParam,
 		long int numeroConfiguracoesParam, int numeroTrafosParam, int numeroSetoresParam);//Por Leandro
 void alocaRNP(int numeroNosParam, RNP *rnpParam);
@@ -50,16 +50,13 @@ void constroiRNPDestinoCAO(RNP rnpOrigemAtual, RNP rnpDestinoAtual,
         RNP *rnpDestinoNova, int indicePParam, int indiceLParam,
         int indiceRParam, int indiceAParam, MATRIZPI *matrizPIParam, 
         int idConfiguracaoParam, int idRNPParam);
-void desalocaConfiguracaoModificada(CONFIGURACAO configuracaoParam);// Por Leandro
-void desalocacaoCompletaConfiguracao(CONFIGURACAO *configuracoes, long int numeroPosicoesAlocadas); //Por Leandro
+void copiaListaRnps(CONFIGURACAO *configuracoesParam, long int idConfiguracaoNova, long int idConfiguracaoAntiga);
 void desalocacaoCompletaConfiguracaoModificada(CONFIGURACAO **configuracoesParam, long int numeroPosicoesAlocadasParam);// Por Leandro
 void copiaIndividuo(CONFIGURACAO *configuracoesParam, CONFIGURACAO *configuracoesParam2, long int idIndividuoAtual, long int idNovoIndividuo, MATRIZPI *matrizPIParam);
 void copiaIndividuoModificada(CONFIGURACAO *configuracoesParam, CONFIGURACAO *configuracoesParam2,
         long int idIndividuoAtual, long int idNovoIndividuo, MATRIZPI *matrizPIParam);//Por Leandro
 void copiaPonteirosIndividuo(CONFIGURACAO *configuracoesParam, CONFIGURACAO *configuracoesParam2,
         long int idIndividuoAtual, long int idNovoIndividuo, MATRIZPI *matrizPIParam);//Por Leandro
-void copiaIndividuoMelhorada(CONFIGURACAO *configuracoesParam, CONFIGURACAO *configuracoesParam2, long int idIndividuoAtual,
-		long int idNovoIndividuo, MATRIZPI *matrizPIParam, RNPSETORES *rnpSetoresParam, long int numeroBarrasParam, int numeroTrafosParam); //Por Leandro
 void copiaIndividuoInicial(CONFIGURACAO *configuracoesParam, CONFIGURACAO *configuracaoInicial, long int idNovoIndividuo, MATRIZPI *matrizPIParam, VETORPI *vetorPiParam);
 void copiaDadosVetorPIModificada(VETORPI *vetorPiOriginal, VETORPI *vetorPiCopia, long int idOriginal, long int idNovo); //Por Leandro
 void copiaDadosVetorPIPosicaoJaAlocada(VETORPI *vetorPiOriginal, VETORPI *vetorPiCopia, long int idOriginal, long int idNovo); //Por Leandro
@@ -81,10 +78,6 @@ void obtemConfiguracaoModificada(CONFIGURACAO *configuracoes, long int idConfigu
         int indiceL, int indiceP, int indiceA, int indiceR, int rnpA, int rnpP, MATRIZPI *matrizPIParam);//Por Leandro
 void obtemConfiguracaoOrigemDestino(CONFIGURACAO *configuracoesParam, long int idConfiguracaoAncestralParam, long int idNovaConfiguracaoParam,
         int indiceLParam, int indicePParam, int indiceAParam, int indiceRParam, int rnpAParam, int rnpPParam, MATRIZPI *matrizPIParam);//Por Leandro
-void obtemAvaliaConfiguracaoIsolaRestabelece(CONFIGURACAO *configuracoesParam, long int idNovaConfiguracaoParam, MATRIZPI *matrizPiParam,
-		VETORPI *vetorPiParam, GRAFOSETORES *grafoSetoresParam, LISTACHAVES *listaChavesParam, ESTADOCHAVE *estadoInicialParam, DADOSTRAFO *dadosTrafoParam,
-		int numeroTrafosParam, int *indiceReguladorParam, DADOSREGULADOR *dadosReguladorParam, DADOSALIMENTADOR *dadosAlimentadorParam, RNPSETORES *rnpSetoresParam,
-		MATRIZCOMPLEXA *ZParam, MATRIZMAXCORRENTE *maximoCorrenteParam, long int numeroBarrasParam, GRAFO *grafoSDRParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam);//Por Leandro
 void recuperaPosicaoPRA(long int noP, long int noA, long int noR, int *rnpP, int *rnpA,
         int *rnpR, int *indiceP, int *indiceR, int *indiceA, long int idConfiguracao, MATRIZPI *matrizPiParam, VETORPI *vetorPiParam);
 void recuperaPosicaoPRAModificada(long int noP, long int noA, long int noR, int *rnpP, int *rnpA,

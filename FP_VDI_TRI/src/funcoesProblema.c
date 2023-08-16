@@ -25,38 +25,6 @@ extern long int numeroExecucoesFluxoCarga; /**Por Leandro: à título de anális
 extern int tempoDeRestauracaoDaFalha; /**Por Leandro: O Tempo total estimado necessário para a recupeção de todas as falhas. Em outras palavras, o tempo no qual a rede operará na configuração obtida através de plano de restabelecimento obtido e informado. Declarada em "funcoesHeuristica.c"*/
 
 
-/**
- * Método que verifica a factibilidade da sequência de chaveamento associada um indivíduo.
- *
- * @param configuracaoParam
- * @param vetorPiParam
- * @param idConfiguracaoParam
- * @return
- */
-BOOL verificaFactibilidadeSequenciaChaveamento(CONFIGURACAO *configuracoesParam, VETORPI *vetorPiParam, long int idConfiguracaoParam) {
-	int indice, totalConfiguracoesIntermediarias = 0;;
-	long int *idConfiguracoesOriginal, idConfiguracao;
-	BOOL sequenciaChaveamentoFactivel = true;
-
-	//Verificação da adequação da configurações "idConfiguracaoParam" em relação as restrições GERAIS
-	if(!verificaFactibilidade(configuracoesParam[idConfiguracaoParam], maxCarregamentoRede, maxCarregamentoTrafo, maxQuedaTensao))
-		sequenciaChaveamentoFactivel = false;
-	else{ //Se a "idConfiguracaoParam" atende as restrições GERAIS, então continua-se a verificação
-
-		//Verificação da adequação das configurações intermediárias de "idConfiguracaoParam" em relação as restrições RELAXADAS
-		idConfiguracoesOriginal = recuperaConfiguracoesIntermediarias(vetorPiParam, idConfiguracaoParam, &totalConfiguracoesIntermediarias); //Recupera a relação de ancestralidade
-
-		for(indice = 0; indice < (totalConfiguracoesIntermediarias -1) && sequenciaChaveamentoFactivel == true; indice++){
-			idConfiguracao = idConfiguracoesOriginal[indice];
-
-			if(!verificaFactibilidade(configuracoesParam[idConfiguracao], maxCarregamentoRedeR, maxCarregamentoTrafoR, maxQuedaTensaoR))
-				sequenciaChaveamentoFactivel = false;
-		}
-	}
-
-    return sequenciaChaveamentoFactivel;
-}
-
 
 /**
  * Recebe como parametro o grafo de setores, o identificador do setor, a lista de chaves
@@ -101,6 +69,7 @@ GRAFOSETORES *listaSetoresAutomatica(GRAFOSETORES *grafoSetoresParam, long int i
  * @param ZParam
  * @param numeroBarrasParam
  */
+/*
 void constroiMatrizZ(GRAFO *grafoSDRParam, MATRIZCOMPLEXA **ZParam, long int numeroBarrasParam) {
     int indiceNos;
     int indiceAdjacentes;
@@ -125,11 +94,13 @@ void constroiMatrizZ(GRAFO *grafoSDRParam, MATRIZCOMPLEXA **ZParam, long int num
     }
 
 }
+*/
 /**
  * Método para impressão da matriz de impedâncias
  * @param ZParam
  * @param numeroBarrasParam
  */
+/*
 void imprimeMatrizZ(MATRIZCOMPLEXA *ZParam, long int numeroBarrasParam) {
     long int indiceNos;
     int indiceAdjacentes;
@@ -148,7 +119,7 @@ void imprimeMatrizZ(MATRIZCOMPLEXA *ZParam, long int numeroBarrasParam) {
     }
 
 }
-
+*/
 /**
  * Tendo como parâmetro a matriz Z, e as barras da linha, retorna o valor da impedância.
  * @param ZParam
@@ -156,16 +127,18 @@ void imprimeMatrizZ(MATRIZCOMPLEXA *ZParam, long int numeroBarrasParam) {
  * @param idNo2
  * @return
  */
+/*
 __complex__ double valorZ(MATRIZCOMPLEXA *ZParam, long int idNo1, long int idNo2) {
     int indiceAdjacentes = 0;
 
     while (indiceAdjacentes < ZParam[idNo1].numeroAdjacentes) {
-        if (ZParam[idNo1].noAdjacentes[indiceAdjacentes].idNo == idNo2)
+        if (ZParam[idNo1].noAdjacentes[indiceAdjacentes].idNo == id
+        No2)
             return ZParam[idNo1].noAdjacentes[indiceAdjacentes].valor;
         indiceAdjacentes++;
     }
 }
-
+*/
 /**
  * Método para contruir a matriz que contém o máximo de corrente da linha.
  * Para isso faz uso de uma estrutura de forma a armazenar a matriz como matriz esparsa.
@@ -2647,6 +2620,7 @@ BOOL eRegulador(long int barra1, long int barra2, GRAFO *grafoSDRParam) {
 
     return resultado;
 }
+
 /**
  * Método utilizado para cálculo do fluxo de potência de varredura direta inversa.
  * Percorre o alimentador informado na representação nó-profundidade calculando as correntes jusantes
@@ -2659,10 +2633,13 @@ BOOL eRegulador(long int barra1, long int barra2, GRAFO *grafoSDRParam) {
  * @param indiceRegulador
  * @param dadosRegulador
  */
+/*
 void correnteJusante(int idRNP, int carga, int iteracao,
         CONFIGURACAO configuracaoParam, RNPSETORES *matrizB, int *indiceRegulador, DADOSREGULADOR *dadosRegulador) {
     long int indice, indice1, noS, noR, noN, idSetorS, idSetorR, idBarra1, idBarra2, indice2, indice3;
     double IMod, IAng;
+    int iteradorFase;
+    BOOL  percorrerFaseA = true, percorrerFaseB = true, percorrerFaseC = true;
     //long int noProf[200]; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
     long int *noProf; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
     noProf = malloc(400 * sizeof(long int));
@@ -2681,18 +2658,21 @@ void correnteJusante(int idRNP, int carga, int iteracao,
             rnpSetorSR = buscaRNPSetor(matrizB, noS, noR);
             for (indice1 = 0; indice1 < rnpSetorSR.numeroNos; indice1++) {
                 noN = rnpSetorSR.nos[indice1].idNo;
+                noN = rnpSetorSR.nos[indice1].idNo;
 
                 if (carga == 0) //modelo de corrente constante
                 {
+                    //Cristhian: Percorre todas as fases calculando as correntes
+                    //Verifica o valor da variavel tipoFases do nó avaliado é do tipo ABC
 
-
-                    IMod = cabs(configuracaoParam.dadosEletricos.corrente[noN]);
-                    IAng = carg(configuracaoParam.dadosEletricos.vBarra[noN]) - carg(configuracaoParam.dadosEletricos.potencia[noN]);
-                    configuracaoParam.dadosEletricos.corrente[noN] = IMod * cos(IAng) + ij * IMod * sin(IAng);
+                    IMod = cabs(configuracaoParam.dadosEletricos.corrente[iteradorFase][noN]);
+                    IAng = carg(configuracaoParam.dadosEletricos.vBarra[iteradorFase][noN]) - carg(configuracaoParam.dadosEletricos.potencia[iteradorFase][noN]);
+                    configuracaoParam.dadosEletricos.corrente[iteradorFase][noN] = IMod * cos(IAng) + ij * IMod * sin(IAng);
 
                 } else //modelo de potencia constante
                 {
-                    configuracaoParam.dadosEletricos.corrente[noN] = conj(configuracaoParam.dadosEletricos.potencia[noN] / configuracaoParam.dadosEletricos.vBarra[noN]);
+                    //Cristhian: Percorre todas as fases calculando as correntes
+                    configuracaoParam.dadosEletricos.corrente[iteradorFase][noN] = conj(configuracaoParam.dadosEletricos.potencia[iteradorFase][noN] / configuracaoParam.dadosEletricos.vBarra[iteradorFase][noN]);
                 }
             }
             noProf[configuracaoParam.rnp[idRNP].nos[indice].profundidade] = configuracaoParam.rnp[idRNP].nos[indice].idNo;
@@ -2744,6 +2724,7 @@ void correnteJusante(int idRNP, int carga, int iteracao,
     }
     free(noProf); noProf= NULL;
 }
+*/
 /**
  * Calcula o número máximo de taps que podem ser utilizados no regulador de tensão durante o cálculo do fluxo de potência.
  * @param carregamentoRT
@@ -2908,11 +2889,12 @@ void calculaNumeroMaximoTaps(double carregamentoRT, DADOSREGULADOR *dadosRegulad
 }*/
 
 /*
- * Por Leandro: consiste na função "tensaoQuedaTensao()" modificada para armazenas o nó (barra) na qual está ocorrendo a menor queda
- * de tensão na rede
+ * Por Leandro: consiste na funÃ§Ã£o "tensaoQuedaTensao()" modificada para armazenas o nÃ³ (barra) na qual estÃ¡ ocorrendo a menor queda
+ * de tensÃ£o na rede
  *
- * Portanto, calcula a tensão em cada barra, a menor tensão das barras e retorna a barra com menor tensão
+ * Portanto, calcula a tensÃ£o em cada barra, a menor tensÃ£o das barras e retorna a barra com menor tensÃ£o
  */
+/*
 long int tensaoQuedaTensaoModificada(int indiceRNP, CONFIGURACAO configuracaoParam, double VFParam, RNPSETORES *matrizB,
         MATRIZCOMPLEXA *ZParam, int *indiceRegulador, DADOSREGULADOR *dadosReguladorSDR) {
     int indice, indice1;
@@ -2924,18 +2906,18 @@ long int tensaoQuedaTensaoModificada(int indiceRNP, CONFIGURACAO configuracaoPar
     double carregamentoRT;
     double aux;
 
-    //long int noProf[200]; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
-    long int *noProf; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
+    //long int noProf[200]; //armazena o ultimo nÃ³ presente em uma profundidade, Ã© indexado pela profundidade
+    long int *noProf; //armazena o ultimo nÃ³ presente em uma profundidade, Ã© indexado pela profundidade
     noProf = malloc(400 * sizeof(long int));
-    //long int barraProf[100]; //armazena o ultimo nó do setor presente em uma profundidade, é indexado pela profundidade
-    long int *barraProf; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
+    //long int barraProf[100]; //armazena o ultimo nÃ³ do setor presente em uma profundidade, Ã© indexado pela profundidade
+    long int *barraProf; //armazena o ultimo nÃ³ presente em uma profundidade, Ã© indexado pela profundidade
     barraProf = malloc(200 * sizeof(long int));
 
     __complex__ double deltaV, valorz;
     double temporario;
     int tensao;
     double menorTensao;
-    long int noMenorTensao; // Por Leandro: salvará o nó (setor) da RNP no qual está contida a barra com o menor valor de tensão dentro da RNP em questão
+    long int noMenorTensao; // Por Leandro: salvarÃ¡ o nÃ³ (setor) da RNP no qual estÃ¡ contida a barra com o menor valor de tensÃ£o dentro da RNP em questÃ£o
 
     RNPSETOR rnpSetorSR;
     noProf[configuracaoParam.rnp[indiceRNP].nos[0].profundidade] = configuracaoParam.rnp[indiceRNP].nos[0].idNo;
@@ -3002,19 +2984,18 @@ long int tensaoQuedaTensaoModificada(int indiceRNP, CONFIGURACAO configuracaoPar
                 deltaV = valorZ(ZParam, noM, noN) * (configuracaoParam.dadosEletricos.iJusante[noN] + configuracaoParam.dadosEletricos.corrente[noN]);
                 configuracaoParam.dadosEletricos.vBarra[noN] = configuracaoParam.dadosEletricos.vBarra[noM] - deltaV;
             }
-            /*#########################################################
-                #################    Queda de Tensão    #################*/
+            //Queda de Tensao
             temporario = sqrt(pow(__real__ configuracaoParam.dadosEletricos.vBarra[noN], 2) + pow(__imag__ configuracaoParam.dadosEletricos.vBarra[noN], 2));
 
             if (temporario < menorTensao) {
                 menorTensao = temporario;
                 pior = noN;
-                noMenorTensao = noS; // Por Leandro: salva o nó (setor) da RNP no qual está contida a barra com o menor valor de tensão dentro da RNP em questão
+                noMenorTensao = noS; // Por Leandro: salva o nÃ³ (setor) da RNP no qual estÃ¡ contida a barra com o menor valor de tensÃ£o dentro da RNP em questÃ£o
             }
-            //armazena o nó barra na sua profundidade
+            //armazena o nÃ³ barra na sua profundidade
             barraProf[rnpSetorSR.nos[indice1].profundidade] = rnpSetorSR.nos[indice1].idNo;
         }
-        //armazena o nó setor na sua profundidade
+        //armazena o nÃ³ setor na sua profundidade
         noProf[configuracaoParam.rnp[indiceRNP].nos[indice].profundidade] = configuracaoParam.rnp[indiceRNP].nos[indice].idNo;
     }
 
@@ -3025,6 +3006,7 @@ long int tensaoQuedaTensaoModificada(int indiceRNP, CONFIGURACAO configuracaoPar
     free(barraProf); barraProf = NULL;
     return (pior);
 }
+*/
 
 
 
@@ -3127,6 +3109,7 @@ long int tensaoQuedaTensaoModificada(int indiceRNP, CONFIGURACAO configuracaoPar
  * @param ZParam
  * @param maximoCorrenteParam
  */
+/*
 void carregamentoPerdasModificada(CONFIGURACAO *configuracaoParam, int indiceRNP, RNPSETORES *matrizB,
         MATRIZCOMPLEXA *ZParam, MATRIZMAXCORRENTE *maximoCorrenteParam) {
     int indice, indice1;
@@ -3166,7 +3149,7 @@ void carregamentoPerdasModificada(CONFIGURACAO *configuracaoParam, int indiceRNP
 
             /*#########################################################
              * ############    Carregamento máximo da rede (em corrente)   ##########*/
-            ijus = configuracaoParam->dadosEletricos.iJusante[noN];
+           /* ijus = configuracaoParam->dadosEletricos.iJusante[noN];
             ibarra = configuracaoParam->dadosEletricos.corrente[noN];
             correnteMaximaSuportada = maximoCorrente(maximoCorrenteParam, noM, noN); //Por Leandro: criou-se esta várivável para que a função "máximoCorrente" fosse chamada somente uma única vez
             corrente = cabs(ijus + ibarra); //Por Leandro: criou-se esta várivável para que a chamada da função "cabs"  e esta soma fossem realizados uma única vez
@@ -3186,7 +3169,7 @@ void carregamentoPerdasModificada(CONFIGURACAO *configuracaoParam, int indiceRNP
             }
             /*#########################################################
              * 	#####################      Perdas     #### ##############*/
-            valorz = valorZ(ZParam, noM, noN);
+            /*valorz = valorZ(ZParam, noM, noN);
             //
             perda = (3 * (pow((cabs(ijus + ibarra)), 2))) * __real__ valorz;
      //       printf("ramo %ld--%ld corrente %lf corrente jusante %lf soma %lf valorZ %lf perda %lf \n", noM, noN, cabs(ibarra), cabs(ijus), cabs(ijus + ibarra), __real__ valorz, perda);
@@ -3196,13 +3179,13 @@ void carregamentoPerdasModificada(CONFIGURACAO *configuracaoParam, int indiceRNP
             perdasReativas = ij * 3 * pow((cabs(ijus + ibarra)), 2) * __imag__ valorZ(ZParam, noM, noN);
             /*#########################################################
               ###########    Carregamento dos alimentadores (em potência)   ##########*/
-            carregamentoAlimentador = carregamentoAlimentador + (configuracaoParam->dadosEletricos.vBarra[noN] * conj(configuracaoParam->dadosEletricos.corrente[noN]))*3;
+            /*carregamentoAlimentador = carregamentoAlimentador + (configuracaoParam->dadosEletricos.vBarra[noN] * conj(configuracaoParam->dadosEletricos.corrente[noN]))*3;
 
             __real__ carregamentoAlimentador += perda;
 
             carregamentoAlimentador += perdasReativas;
             /*##########################################################*/
-            barraProf[rnpSetorSR.nos[indice1].profundidade] = rnpSetorSR.nos[indice1].idNo;
+           /* barraProf[rnpSetorSR.nos[indice1].profundidade] = rnpSetorSR.nos[indice1].idNo;
 
         }
         noProf[configuracaoParam->rnp[indiceRNP].nos[indice].profundidade] = configuracaoParam->rnp[indiceRNP].nos[indice].idNo;
@@ -3218,7 +3201,7 @@ void carregamentoPerdasModificada(CONFIGURACAO *configuracaoParam, int indiceRNP
     free(noProf);
     free(barraProf);
 }
-
+*/
 /* @brief Por Leandro:
  * Descrição: esta função calcula a potência ativa não suprida para um indivíduo "idNovaConfiguracaoParam".
  * Ele determina o somatório de potência ativa de todas as cargas saudáveis e reconectáveis que foram cortadas,
@@ -3229,6 +3212,7 @@ void carregamentoPerdasModificada(CONFIGURACAO *configuracaoParam, int indiceRNP
  * @param matrizB
  * @return
  */
+/*
 void calculaPotenciaAtivaNaoSuprida(CONFIGURACAO *configuracoesParam, long int idNovaConfiguracaoParam, RNPSETORES *matrizB){
 	long int indice, noS, noR, noN, indiceBarra;
 //	long int noProf[200]; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
@@ -3247,7 +3231,7 @@ void calculaPotenciaAtivaNaoSuprida(CONFIGURACAO *configuracoesParam, long int i
             /*Se o "noS" estiver conectado ao Nó Raiz da RNP Fictícia, então não haverá uma RNP do noS sendo alimentado por este
              * nó raiz, uma vez que o nó raiz é fictício. Neste caso, para percorrer as barras presentes no noS, tomar-se-á
              * a matrizB relativa à alimentação de noS por um noR correspondente ao Setor Origem que primeiro aparece na matriz B se noS*/
-            if(configuracoesParam[idNovaConfiguracaoParam].rnpFicticia[idRnp].nos[indice].profundidade == 1) //Se isto é verdade, significa que o nó anterior a noS é fictício e por isso não há uma matrizB de noS sendo alimentador por este nó, neste caso tomar-se-á um outro nó adjacente a este
+            /*if(configuracoesParam[idNovaConfiguracaoParam].rnpFicticia[idRnp].nos[indice].profundidade == 1) //Se isto é verdade, significa que o nó anterior a noS é fictício e por isso não há uma matrizB de noS sendo alimentador por este nó, neste caso tomar-se-á um outro nó adjacente a este
             	noR = matrizB[noS].rnps[0].idSetorOrigem;
             else
             	noR = noProf[configuracoesParam[idNovaConfiguracaoParam].rnpFicticia[idRnp].nos[indice].profundidade - 1];
@@ -3263,7 +3247,7 @@ void calculaPotenciaAtivaNaoSuprida(CONFIGURACAO *configuracoesParam, long int i
     configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaTotalNaoSuprida = potenciaAtivaNaoSuprida;
     free(noProf);
 }
-
+*/
 /* @brief Por Leandro:
  * Descrição: esta função calcula a potência ativa não suprida para um indivíduo "idNovaConfiguracaoParam".
  * Ele determina o somatório de potência ativa de todas as cargas saudáveis e reconectáveis que foram cortadas,
@@ -3503,6 +3487,7 @@ void calculaEnergiaAtivaNaoSupridaPorNivelPrioridade(CONFIGURACAO *configuracoes
  * @param matrizB
  * @return 
  */
+/*
 double cargaTrecho(CONFIGURACAO configuracaoParam, int indiceRNP, long int indiceSetorRaiz, 
         long int indiceSetorInicial, long int indiceSetorFinal, RNPSETORES *matrizB) {
     int indice, indice1;
@@ -3529,7 +3514,7 @@ double cargaTrecho(CONFIGURACAO configuracaoParam, int indiceRNP, long int indic
             //printf("noM %ld noN %ld\n", noM, noN);
             /*#########################################################
              * 	#####################      Soma das Cargas     #### ##############*/
-            cargaComplexa = cargaComplexa + (configuracaoParam.dadosEletricos.vBarra[noN] * conj(configuracaoParam.dadosEletricos.corrente[noN]))*3;
+            /*cargaComplexa = cargaComplexa + (configuracaoParam.dadosEletricos.vBarra[noN] * conj(configuracaoParam.dadosEletricos.corrente[noN]))*3;
 
             barraProf[rnpSetorSR.nos[indice1].profundidade] = rnpSetorSR.nos[indice1].idNo;
 
@@ -3538,6 +3523,7 @@ double cargaTrecho(CONFIGURACAO configuracaoParam, int indiceRNP, long int indic
     }
     return cabs(cargaComplexa)/1000;
 }
+*/
 /**
  * Calcula o fluxo de carga de todos os alimentadores.
  * @param numeroBarrasParam
@@ -3555,19 +3541,22 @@ void fluxoCargaTodosAlimentadores(long int numeroBarrasParam,
         DADOSALIMENTADOR *dadosAlimentadorParam, DADOSTRAFO *dadosTrafoParam,
         CONFIGURACAO *configuracoesParam, long int indiceConfiguracao, RNPSETORES *matrizB,
         MATRIZCOMPLEXA *ZParam, int *indiceRegulador, DADOSREGULADOR *dadosRegulador, MATRIZMAXCORRENTE * maximoCorrenteParam) {
-
     int indiceRNP;
-    __complex__ double VF;
+    __complex__ double VF, Vaux;
 //    char nomeArquivo[200];
 //    sprintf(nomeArquivo, "dadosCorrente%ld.dad", indiceConfiguracao);
 //    arquivog = fopen(nomeArquivo, "w");
     for (indiceRNP = 0; indiceRNP < configuracoesParam[indiceConfiguracao].numeroRNP; indiceRNP++) {
         VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[indiceRNP + 1].idTrafo].tensaoReal / sqrt(3);
-        fluxoCargaAlimentador(numeroBarrasParam, configuracoesParam, VF, indiceRNP, indiceConfiguracao, matrizB,
-                ZParam, maximoCorrenteParam, indiceRegulador, dadosRegulador,1);
+        printf("\nVF referencia = %.6lf",creal(VF));
+        fluxoCargaAlimentadorTrifasico(numeroBarrasParam, configuracoesParam, VF, indiceRNP, indiceConfiguracao, matrizB, ZParam, maximoCorrenteParam, indiceRegulador, dadosRegulador, 15);
+       
+
     }
 //    fclose(arquivog);
 }
+
+
 /**
  * Calcula o fluxo de carga de cada alimentador no modelo de varredura direta inversa.
  * @param numeroBarrasParam
@@ -3582,6 +3571,7 @@ void fluxoCargaTodosAlimentadores(long int numeroBarrasParam,
  * @param dadosRegulador
  * @param maximoIteracoes
  */
+/*
 void fluxoCargaAlimentador(int numeroBarrasParam, CONFIGURACAO *configuracoesParam,
         __complex__ double VFParam, int indiceRNP, int indiceConfiguracao, RNPSETORES *matrizB,
         MATRIZCOMPLEXA *ZParam, MATRIZMAXCORRENTE *maximoCorrenteParam, int *indiceRegulador,
@@ -3599,9 +3589,9 @@ void fluxoCargaAlimentador(int numeroBarrasParam, CONFIGURACAO *configuracoesPar
 
     numeroExecucoesFluxoCarga++;  /**Por Leandro: à título de análise e estudo, salvará o número total de alimentadores para os quais foi executado o fluxo de carga*/
 
-    carga = 0; //0 --> corrente constante, 1--> potencia constante
+    //carga = 0; //0 --> corrente constante, 1--> potencia constante
     //  printf("\nALIMENTADOR %d \n", indiceRNP+1);
-    do // varredura backward/forward
+    /*do // varredura backward/forward
     {
         //   printf("----------------iteracao %d -----------------\n", iteracoes);
         indice = 0;
@@ -3661,7 +3651,7 @@ void fluxoCargaAlimentador(int numeroBarrasParam, CONFIGURACAO *configuracoesPar
     free(V_barra_ant);
     free(noProf);
 }
-
+*/
 /*
 void fluxoCargaAnelAlimentador(int numeroBarrasParam, CONFIGURACAO *configuracoesParam,
         __complex__ double VFParam, int indiceRNP, int indiceConfiguracao, RNPSETORES *matrizB,
@@ -3917,115 +3907,6 @@ void calculaPonderacao(CONFIGURACAO *configuracoesParam, long int idConfiguracao
 }
 
 /**
- * Realiza a avaliação das configurações geradas pelo algoritmo.
- * @param todosAlimentadores
- * @param configuracoesParam
- * @param rnpA
- * @param rnpP
- * @param idNovaConfiguracaoParam
- * @param dadosTrafoParam
- * @param numeroTrafosParam
- * @param numeroAlimentadoresParam
- * @param indiceRegulador
- * @param dadosRegulador
- * @param dadosAlimentadorParam
- * @param idAntigaConfiguracaoParam
- * @param matrizB
- * @param ZParam
- * @param maximoCorrenteParam
- * @param numeroBarrasParam
- * @param copiarDadosEletricos
- */
-void avaliaConfiguracao(BOOL todosAlimentadores, CONFIGURACAO *configuracoesParam,
-        int rnpA, int rnpP, long int idNovaConfiguracaoParam, DADOSTRAFO *dadosTrafoParam,
-        int numeroTrafosParam, int numeroAlimentadoresParam, int *indiceRegulador,
-        DADOSREGULADOR *dadosRegulador, DADOSALIMENTADOR *dadosAlimentadorParam,
-        int idAntigaConfiguracaoParam, RNPSETORES *matrizB, MATRIZCOMPLEXA *ZParam,
-        MATRIZMAXCORRENTE *maximoCorrenteParam, long int numeroBarrasParam, BOOL copiarDadosEletricos) {
-    long int contador;
-    double quedaMaxima, menorTensao, VF, perdasTotais;
-    perdasTotais = 0;
-    //verifica se deve manter os dados elétricos para cada configuração gerada individualmente. Para isso é necessário copiar os dados elétricos de uma configuração para outra
-    if (idNovaConfiguracaoParam != idAntigaConfiguracaoParam) {
-        if (copiarDadosEletricos) {
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.iJusante = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.corrente = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.potencia = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.vBarra = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            for (contador = 1; contador <= numeroBarrasParam; contador++) {
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.iJusante[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.iJusante[contador];
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.corrente[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.corrente[contador];
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.potencia[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.potencia[contador];
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.vBarra[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.vBarra[contador];
-            }
-        } else { //não mantém os dados elétricos individualmente, somente copia os ponteiros para os vetores com dados elétricos
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.iJusante = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.iJusante;
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.corrente = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.corrente;
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.potencia = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.potencia;
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.vBarra = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.vBarra;
-        }
-    }
-
-
-
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaTrafo = malloc((numeroTrafosParam + 1) * sizeof (__complex__ double));
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.menorTensao = 100000;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorDemandaAlimentador = 0;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede = 0;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoTrafo = 0;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas = 0;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.ponderacao = 0;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.quedaMaxima = 0;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresEspeciaisSemFornecimento = configuracoesParam[idAntigaConfiguracaoParam].objetivo.consumidoresEspeciaisSemFornecimento;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresSemFornecimento = configuracoesParam[idAntigaConfiguracaoParam].objetivo.consumidoresSemFornecimento;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresDesligadosEmCorteDeCarga = 0;
-    if (todosAlimentadores) //calcula os valores de fitness para todos os alimentadores
-    {
-        fluxoCargaTodosAlimentadores(numeroBarrasParam, dadosAlimentadorParam, dadosTrafoParam, configuracoesParam, idNovaConfiguracaoParam, matrizB, ZParam, indiceRegulador, dadosRegulador, maximoCorrenteParam);
-    } else { //calcula o fluxo de carga somente para os alimentadores que foram alterados.
-        VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[rnpP + 1].idTrafo].tensaoReal / sqrt(3);
-        fluxoCargaAlimentador(numeroBarrasParam, configuracoesParam, VF, rnpP,
-                idNovaConfiguracaoParam, matrizB, ZParam, maximoCorrenteParam,
-                indiceRegulador, dadosRegulador, 1);
-        VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[rnpA + 1].idTrafo].tensaoReal / sqrt(3);
-        fluxoCargaAlimentador(numeroBarrasParam, configuracoesParam, VF, rnpA,
-                idNovaConfiguracaoParam, matrizB, ZParam, maximoCorrenteParam,
-                indiceRegulador, dadosRegulador,1);
-    }
-    int indiceRNP;
-    for (indiceRNP = 0; indiceRNP < configuracoesParam[idNovaConfiguracaoParam].numeroRNP; indiceRNP++) {
-        //  printf("alimentador %d carregamento %lf\n",indiceRNP+1,configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.maiorCarregamentoRede*100);
-        quedaMaxima = 100000;
-        VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[indiceRNP + 1].idTrafo].tensaoReal / sqrt(3);
-        menorTensao = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.menorTensao;
-        if (quedaMaxima > menorTensao) // encontra a menor tensão do sistema
-            quedaMaxima = menorTensao;
-        //atualiza a menor tensão do individuo
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.menorTensao > menorTensao)
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.menorTensao = menorTensao;
-        quedaMaxima = ((VF - quedaMaxima) / VF)*100;
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.quedaMaxima < quedaMaxima)
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.quedaMaxima = quedaMaxima;
-        //potencia
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorDemandaAlimentador < configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.demandaAlimentador)
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorDemandaAlimentador = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.demandaAlimentador;
-        //maior carregamento de rede
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede < configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.maiorCarregamentoRede)
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.maiorCarregamentoRede;
-        //total perdas
-        //if (configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas < configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.perdasResistivas)
-        //  configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.perdasResistivas;
-        perdasTotais += configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.perdasResistivas;
-
-    }
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede = configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede * 100;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas = perdasTotais;
-    carregamentoTrafo(dadosTrafoParam, numeroTrafosParam, numeroAlimentadoresParam, dadosAlimentadorParam, configuracoesParam, idNovaConfiguracaoParam, idAntigaConfiguracaoParam, todosAlimentadores, rnpP, rnpA);
-    calculaPonderacao(configuracoesParam, idNovaConfiguracaoParam, VF);
-}
-
-
-/**
  * Por Leandro:
  * Consiste na função "avaliaConfiguracao()" modificada para:
  *
@@ -4061,6 +3942,7 @@ void avaliaConfiguracao(BOOL todosAlimentadores, CONFIGURACAO *configuracoesPara
  * @param numeroBarrasParam
  * @param copiarDadosEletricos
  */
+
 void avaliaConfiguracaoModificada(BOOL todosAlimentadores, CONFIGURACAO *configuracoesParam,
         int rnpA, int rnpP, long int idNovaConfiguracaoParam, DADOSTRAFO *dadosTrafoParam, 
         int numeroTrafosParam, int numeroAlimentadoresParam, int *indiceRegulador, 
@@ -4073,28 +3955,6 @@ void avaliaConfiguracaoModificada(BOOL todosAlimentadores, CONFIGURACAO *configu
     long int noMenorTensaoRNP, noMaiorCarregamentoRNP;
 
     perdasTotais = 0;
-    //verifica se deve manter os dados elétricos para cada configuração gerada individualmente. Para isso é necessário copiar os dados elétricos de uma configuração para outra
-    if (idNovaConfiguracaoParam != idAntigaConfiguracaoParam) {
-        if (copiarDadosEletricos) {
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.iJusante = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.corrente = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.potencia = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.vBarra = malloc((numeroBarrasParam + 1) * sizeof (__complex__ double));
-            for (contador = 1; contador <= numeroBarrasParam; contador++) {
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.iJusante[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.iJusante[contador];
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.corrente[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.corrente[contador];
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.potencia[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.potencia[contador];
-                configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.vBarra[contador] = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.vBarra[contador];
-            }
-        } else { //não mantém os dados elétricos individualmente, somente copia os ponteiros para os vetores com dados elétricos
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.iJusante = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.iJusante;
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.corrente = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.corrente;
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.potencia = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.potencia;
-            configuracoesParam[idNovaConfiguracaoParam].dadosEletricos.vBarra = configuracoesParam[idAntigaConfiguracaoParam].dadosEletricos.vBarra;
-        }
-    }
-
-
 
     configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaTrafo = malloc((numeroTrafosParam + 1) * sizeof (__complex__ double));
     configuracoesParam[idNovaConfiguracaoParam].objetivo.menorTensao = 100000;
@@ -4104,77 +3964,7 @@ void avaliaConfiguracaoModificada(BOOL todosAlimentadores, CONFIGURACAO *configu
     configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas = 0;
     configuracoesParam[idNovaConfiguracaoParam].objetivo.ponderacao = 0;
     configuracoesParam[idNovaConfiguracaoParam].objetivo.quedaMaxima = 0;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresEspeciaisSemFornecimento = configuracoesParam[idAntigaConfiguracaoParam].objetivo.consumidoresEspeciaisSemFornecimento;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresSemFornecimento = configuracoesParam[idAntigaConfiguracaoParam].objetivo.consumidoresSemFornecimento;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.consumidoresDesligadosEmCorteDeCarga = 0;
-
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaTotalNaoSuprida = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta = 0; // por Leandro:
-
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.energiaTotalNaoSuprida = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.energiaNaoSuprida.consumidoresSemPrioridade = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria = 0; // por Leandro:
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta = 0; // por Leandro:
-
-
-    if (todosAlimentadores) //calcula os valores de fitness para todos os alimentadores
-    {
-        fluxoCargaTodosAlimentadores(numeroBarrasParam, dadosAlimentadorParam, dadosTrafoParam, configuracoesParam, idNovaConfiguracaoParam, matrizB, ZParam, indiceRegulador, dadosRegulador, maximoCorrenteParam);
-    } else { //calcula o fluxo de carga somente para os alimentadores que foram alterados.
-        VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[rnpP + 1].idTrafo].tensaoReal / sqrt(3);
-        fluxoCargaAlimentador(numeroBarrasParam, configuracoesParam, VF, rnpP, 
-                idNovaConfiguracaoParam, matrizB, ZParam, maximoCorrenteParam, 
-                indiceRegulador, dadosRegulador, 1);
-        VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[rnpA + 1].idTrafo].tensaoReal / sqrt(3);
-        fluxoCargaAlimentador(numeroBarrasParam, configuracoesParam, VF, rnpA, 
-                idNovaConfiguracaoParam, matrizB, ZParam, maximoCorrenteParam, 
-                indiceRegulador, dadosRegulador,1);
-    }
-    int indiceRNP;
-    for (indiceRNP = 0; indiceRNP < configuracoesParam[idNovaConfiguracaoParam].numeroRNP; indiceRNP++) {
-        //  printf("alimentador %d carregamento %lf\n",indiceRNP+1,configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.maiorCarregamentoRede*100);
-        quedaMaxima = 100000;
-        VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[indiceRNP + 1].idTrafo].tensaoReal / sqrt(3);
-        menorTensao = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.menorTensao;
-        noMenorTensaoRNP = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.noMenorTensao;
-        noMaiorCarregamentoRNP = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.noMaiorCarregamentoRede;
-
-        if (quedaMaxima > menorTensao) // encontra a menor tensão do sistema
-            quedaMaxima = menorTensao;
-        //atualiza a menor tensão do individuo
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.menorTensao > menorTensao){
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.menorTensao = menorTensao;
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.noMenorTensao = noMenorTensaoRNP;
-        }
-        quedaMaxima = ((VF - quedaMaxima) / VF)*100;
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.quedaMaxima < quedaMaxima)
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.quedaMaxima = quedaMaxima;
-        //potencia
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorDemandaAlimentador < configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.demandaAlimentador)
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorDemandaAlimentador = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.demandaAlimentador;
-        //maior carregamento de rede
-        if (configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede < configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.maiorCarregamentoRede){
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.maiorCarregamentoRede;
-            configuracoesParam[idNovaConfiguracaoParam].objetivo.noMaiorCarregamentoRede = noMaiorCarregamentoRNP;
-        }
-        //total perdas
-        //if (configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas < configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.perdasResistivas)
-        //  configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas = configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.perdasResistivas;
-        perdasTotais += configuracoesParam[idNovaConfiguracaoParam].rnp[indiceRNP].fitnessRNP.perdasResistivas;
-
-    }
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede = configuracoesParam[idNovaConfiguracaoParam].objetivo.maiorCarregamentoRede * 100;
-    configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas = perdasTotais;
-//    carregamentoTrafo(dadosTrafoParam, numeroTrafosParam, numeroAlimentadoresParam, dadosAlimentadorParam, configuracoesParam, idNovaConfiguracaoParam, idAntigaConfiguracaoParam, todosAlimentadores, rnpP, rnpA);
-    carregamentoTrafoModificado(dadosTrafoParam, numeroTrafosParam, numeroAlimentadoresParam, dadosAlimentadorParam, configuracoesParam, idNovaConfiguracaoParam, idAntigaConfiguracaoParam, todosAlimentadores, rnpP, rnpA);
-    calculaPonderacao(configuracoesParam, idNovaConfiguracaoParam, VF);
-    calculaPotenciaAtivaNaoSupridaPorNivelPrioridade(configuracoesParam, idNovaConfiguracaoParam, idAntigaConfiguracaoParam, matrizB, grafoSDRParam, flagManobrasAlivioParam);  // Por Leandro: Calcula a potência ativa não suprida na nova configuração gerada
-    calculaEnergiaAtivaNaoSupridaPorNivelPrioridade(configuracoesParam, idNovaConfiguracaoParam, idAntigaConfiguracaoParam, sequenciaManobrasAlivioParam, listaChavesParam, vetorPiParam, flagManobrasAlivioParam);  // Por Leandro: Calcula a energia ativa não suprida na nova configuração gerada
-
+    fluxoCargaTodosAlimentadores(numeroBarrasParam, dadosAlimentadorParam, dadosTrafoParam, configuracoesParam, idNovaConfiguracaoParam, matrizB, ZParam, indiceRegulador, dadosRegulador, maximoCorrenteParam);
 }
 
 /**
@@ -4321,6 +4111,7 @@ void avaliaConfiguracaoModificada(BOOL todosAlimentadores, CONFIGURACAO *configu
  * @param numeroBarrasParam
  * @param copiarDadosEletricos
  */
+/*
 void avaliaConfiguracaoAnelCaso2(BOOL todosAlimentadores, CONFIGURACAO *configuracoesParam, 
         int rnpA, int rnpP, long int idNovaConfiguracaoParam, DADOSTRAFO *dadosTrafoParam, 
         int numeroTrafosParam, int numeroAlimentadoresParam, int *indiceRegulador, 
@@ -4406,7 +4197,7 @@ void avaliaConfiguracaoAnelCaso2(BOOL todosAlimentadores, CONFIGURACAO *configur
     configuracoesParam[idNovaConfiguracaoParam].objetivo.perdasResistivas = perdasTotais;
 }
 
-
+*/
 /**
  * Constroi o array com os índices de reguladores.
  * @param indicesParam
@@ -4535,6 +4326,7 @@ void gravaDadosEletricos(char *nomeArquivo, CONFIGURACAO configuracoesParam) {
  * @param identificadorConfiguracao
  * @param matrizB
  */
+/*
 void salvaDadosTodosIndividuos(CONFIGURACAO *configuracoesParam, long int identificadorConfiguracao, RNPSETORES *matrizB) {
     FILE *arquivo;
     long int contadorRNP, contadorSetores, contadorBarras;
@@ -4624,171 +4416,8 @@ void salvaDadosTodosIndividuos(CONFIGURACAO *configuracoesParam, long int identi
     fclose(arquivo);
 
 }
-/*
-void reconfigurador(GRAFO *grafoSDRParam, long int numeroBarras, DADOSTRAFO *dadosTrafoSDRParam, long int numeroTrafos,
-        DADOSALIMENTADOR *dadosAlimentadorSDRParam, long int numeroAlimentadores, DADOSREGULADOR *dadosReguladorSDR,
-        long int numeroReguladores, RNPSETORES *rnpSetoresParam, long int numeroSetores, GRAFOSETORES *grafoSetoresParam,
-        LISTACHAVES *listaChavesParam, long int numeroChaves, CONFIGURACAO *configuracaoInicial, MATRIZMAXCORRENTE *maximoCorrente,
-        MATRIZCOMPLEXA *Z, ESTADOCHAVE *estadoInicial, ESTADOCHAVE *estadoAutomaticas, ESTADOCHAVE *estadoRestabelecimento) {
-    VETORPI *vetorPi;
-    MATRIZPI *matrizPI;
-    CONFIGURACAO *configuracoes;
-    VETORTABELA *populacao;
-    long int *setorFalta;
-    int numeroSetorFalta;
-    int *indiceRegulador;
-    BOOL copiaDados = false;
-    BOOL todosAlimentadores = true;
-    long int idConfiguracao = 0;
-    long int idConfiguracaoInicial, idConfiguracaoBase;
-    int SBase;
-    int tamanhoTabela[14];
-    int numeroTabelas = 14;
-    long int contador;
-    long int numeroChaveAberta = 0;
-    long int numeroChaveFechada = 0;
-    long int consumidoresSemFornecimento = 0;
-    long int consumidoresEspeciaisSemFornecimento = 0;
-    double taxaOperadorPAO = 0.5;
-    long int maximoGeracoes;
-    int numeroIndividuos;
-    char nomeArquivo[120];
-    char nomeArquivo2[120];
-    char nomeFinal[100];
-    int seed;
-    long int melhorConfiguracao;
-    clock_t inicio, fim;
-    double tempo;
-     FILE *arquivo;
-     FILE *arquivo1; //Arquivo a ser utilizado para teste de falta simples em
-                     //todos os setores do sistema
-     sprintf(nomeArquivo2, "testeConfiguracaoInicial.dad");
-     arquivo1 = fopen(nomeArquivo2, "a");
-
-     leituraParametros(&maximoGeracoes, tamanhoTabela, &SBase, &numeroIndividuos, &seed);
-     leituraDadosEntrada(&numeroSetorFalta, &setorFalta);
-     //imprime no arquivo para teste o seed e o setor em falta analisado
-     fprintf(arquivo1, "Seed;%d;Set.Falta;%ld;", seed, setorFalta[0]);
-     fclose(arquivo1);
-
-     sprintf(nomeFinal,"_seed_%d_geracoes_%ld_setorFalta_%ld.dad", seed, maximoGeracoes, setorFalta[0]);
-     sprintf(nomeArquivo, "saidaReconfigurador%s",nomeFinal);
-     srand(seed);
-     indiceRegulador = Malloc(int, (numeroBarras + 1));
-     inicio = clock();
-     alocaTabelas(numeroTabelas, tamanhoTabela, &populacao);
-     inicializaVetorPi(maximoGeracoes + numeroIndividuos + 3, &vetorPi);
-     inicializaMatrizPI(grafoSetoresParam, &matrizPI, (maximoGeracoes + numeroIndividuos + 3), numeroSetores);
-     configuracoes = alocaIndividuo(numeroAlimentadores, idConfiguracao, (maximoGeracoes + numeroIndividuos + 3));
-
-      int contadorRnp, contadorNos;
-     for (contadorRnp = 0; contadorRnp < configuracaoInicial[0].numeroRNP; contadorRnp++) {
-         alocaRNP(configuracaoInicial[0].rnp[contadorRnp].numeroNos, &configuracoes[idConfiguracao].rnp[contadorRnp]);
-         for (contadorNos = 0; contadorNos < configuracaoInicial[0].rnp[contadorRnp].numeroNos; contadorNos++) {
-             configuracoes[idConfiguracao].rnp[contadorRnp].nos[contadorNos] = configuracaoInicial[0].rnp[contadorRnp].nos[contadorNos];
-             adicionaColuna(matrizPI, configuracoes[idConfiguracao].rnp[contadorRnp].nos[contadorNos].idNo, idConfiguracao, contadorRnp, contadorNos);
-         }
-
-     }
-
-
-     constroiVetorTaps(indiceRegulador, dadosReguladorSDR, numeroReguladores, grafoSDRParam, numeroBarras);
-
-     // copiaIndividuoInicial(configuracoes, configuracaoInicial, idConfiguracao, matrizPI,vetorPi);
-     //inicializaDadosEletricos(grafoSDRParam, configuracoes, idConfiguracao, numeroBarras, SBase, VF, modelo);
-     inicializaDadosEletricosPorAlimentador(grafoSDRParam, configuracoes, idConfiguracao, numeroBarras, SBase, dadosTrafoSDRParam, dadosAlimentadorSDRParam, rnpSetoresParam);
-     //imprimeDadosEletricos(configuraccoes, idConfiguracao, numeroBarras);
-     avaliaConfiguracao(todosAlimentadores, configuracoes, -1, -1, idConfiguracao, dadosTrafoSDRParam, numeroTrafos, numeroAlimentadores, indiceRegulador, dadosReguladorSDR, dadosAlimentadorSDRParam, VF, idConfiguracao, rnpSetoresParam, Z, maximoCorrente, numeroBarras, copiaDados);
-     //imprimeDadosEletricos(configuracoes, idConfiguracao, numeroBarras);
-     imprimeIndicadoresEletricos(configuracoes[idConfiguracao]);
-     gravaIndividuo(nomeFinal, configuracoes[idConfiguracao]);
-     idConfiguracaoInicial = idConfiguracao;
-     idConfiguracaoBase = idConfiguracao;
-     idConfiguracao++;
-
-
-     if(numeroSetorFalta > 1)
-     {
-         isolaRestabeleceMultiplasFaltas(grafoSetoresParam, idConfiguracao-1, configuracoes, matrizPI, vetorPi, numeroSetorFalta, setorFalta,
-             estadoInicial, &numeroChaveAberta, &numeroChaveFechada, &idConfiguracao, &idConfiguracaoInicial,listaChavesParam);
-     }
-     else
-         isolaRestabeleceTodasOpcoes(grafoSetoresParam, idConfiguracao-1, configuracoes, matrizPI, vetorPi, setorFalta[0],
-             estadoInicial, &numeroChaveAberta, &numeroChaveFechada, &idConfiguracao, listaChavesParam);
-     for(contador = idConfiguracaoInicial+1; contador<idConfiguracao; contador++)
-     {
-       // imprimeIndividuo(configuracoes[contador]);
-         avaliaConfiguracao(todosAlimentadores, configuracoes, -1, -1, contador, dadosTrafoSDRParam,
-                 numeroTrafos, numeroAlimentadores, indiceRegulador, dadosReguladorSDR, dadosAlimentadorSDRParam, VF,
-                 idConfiguracaoBase, rnpSetoresParam, Z, maximoCorrente, numeroBarras, copiaDados);
-         imprimeIndicadoresEletricos(configuracoes[contador]);
-         gravaIndividuo(nomeFinal, configuracoes[contador]);
-         insereTabelas(populacao, configuracoes, contador);
-         //salvaDadosTodosIndividuos(configuracoes, contador ,rnpSetoresParam);
-         char nomeArquivo[200];
-         FILE *chaveamento;
-         sprintf(nomeArquivo, "Chaveamento_individuo%ld%s", contador,nomeFinal);
-         chaveamento = fopen(nomeArquivo, "w");
-         sequenciaChaveamento(chaveamento, vetorPi, contador, listaChavesParam);
-         fclose(chaveamento);
-         printf("\n\n");
-    }
-     //Rotina para verificar qual das configurações obtidas pela busca exaustiva é
-    //a melhor e gravar os dados no arquivo testeConfiguracaoInicial.dad
-     melhorConfiguracao = melhorSolucao(configuracoes,populacao);
-    // sprintf(nomeArquivo2, "testeConfiguracaoInicial.dad");
-     arquivo1 = fopen(nomeArquivo2, "a");
-     if(melhorConfiguracao < 0){
-         melhorConfiguracao = melhorSolucaoNaoFactivel(configuracoes,populacao);
-     }
-     fprintf(arquivo1,"Cons.;%ld;ConsEsp.;%ld;", configuracoes[melhorConfiguracao].objetivo.consumidoresSemFornecimento, configuracoes[melhorConfiguracao].objetivo.consumidoresEspeciaisSemFornecimento);
-     fprintf(arquivo1,"Config.;%ld;", melhorConfiguracao);
-     fprintf(arquivo1, "Car.Rede;%.2lf;", configuracoes[melhorConfiguracao].objetivo.maiorCarregamentoRede);
-     fprintf(arquivo1, "Car.SE;%.2lf;", configuracoes[melhorConfiguracao].objetivo.maiorCarregamentoTrafo);
-     fprintf(arquivo1, "Queda;%.2lf;", configuracoes[melhorConfiguracao].objetivo.quedaMaxima);
-     fprintf(arquivo1, "Perdas;%.2lfkW;", configuracoes[melhorConfiguracao].objetivo.perdasResistivas);
-     fprintf(arquivo1,"Man.Manuais;%d;",configuracoes[melhorConfiguracao].objetivo.manobrasManuais);
-     fprintf(arquivo1,"Man.Automaticas;%d;",configuracoes[melhorConfiguracao].objetivo.manobrasAutomaticas);
-     fprintf(arquivo1,"Porc.Manobras;%f\n",(float)(configuracoes[melhorConfiguracao].objetivo.manobrasAutomaticas*100)/configuracoes[melhorConfiguracao].objetivo.manobrasManuais);
-     fclose(arquivo1);
-
-
- //    idConfiguracao++;
-
-    processoEvolutivo(dadosTrafoSDRParam, dadosAlimentadorSDRParam, configuracoes, populacao, grafoSetoresParam,
-             rnpSetoresParam, listaChavesParam, matrizPI, vetorPi, maximoCorrente, Z,
-             VF, numeroBarras, numeroSetores, numeroTrafos, estadoInicial,
-             maximoGeracoes, numeroTabelas, taxaOperadorPAO, idConfiguracao, indiceReguladorSDR, dadosRegulador
-             &numeroChaveAberta, &numeroChaveFechada, numeroIndividuos);
-
-    fim = clock();
-    tempo = (double)(fim-inicio)/CLOCK_TICKS_PER_SECOND;
-     salvaDadosArquivo(nomeArquivo, nomeFinal,configuracoes, populacao, numeroTabelas, vetorPi, listaChavesParam);
-     //salvaDadosTodosIndividuos(configuracoes, (maximoGeracoes + numeroIndividuos),rnpSetoresParam);
-     melhorConfiguracao = melhorSolucao(configuracoes,populacao);
-     if(melhorConfiguracao < 0){
-         melhorConfiguracao = melhorSolucaoNaoFactivel(configuracoes,populacao);
-     }
-     sprintf(nomeArquivo, "MelhorConfiguracao.dad");
-     arquivo = fopen(nomeArquivo, "a");
-     fprintf(arquivo,"Seed: %d\tGeracoes: %d\tSetor_falta %d\t",seed, maximoGeracoes, setorFalta[0]);
-     fprintf(arquivo,"Tempo %.4lf\t", tempo);
-     fprintf(arquivo,"Configuracao %ld\t", melhorConfiguracao);
-     fprintf(arquivo, "Carregamento Rede %.2lf\t", configuracoes[melhorConfiguracao].objetivo.maiorCarregamentoRede);
-     fprintf(arquivo, "Carregamento Trafo %.2lf\t", configuracoes[melhorConfiguracao].objetivo.maiorCarregamentoTrafo);
-     fprintf(arquivo, "Queda Maxima %.2lf\t", configuracoes[melhorConfiguracao].objetivo.quedaMaxima);
-     fprintf(arquivo, "Perdas Resistivas %.2lfkW\t", configuracoes[melhorConfiguracao].objetivo.perdasResistivas);
-     fprintf(arquivo,"Manobras Manuais %d\t",configuracoes[melhorConfiguracao].objetivo.manobrasManuais);
-     fprintf(arquivo,"Manobras Automaticas %d\t",configuracoes[melhorConfiguracao].objetivo.manobrasAutomaticas);
-     fprintf(arquivo,"Porcentagem manobras %f\t",(float)(configuracoes[melhorConfiguracao].objetivo.manobrasAutomaticas*100)/configuracoes[melhorConfiguracao].objetivo.manobrasManuais);
-     fprintf(arquivo,"Consumidores %ld \t Consumidores Especiais %ld\n",configuracoes[melhorConfiguracao].objetivo.consumidoresSemFornecimento,configuracoes[melhorConfiguracao].objetivo.consumidoresEspeciaisSemFornecimento);
-
-     fclose(arquivo);
-     free(setorFalta);
-     free(tapReguladores);
-    //imprimeTabelas(numeroTabelas,populacao);
-}
 */
+
 
 /**
  * Inicializa os valores de todos os objetivos analisados para a configuração.
@@ -5544,120 +5173,6 @@ void classificacaoPorNaoDominanciaEnergiaTotalNaoSupridaVsTotalManobras(FRONTEIR
 	individuos = NULL; free(individuos);
 }
 
-/**
- * Por Leandro:
- * Esta função consiste na função "classificacaoPorNaoDominanciaEnergiaTotalNaoSupridaVsTotalManobras()" modificada
- * para:
- * (a) ao verificar a factibilidade de um indivíduo em relação as restrições gerais, verificar também
- * as restrições relaxadas em todas as configurações pelas quais a rede passará até a obtenção do referido indivíduo.
- * Isto é feito porque, neste AEMO, soluções infactíveis em relação as restriçẽos ralaxadas podem ser salvas nas tabelas.
- * Mas, como um indivíduo só é factível se possuir uma sequência factível, então, nesta função passou-se a verificar também
- * as restrições nas configurações temporárias, o que, consiste, na verdade, em verificar a factíbilidade da sequência associadas
- * a um indivíduo.
- *
- * Assim, esta função verifica (i) a adequção dos indivíduos salvos nas tabelas de subpopulação em relação as restrições Gerais
- * e (ii) a factibilidade da sequência de chaveamento associada aos indivíduos. Em seguida, ordena os indivíduos FACTÍVEIS
- * de acordo com o nível de dominância de cada um deles.
- *
- * IMPORTANTE: para tal, considera-se dois objetivos: minimização do número TOTAL de manobras e da Energia TOTAL não suprida
- *
- *@param fronteira salvas as informações das fronteiras
- *@param numeroDeFronteiras salva o número de fronteiras
- *@param configuracoesParam
- *@param tabelasParam
- *@param numeroTabelas
- *@return
- */
-void classificacaoPorNaoDominanciaEnergiaTotalNaoSupridaVsTotalManobrasV2(FRONTEIRAS **fronteiraParam, int *numeroDeFronteirasParam,
-		CONFIGURACAO *configuracoesParam, VETORTABELA *populacaoParam, int numeroTabelasParam, VETORPI *vetorPiParam) {
-    long int idConfiguracao, idConfiguracao1, idConfiguracao2;
-    int contador, contadorT, indice, contadorI, tamanhoPopulacao, numeroIndividuosFactiveis, contadorJ, contadorIndividuosVerificados, rank, idFronteira, numIndividuos;
-    TABELA *individuos;
-
-    tamanhoPopulacao = 0;
-    for(indice = 0; indice < numeroTabelasParam; indice++)
-    	tamanhoPopulacao = tamanhoPopulacao + populacaoParam[indice].numeroIndividuos;
-    //Salva em "individuos" todos os indivíduos FACTÍVEIS
-    individuos = (TABELA *) Malloc(TABELA, tamanhoPopulacao);
-    contadorI = 0;
-    for (contadorT = 0; contadorT < numeroTabelasParam; contadorT++) {
-        for (contador = 0; contador < populacaoParam[contadorT].numeroIndividuos; contador++) {
-            idConfiguracao = populacaoParam[contadorT].tabela[contador].idConfiguracao;
-            if (verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracao) &&
-            		verificaFactibilidade(configuracoesParam[idConfiguracao], maxCarregamentoRede, maxCarregamentoTrafo, maxQuedaTensao)) {
-            	if(!verificaSeJaFoiSalvo(individuos, contadorI, idConfiguracao)){
-					individuos[contadorI].idConfiguracao = idConfiguracao;
-					individuos[contadorI].valorObjetivo = 0;
-					individuos[contadorI].distanciaMultidao = 0;
-					configuracoesParam[individuos[contadorI].idConfiguracao].objetivo.fronteira = 999;
-					contadorI++;
-            	}
-            }
-        }
-    }
-    numeroIndividuosFactiveis = contadorI;
-
-    (*fronteiraParam) =  (FRONTEIRAS *)Malloc(FRONTEIRAS, numeroIndividuosFactiveis);// Como não se sabe, a priori, em quantas fronteiras a população está dividida, considera-se o caso extremo em que cada indivíduo está numa fronteira diferente
-    for(contadorI = 0; contadorI < numeroIndividuosFactiveis; contadorI++){
-		(*fronteiraParam)[contadorI].numeroIndividuos = 0;
-		(*fronteiraParam)[contadorI].nivelDominancia = 0;
-		(*fronteiraParam)[contadorI].individuos = Malloc(INDIVIDUOSNAODOMINADOS, numeroIndividuosFactiveis); // Como não se sabe, a priori, quantos indivíduos estarão em cada fronteira, considera-se o caso extremo em que todos os indivíduos estejam numa mesma fronteira
-	}
-
-
-    //Divide a população factível em fronteira segundo o critério de não-dominancia
-    idFronteira = 0;
-	contadorIndividuosVerificados = 0;
-	while(contadorIndividuosVerificados < numeroIndividuosFactiveis){
-		//Determina a qual fronteira cada indivíduo pertence
-		for (contadorI = 0; contadorI < numeroIndividuosFactiveis; contadorI++) {
-			idConfiguracao1 = individuos[contadorI].idConfiguracao;
-			rank = 0;
-
-			if(configuracoesParam[idConfiguracao1].objetivo.fronteira == 999){ //Se idConfiguracao1 ainda não estiver salva em alguma fronteira
-				for (contadorJ = 0; contadorJ < numeroIndividuosFactiveis; contadorJ++) {
-					idConfiguracao2 = individuos[contadorJ].idConfiguracao;
-					// Compara idConfiguracao1 com todas as demais configurações a fim de determinar se esta é dominada por algum indivíduo (ou configuração)
-					if(configuracoesParam[idConfiguracao2].objetivo.fronteira == 999){ //Se idConfiguracao2 ainda não foi salva em alguma fronteira
-						if(idConfiguracao1 != idConfiguracao2){ //Para evitar que um indivíduo seja comparado consigo mesmo
-							if (configuracoesParam[idConfiguracao1].objetivo.energiaTotalNaoSuprida >= configuracoesParam[idConfiguracao2].objetivo.energiaTotalNaoSuprida
-									&& (configuracoesParam[idConfiguracao1].objetivo.manobrasManuais + configuracoesParam[idConfiguracao1].objetivo.manobrasAutomaticas) >= (configuracoesParam[idConfiguracao2].objetivo.manobrasManuais + configuracoesParam[idConfiguracao2].objetivo.manobrasAutomaticas)) {
-								rank++; //Incrementa se idConfiguracao1 é dominado por idConfiguracao2
-								if (configuracoesParam[idConfiguracao1].objetivo.energiaTotalNaoSuprida == configuracoesParam[idConfiguracao2].objetivo.energiaTotalNaoSuprida
-										&& (configuracoesParam[idConfiguracao1].objetivo.manobrasManuais + configuracoesParam[idConfiguracao1].objetivo.manobrasAutomaticas) == (configuracoesParam[idConfiguracao2].objetivo.manobrasManuais + configuracoesParam[idConfiguracao2].objetivo.manobrasAutomaticas)) {
-									rank--;
-								}
-							}
-						}
-					}
-				}
-			}
-
-
-			//verificar se idConfiguracao1 pode ser salvo na fronteira "idFronteira"
-			if(rank == 0 && configuracoesParam[idConfiguracao1].objetivo.fronteira == 999){//Se for verdade, então idConfiguracao1 ainda não foi salvo em nenhuma fronteira e não foi dominado por nenhuma outra solução. Logo, ele pertence a fronteira "idFronteira"
-				numIndividuos = (*fronteiraParam)[idFronteira].numeroIndividuos;
-				(*fronteiraParam)[idFronteira].individuos[numIndividuos].idConfiguracao = idConfiguracao1;
-				(*fronteiraParam)[idFronteira].individuos[numIndividuos].valorObjetivo1 = configuracoesParam[idConfiguracao1].objetivo.energiaTotalNaoSuprida;
-				(*fronteiraParam)[idFronteira].individuos[numIndividuos].valorObjetivo2 = (configuracoesParam[idConfiguracao1].objetivo.manobrasManuais + configuracoesParam[idConfiguracao1].objetivo.manobrasAutomaticas);
-				(*fronteiraParam)[idFronteira].nivelDominancia = idFronteira;
-				(*fronteiraParam)[idFronteira].numeroIndividuos++;
-				//configuracoesParam[idConfiguracao1].objetivo.fronteira = idFronteira;
-				contadorIndividuosVerificados++;
-			}
-
-
-		}
-		for(contadorJ = 0; contadorJ < (*fronteiraParam)[idFronteira].numeroIndividuos; contadorJ++){
-			idConfiguracao1 = (*fronteiraParam)[idFronteira].individuos[contadorJ].idConfiguracao;
-			configuracoesParam[idConfiguracao1].objetivo.fronteira = idFronteira;
-		}
-
-		idFronteira++;
-	}
-	numeroDeFronteirasParam[0] = idFronteira - 1;
-	individuos = NULL; free(individuos);
-}
 
 BOOL individuosIguaisEnergiaNaoSupridaTotalManobraTotal(CONFIGURACAO *configuracoesParam, long int idConfiguracao1, long int idConfiguracao2){
 	BOOL iguais;
@@ -5674,130 +5189,6 @@ BOOL individuosIguaisEnergiaNaoSupridaTotalManobraTotal(CONFIGURACAO *configurac
 		iguais = true;
 	}
 	return iguais;
-}
-
-/**
- * Por Leandro:
- * Esta função consiste na função "classificacaoPorNaoDominanciaEnergiaTotalNaoSupridaVsTotalManobras()" modificada
- * para:
- * (a) evitar que a configuração conceitualmente inicial do problema (aquela na qual os setores em falta estão isolados e os setores saudávis encontram-se
- * desligados) e outras configurações iguais a esta não sejam admitidas a fronteira de Pareo, uma vez que esta não restaura nenhum indivíduo;
- *
- * (b) ao verificar a factibilidade de um indivíduo em relação as restrições gerais, verificar também
- * as restrições relaxadas em todas as configurações pelas quais a rede passará até a obtenção do referido indivíduo.
- * Isto é feito porque, neste AEMO, soluções infactíveis em relação as restriçẽos ralaxadas podem ser salvas nas tabelas.
- * Mas, como um indivíduo só é factível se possuir uma sequência factível, então, nesta função passou-se a verificar também
- * as restrições nas configurações temporárias, o que, consiste, na verdade, em verificar a factíbilidade da sequência associadas
- * a um indivíduo.
- *
- * Assim, esta função verifica (i) a adequção dos indivíduos salvos nas tabelas de subpopulação em relação as restrições Gerais
- * e (ii) a factibilidade da sequência de chaveamento associada aos indivíduos. Em seguida, ordena os indivíduos FACTÍVEIS
- * de acordo com o nível de dominância de cada um deles.
- *
- * IMPORTANTE: para tal, considera-se dois objetivos: minimização do número TOTAL de manobras e da Energia TOTAL não suprida
- *
- *@param fronteira salvas as informações das fronteiras
- *@param numeroDeFronteiras salva o número de fronteiras
- *@param configuracoesParam
- *@param tabelasParam
- *@param numeroTabelas
- *@return
- */
-void classificacaoPorNaoDominanciaEnergiaTotalNaoSupridaVsTotalManobrasV3(FRONTEIRAS **fronteiraParam, int *numeroDeFronteirasParam,
-		CONFIGURACAO *configuracoesParam, VETORTABELA *populacaoParam, int numeroTabelasParam, VETORPI *vetorPiParam, long int idPrimeiraConfiguracaoParam) {
-    long int idConfiguracao, idConfiguracao1, idConfiguracao2;
-    int contador, contadorT, indice, contadorI, tamanhoPopulacao, numeroIndividuosFactiveis, contadorJ, contadorIndividuosVerificados, rank, idFronteira, numIndividuos;
-    TABELA *individuos;
-
-    tamanhoPopulacao = 0;
-    for(indice = 0; indice < numeroTabelasParam; indice++)
-    	tamanhoPopulacao = tamanhoPopulacao + populacaoParam[indice].numeroIndividuos;
-    //Salva em "individuos" todos os indivíduos FACTÍVEIS
-    individuos = (TABELA *) Malloc(TABELA, tamanhoPopulacao);
-    contadorI = 0;
-    for (contadorT = 0; contadorT < numeroTabelasParam; contadorT++) {
-        for (contador = 0; contador < populacaoParam[contadorT].numeroIndividuos; contador++) {
-            idConfiguracao = populacaoParam[contadorT].tabela[contador].idConfiguracao;
-
-            if(!individuosIguaisEnergiaNaoSupridaTotalManobraTotal(configuracoesParam, idConfiguracao, idPrimeiraConfiguracaoParam)){ //Verifica se "idConfiguracao" é igual a configuração conceitualmente inicial do problema
-
-				if (verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracao) ) {
-					if(!verificaSeJaFoiSalvo(individuos, contadorI, idConfiguracao)){
-						individuos[contadorI].idConfiguracao = idConfiguracao;
-						individuos[contadorI].valorObjetivo = 0;
-						individuos[contadorI].distanciaMultidao = 0;
-						configuracoesParam[individuos[contadorI].idConfiguracao].objetivo.fronteira = 999;
-						contadorI++;
-					}
-				}
-
-            }
-
-        }
-    }
-    numeroIndividuosFactiveis = contadorI;
-
-    (*fronteiraParam) =  (FRONTEIRAS *)Malloc(FRONTEIRAS, numeroIndividuosFactiveis);// Como não se sabe, a priori, em quantas fronteiras a população está dividida, considera-se o caso extremo em que cada indivíduo está numa fronteira diferente
-    for(contadorI = 0; contadorI < numeroIndividuosFactiveis; contadorI++){
-		(*fronteiraParam)[contadorI].numeroIndividuos = 0;
-		(*fronteiraParam)[contadorI].nivelDominancia = 0;
-		(*fronteiraParam)[contadorI].individuos = Malloc(INDIVIDUOSNAODOMINADOS, numeroIndividuosFactiveis); // Como não se sabe, a priori, quantos indivíduos estarão em cada fronteira, considera-se o caso extremo em que todos os indivíduos estejam numa mesma fronteira
-	}
-
-
-    //Divide a população factível em fronteira segundo o critério de não-dominancia
-    idFronteira = 0;
-	contadorIndividuosVerificados = 0;
-	while(contadorIndividuosVerificados < numeroIndividuosFactiveis){
-		//Determina a qual fronteira cada indivíduo pertence
-		for (contadorI = 0; contadorI < numeroIndividuosFactiveis; contadorI++) {
-			idConfiguracao1 = individuos[contadorI].idConfiguracao;
-			rank = 0;
-
-			if(configuracoesParam[idConfiguracao1].objetivo.fronteira == 999){ //Se idConfiguracao1 ainda não estiver salva em alguma fronteira
-				for (contadorJ = 0; contadorJ < numeroIndividuosFactiveis; contadorJ++) {
-					idConfiguracao2 = individuos[contadorJ].idConfiguracao;
-					// Compara idConfiguracao1 com todas as demais configurações a fim de determinar se esta é dominada por algum indivíduo (ou configuração)
-					if(configuracoesParam[idConfiguracao2].objetivo.fronteira == 999){ //Se idConfiguracao2 ainda não foi salva em alguma fronteira
-						if(idConfiguracao1 != idConfiguracao2){ //Para evitar que um indivíduo seja comparado consigo mesmo
-							if (configuracoesParam[idConfiguracao1].objetivo.energiaTotalNaoSuprida >= configuracoesParam[idConfiguracao2].objetivo.energiaTotalNaoSuprida
-									&& (configuracoesParam[idConfiguracao1].objetivo.manobrasManuais + configuracoesParam[idConfiguracao1].objetivo.manobrasAutomaticas) >= (configuracoesParam[idConfiguracao2].objetivo.manobrasManuais + configuracoesParam[idConfiguracao2].objetivo.manobrasAutomaticas)) {
-								rank++; //Incrementa se idConfiguracao1 é dominado por idConfiguracao2
-								if (configuracoesParam[idConfiguracao1].objetivo.energiaTotalNaoSuprida == configuracoesParam[idConfiguracao2].objetivo.energiaTotalNaoSuprida
-										&& (configuracoesParam[idConfiguracao1].objetivo.manobrasManuais + configuracoesParam[idConfiguracao1].objetivo.manobrasAutomaticas) == (configuracoesParam[idConfiguracao2].objetivo.manobrasManuais + configuracoesParam[idConfiguracao2].objetivo.manobrasAutomaticas)) {
-									rank--;
-								}
-							}
-						}
-					}
-				}
-			}
-
-
-			//verificar se idConfiguracao1 pode ser salvo na fronteira "idFronteira"
-			if(rank == 0 && configuracoesParam[idConfiguracao1].objetivo.fronteira == 999){//Se for verdade, então idConfiguracao1 ainda não foi salvo em nenhuma fronteira e não foi dominado por nenhuma outra solução. Logo, ele pertence a fronteira "idFronteira"
-				numIndividuos = (*fronteiraParam)[idFronteira].numeroIndividuos;
-				(*fronteiraParam)[idFronteira].individuos[numIndividuos].idConfiguracao = idConfiguracao1;
-				(*fronteiraParam)[idFronteira].individuos[numIndividuos].valorObjetivo1 = configuracoesParam[idConfiguracao1].objetivo.energiaTotalNaoSuprida;
-				(*fronteiraParam)[idFronteira].individuos[numIndividuos].valorObjetivo2 = (configuracoesParam[idConfiguracao1].objetivo.manobrasManuais + configuracoesParam[idConfiguracao1].objetivo.manobrasAutomaticas);
-				(*fronteiraParam)[idFronteira].nivelDominancia = idFronteira;
-				(*fronteiraParam)[idFronteira].numeroIndividuos++;
-				//configuracoesParam[idConfiguracao1].objetivo.fronteira = idFronteira;
-				contadorIndividuosVerificados++;
-			}
-
-
-		}
-		for(contadorJ = 0; contadorJ < (*fronteiraParam)[idFronteira].numeroIndividuos; contadorJ++){
-			idConfiguracao1 = (*fronteiraParam)[idFronteira].individuos[contadorJ].idConfiguracao;
-			configuracoesParam[idConfiguracao1].objetivo.fronteira = idFronteira;
-		}
-
-		idFronteira++;
-	}
-	if(idFronteira>0)
-		numeroDeFronteirasParam[0] = idFronteira - 1;
-	free(individuos); individuos = NULL;
 }
 
 /*
@@ -6373,6 +5764,7 @@ void numeroManobrasSubTipo(CONFIGURACAO *configuracoesParam,
  * @param indiceSetor
  * @return 
  */
+/*
 __complex__ double calculaImpedanciaTheveninRamo(CONFIGURACAO configuracaoParam, RNPSETORES *matrizB,
         MATRIZCOMPLEXA *ZParam, long int setorBarra, long int barraChave, long int indiceRNP, long int indiceSetor) {//, MATRIZPI *matrizPiParam, VETORPI *vetorPiParam) {
     int indice, indice1,indiceBarra;
@@ -6421,7 +5813,7 @@ __complex__ double calculaImpedanciaTheveninRamo(CONFIGURACAO configuracaoParam,
     }
     return(somaImpedancia);
 }
-
+*/
 /**
  * Calcula a impedância de Thevenin para ramos no mesmo alimentador.
  * @param configuracaoParam
@@ -6434,6 +5826,7 @@ __complex__ double calculaImpedanciaTheveninRamo(CONFIGURACAO configuracaoParam,
  * @param barraChave2
  * @return 
  */
+/*
 __complex__ double calculaImpedanciaTheveninMesmoAlimentador(CONFIGURACAO configuracaoParam, RNPSETORES *matrizB,
         MATRIZCOMPLEXA *ZParam, long int indiceSetor1, long int indiceSetor2, int indiceRNP1, long int barraChave1, long int barraChave2) {
     int indiceS1,indiceS2, indice1, indiceBarra1, indiceBarra2;
@@ -6559,7 +5952,7 @@ __complex__ double calculaImpedanciaTheveninMesmoAlimentador(CONFIGURACAO config
     }    
     return(somaImpedancia);
 }
-
+*/
 /**
  *Fluxo de Potência Indicativo - Caso 1: Loop entre alimentadores do mesmo trafo de subestação 
  * @param grafoSDRParam
@@ -6585,156 +5978,7 @@ __complex__ double calculaImpedanciaTheveninMesmoAlimentador(CONFIGURACAO config
  */
 //----------------------------------------------------------------------------------
 //
-//
-void fluxoPotenciaAnelCaso1(GRAFO *grafoSDRParam, long int numeroBarrasParam, DADOSALIMENTADOR *dadosAlimentadorParam, DADOSTRAFO *dadosTrafoParam,
-        CONFIGURACAO *configuracoesParam, long int indiceConfiguracao, RNPSETORES *matrizB, double SBase,
-        MATRIZCOMPLEXA *ZParam, int *tapReguladores, DADOSREGULADOR *dadosRegulador, MATRIZMAXCORRENTE * maximoCorrenteParam, int numeroTrafos, int numeroAlimentadores,
-        int rnpA, int rnpP, long int barraDe, long int barraPara, long int setorBarraDe, long int setorBarraPara)
-{
-    __complex__ double VThevenin;
-    __complex__ double ZThevenin;
-    __complex__ double ICompensacao = 0 + 0*I;
-    __complex__ double IChave = 0 + 0*I;
-    __complex__ double CargaDe = 0 + 0*I;
-    __complex__ double CargaPara = 0 + 0*I;
-    long int indiceSetorDe;
-    long int indiceSetorPara;
-    int itbk = 0,contador2;
-    BOOL todosAlimentadores = true;
-    BOOL copiaDados = false;
-    
-    //--------------------------------------------------------------------------
-    //Encontra o índice dos setores - Pode ser alterado pela MatrizPi - retornar o parâmetro na função
-    for(contador2 = 0; contador2 < configuracoesParam[indiceConfiguracao].rnp[rnpP].numeroNos; contador2++)
-    {
-        if(configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[contador2].idNo == setorBarraDe)
-        {
-            indiceSetorDe = contador2;
-        }
-    }
-    for(contador2 = 0; contador2 < configuracoesParam[indiceConfiguracao].rnp[rnpA].numeroNos; contador2++)
-    {
-        if(configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[contador2].idNo == setorBarraPara)
-        {
-            indiceSetorPara = contador2;
-        }
-    }
-    
-    
-    //--------------------------------------------------------------------------
-    //PASSO 1: calcula fluxo atual sem loop
-    // ****** Deve calcular o fluxo considerando a chave do loop como aberta
-    // ****** Nesse ponto calcula todos.
-    inicializaDadosEletricosPorAlimentador(grafoSDRParam, configuracoesParam, indiceConfiguracao, numeroBarrasParam, SBase, dadosTrafoParam, dadosAlimentadorParam, matrizB);   
-    avaliaConfiguracao(todosAlimentadores, configuracoesParam, -1, -1, indiceConfiguracao, 
-            dadosTrafoParam, numeroTrafos, numeroAlimentadores, tapReguladores, 
-            dadosRegulador, dadosAlimentadorParam, indiceConfiguracao, 
-            matrizB, ZParam, maximoCorrenteParam, numeroBarrasParam, copiaDados);
-    
-    imprimeIndicadoresEletricos(configuracoesParam[indiceConfiguracao]);
-    
-    //--------------------------------------------------------------------------
-    //PASSO 2:
-    // ******* Calcula a tensão de thévenin com o resultado do Fluxo: Tensão Complexa Calculada da barra "barraDe" - Tensão Complexa Calculada da barra "barraPara"
-    VThevenin = configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraDe] - configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraPara];
-   //printf("\n\nVthevenin = %lf + j. %lf",__real__ VThevenin,__imag__ VThevenin );
-    
-    //--------------------------------------------------------------------------
-    //PASSO 3: calcula impedancia thevenin
-    // ******* Recebe o índice das barras "barraDe" e "barraPara" da chave que formou o loop e retorna a impedância de thévenin (Real + Imag) entre estas barras (soma de impedâncias)
-    //a ligação ocorre na mesma rnp
-    if (rnpA == rnpP) {
-        ZThevenin = calculaImpedanciaTheveninMesmoAlimentador(configuracoesParam[indiceConfiguracao], matrizB,
-                ZParam, indiceSetorDe, indiceSetorPara, rnpA, barraDe, barraPara);
-    }
-    else
-    {
-        ZThevenin = calculaImpedanciaTheveninRamo(configuracoesParam[indiceConfiguracao], matrizB,
-                ZParam, setorBarraDe, barraDe,rnpP,indiceSetorDe) + calculaImpedanciaTheveninRamo(configuracoesParam[indiceConfiguracao], matrizB,
-                ZParam, setorBarraPara, barraPara,rnpA,indiceSetorPara);
-    }
-   // printf("\nZthevenin = %lf + j. %lf\n",__real__ ZThevenin,__imag__ ZThevenin);
-    
-    CargaDe = configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraDe];
-    CargaPara = configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraPara];
-    
-    //--------------------------------------------------------------------------
-    //PASSO 4: verifica convergencia
-    // ******* Verifica a convergência: abs(Vthénvenin - Z_chave*Ichave) < tolerancia ---- Acredito que o Z_chave seja zero no modelo da COPEL. Este é um ponto que podemos ver com mais atenção dependendo dos dados da COPEL.
-    // ******* Inicialmente Icompesação = 0;
-    // ******* Se convergiu retornar para o main() pois a corrente não precisa de mais compensação.
-    // ******* Se não convergiu, continua com a atualização das correntes.
-    while ((cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave) > 0.01) && (itbk <= 20)) {        
-        itbk++;
-      //  printf("\nitbk = %d",itbk);
-      //  printf("\n\nV Barra de: %lf < %lf",cabs(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraDe]),carg(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraDe])*180/3.1415);
-      //  printf("\nV Barra para: %lf < %lf",cabs(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraPara]),carg(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraPara])*180/3.1415);
-      //  printf("\nDeltaV = %lf",cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave));
-        
-        //----------------------------------------------------------------------
-        //PASSO 5: atualiza as correntes
-        // ******* A corrente a ser atualizada será: 
-        ICompensacao = (VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave)/(ZThevenin+valorZ(ZParam, barraDe, barraPara));
-        IChave += ICompensacao;
-      //  printf("\nIcomp = %lf + j. %lf\n",__real__ ICompensacao,__imag__ ICompensacao);
-        printf("\nIchave = %lf + j. %lf\n",__real__ IChave,__imag__ IChave);
-        
-        // ******* A atualização deve acrescentar na "barraDe" uma corrente igual a Icompensação e na "barraPara" uma corrente igual a -Icompensação:
-        // ******* Foi implementado atualizando as potências das barras (no fim do algoritmo retorna as demandas para os valores originais de carga)
-        configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraDe] += configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraDe]*conj(ICompensacao);
-        configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraPara] -= configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraPara]*conj(ICompensacao);
-        
-        // ******* configuracaoParam.rnp[indiceRNP].dadosEletricos["barraPara"].corrente += -Icomensação
-        // ******* 
-        // ******* Só um detalhe neste ponto da atualização. Dentro da sua rotina do Fluxo (avaliaConfiguracao), você recalcula esse valor configuracaoParam.rnp[indiceRNP].dadosEletricos["x"].corrente
-        // ******* com os valores de potência da barra (configuracaoParam.rnp[indiceRNP].dadosEletricos["x"].potencia). Então a atualização deve ser na potência para você não precisar alterar a função do fluxo de potência:
-        // ******* configuracaoParam.rnp[indiceRNP].dadosEletricos["barraDe"].potencia += configuracaoParam.rnp[indiceRNP].dadosEletricos["barraDe"].vBarra*conj(Icomensação)
-        // ******* configuracaoParam.rnp[indiceRNP].dadosEletricos["barraPara"].potencia+= configuracaoParam.rnp[indiceRNP].dadosEletricos["barraPara"].vBarra*conj(-Icomensação)
-        // ******* 
-        // ******* Retorna para o PASSO 1
-        //PASSO 1: calcula fluxo atual sem loop
-        // ****** Deve calcular o fluxo considerando a chave do loop como aberta
-        // ****** Calcular somente para alimentadores envolvidos no loop
-        avaliaConfiguracao(todosAlimentadores, configuracoesParam, -1, -1, 
-                indiceConfiguracao, dadosTrafoParam, numeroTrafos, numeroAlimentadores, 
-                tapReguladores, dadosRegulador, dadosAlimentadorParam,
-                indiceConfiguracao, matrizB, ZParam, maximoCorrenteParam, numeroBarrasParam, copiaDados);
-        
-        //PASSO 2:
-        // ******* Calcula a tensão de thévenin com o resultado do Fluxo: Tensão Complexa Calculada da barra "barraDe" - Tensão Complexa Calculada da barra "barraPara"
-        VThevenin = configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraDe] - configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraPara];
-    }
-    //--------------------------------------------------------------------------
-    // ******Convergência com número de iterações máximo
-    if (itbk >= 20){
-        printf("Fluxo de Potencia em Anel Divergiu.");
-        printf("\nDeltaV = %lf",cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave));
-    }
-    else{
-        printf("\nitbk = %d",itbk);
-        printf("\n\nV Barra de: %lf < %lf",cabs(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraDe]),carg(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraDe])*180/3.1415);
-        printf("\nV Barra para: %lf < %lf",cabs(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraPara]),carg(configuracoesParam[indiceConfiguracao].dadosEletricos.vBarra[barraPara])*180/3.1415);
-        printf("\nDeltaV = %lf",cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave));
-        
-        printf("\nIchave = %lf + j. %lf\n",__real__ IChave,__imag__ IChave);
-    }
-    //--------------------------------------------------------------------------
-    //Retorna os valores das cargas das barras da chave ao valor inicial
-    configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraDe] = CargaDe;
-    configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraPara] = CargaPara;
-    
-    //--------------------------------------------------------------------------
-    //Atualiza o objetivo de carregamento caso o carregamento da chave seja maior
-    if (configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoRede < 100*cabs(IChave) / (maximoCorrente(maximoCorrenteParam, barraDe, barraPara)))
-        configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoRede = 100*cabs(IChave) / (maximoCorrente(maximoCorrenteParam, barraDe, barraPara));
-    
-    imprimeIndicadoresEletricos(configuracoesParam[indiceConfiguracao]);
-}
 
-
-//----------------------------------------------------------------------------------
-//
-//
 /**
  * Fluxo de Potência Idicativo - Caso 2: Loop entre trafos distintos da mesma subestação 
  * @param grafoSDRParam
@@ -6759,498 +6003,6 @@ void fluxoPotenciaAnelCaso1(GRAFO *grafoSDRParam, long int numeroBarrasParam, DA
  * @param setorBarraDe
  * @param setorBarraPara
  */
-void fluxoPotenciaAnelCaso2(GRAFO *grafoSDRParam, long int numeroBarrasParam, DADOSALIMENTADOR *dadosAlimentadorParam, DADOSTRAFO *dadosTrafoParam,
-        CONFIGURACAO *configuracoesParam, long int indiceConfiguracao, RNPSETORES *matrizB, double SBase, long int numeroSetores,
-        MATRIZCOMPLEXA *ZParam, int *indiceReguladores, DADOSREGULADOR *dadosRegulador, MATRIZMAXCORRENTE * maximoCorrenteParam, int numeroTrafos, int numeroAlimentadores,
-        int rnpA, int rnpP, long int barraDe, long int barraPara,long int setorBarraDe, long int setorBarraPara) //Removido para teste: , MATRIZPI *matrizPiParam, VETORPI *vetorPiParam
-{
-    __complex__ double VThevenin;
-    __complex__ double ZThevenin;
-    __complex__ double ICompensacao = 0 + 0*I;
-    __complex__ double IChave = 0 + 0*I;
-    __complex__ double CargaDe = 0 + 0*I;
-    __complex__ double CargaPara = 0 + 0*I;
-    int itbk = 0;
-    BOOL todosAlimentadores = true;
-    BOOL copiaDados = false;
-    
-    long int contador, contador2;
-    long int tamanhoRNP = configuracoesParam[indiceConfiguracao].rnp[rnpA].numeroNos + configuracoesParam[indiceConfiguracao].rnp[rnpP].numeroNos +2;
-    CONFIGURACAO *configuracaoAuxiliar;
-    long int barraAlimentadorP = dadosAlimentadorParam[rnpP+1].barraAlimentador;
-    long int barraAlimentadorA = dadosAlimentadorParam[rnpA+1].barraAlimentador;
-    long int barraAuxP = numeroBarrasParam+1;
-    long int barraAuxA = numeroBarrasParam+2;
-    long int barraSubEstacao = 0;
-    long int barraAuxSub = numeroBarrasParam+3;
-    long int indiceSetorDe;
-    long int indiceSetorPara;
-    long int setorAlimentadorA = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[0].idNo;
-    long int setorAlimentadorP = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[0].idNo;
-    long int setorRaiz = 0;
-    long int setorAux = numeroSetores+1;
-    long int noProf[200]; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
-    int posicaoRnpSetorP;
-    int posicaoRnpSetorA;
-    RNPSETOR rnpSetorSR;
-    long int noS, noR, noN;
-    double VF;
-    double carregamentoTrafo1, carregamentoTrafo2;
-    DADOSREGULADOR *dadosReguladorTemp = Malloc(DADOSREGULADOR, 3);
-    //cria estrutura de configuração auxiliar
-    configuracaoAuxiliar = alocaIndividuo(1, 0, 1, numeroTrafos); //, numeroTrafos);
-    alocaRNP(tamanhoRNP, &configuracaoAuxiliar[0].rnp[0]);
-    for (contador=0; contador<numeroTrafos; contador++)
-    {
-        configuracaoAuxiliar[0].objetivo.potenciaTrafo[contador] = configuracoesParam[indiceConfiguracao].objetivo.potenciaTrafo[contador];
-    }
-    
-    //inicializa dados barra 0 
-    grafoSDRParam[0].idSetor = 0;
-    grafoSDRParam[0].idNo = 0;
-    grafoSDRParam[0].valorPQ.p = 0;
-    grafoSDRParam[0].valorPQ.q = 0;
-    
-    //inicializa rnpSetores, setor 0 com a barra equivalente;
-    
-    //rnp1 com origem no setor raiz da rnpP
-    matrizB[setorRaiz].rnps[0].nos = Malloc(NORNP, (2));
-    matrizB[setorRaiz].rnps[0].numeroNos = 2;
-    matrizB[setorRaiz].rnps[0].idSetorOrigem = setorAux;
-    matrizB[setorRaiz].rnps[0].nos[0].idNo = barraAuxSub;
-    matrizB[setorRaiz].rnps[0].nos[0].profundidade = 0;
-    matrizB[setorRaiz].rnps[0].nos[1].idNo = barraSubEstacao;
-    matrizB[setorRaiz].rnps[0].nos[1].profundidade = 1;
-    
-    matrizB[setorAux].rnps[0].nos = Malloc(NORNP, (4));
-    matrizB[setorAux].rnps[0].numeroNos = 4;
-    matrizB[setorAux].rnps[0].idSetorOrigem = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[0].idNo;
-    matrizB[setorAux].rnps[0].nos[0].idNo = barraAlimentadorP;
-    matrizB[setorAux].rnps[0].nos[0].profundidade = 0;
-    matrizB[setorAux].rnps[0].nos[1].idNo = barraAuxP;
-    matrizB[setorAux].rnps[0].nos[1].profundidade = 1;
-    matrizB[setorAux].rnps[0].nos[2].idNo = barraAuxSub;
-    matrizB[setorAux].rnps[0].nos[2].profundidade = 2;
-    matrizB[setorAux].rnps[0].nos[3].idNo = barraAuxA;
-    matrizB[setorAux].rnps[0].nos[3].profundidade = 3;
-    
-    
-    //rnp2 com origem no setor raiz da rnpA
-    matrizB[setorAux].rnps[1].nos = Malloc(NORNP, (4));
-    matrizB[setorAux].rnps[1].numeroNos = 4;
-    matrizB[setorAux].rnps[1].idSetorOrigem = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[0].idNo;
-    matrizB[setorAux].rnps[1].nos[0].idNo = barraAlimentadorA;
-    matrizB[setorAux].rnps[1].nos[0].profundidade = 0;
-    matrizB[setorAux].rnps[1].nos[1].idNo = barraAuxA;
-    matrizB[setorAux].rnps[1].nos[1].profundidade = 1;
-    matrizB[setorAux].rnps[1].nos[2].idNo = barraAuxSub;
-    matrizB[setorAux].rnps[1].nos[2].profundidade = 2;
-    matrizB[setorAux].rnps[1].nos[3].idNo = barraAuxP;
-    matrizB[setorAux].rnps[1].nos[3].profundidade = 3;
-    
-    matrizB[setorAux].rnps[2].nos = Malloc(NORNP, (4));
-    matrizB[setorAux].rnps[2].numeroNos = 4;
-    matrizB[setorAux].rnps[2].idSetorOrigem = setorRaiz;
-    matrizB[setorAux].rnps[2].nos[0].idNo = barraSubEstacao;
-    matrizB[setorAux].rnps[2].nos[0].profundidade = 0;
-    matrizB[setorAux].rnps[2].nos[1].idNo = barraAuxSub;
-    matrizB[setorAux].rnps[2].nos[1].profundidade = 1;
-    matrizB[setorAux].rnps[2].nos[2].idNo = barraAuxP;
-    matrizB[setorAux].rnps[2].nos[2].profundidade = 2;
-    matrizB[setorAux].rnps[2].nos[3].idNo = barraAuxA;
-    matrizB[setorAux].rnps[2].nos[3].profundidade = 2;
-    
-    
-   // matrizB[setorAlimentadorA].rnps = (RNPSETOR*)realloc(matrizB[setorAlimentadorA].rnps,(matrizB[setorAlimentadorA].numeroRNPs+1)*sizeof(RNPSETOR));
-    posicaoRnpSetorA = matrizB[setorAlimentadorA].numeroRNPs;
-    matrizB[setorAlimentadorA].numeroRNPs++;
-    //matrizB[setorAlimentadorA].rnps[posicaoRnpSetorA].nos =  Malloc(NORNP, (2));
-    matrizB[setorAlimentadorA].rnps[posicaoRnpSetorA].numeroNos = 2;
-    matrizB[setorAlimentadorA].rnps[posicaoRnpSetorA].idSetorOrigem = setorAux;
-    matrizB[setorAlimentadorA].rnps[posicaoRnpSetorA].nos[0].idNo = barraAuxA;
-    matrizB[setorAlimentadorA].rnps[posicaoRnpSetorA].nos[0].profundidade = 0;        
-    matrizB[setorAlimentadorA].rnps[posicaoRnpSetorA].nos[1].idNo = barraAlimentadorA;
-    matrizB[setorAlimentadorA].rnps[posicaoRnpSetorA].nos[1].profundidade = 1;
-    
-   // matrizB[setorAlimentadorP].rnps = (RNPSETOR*)realloc(matrizB[setorAlimentadorP].rnps,(matrizB[setorAlimentadorP].numeroRNPs+1)*sizeof(RNPSETOR));
-      posicaoRnpSetorP = matrizB[setorAlimentadorP].numeroRNPs;
-    matrizB[setorAlimentadorP].numeroRNPs++;
-    //matrizB[setorAlimentadorP].rnps[posicaoRnpSetorP].nos =  Malloc(NORNP, (2));
-    matrizB[setorAlimentadorP].rnps[posicaoRnpSetorP].numeroNos = 2;
-    matrizB[setorAlimentadorP].rnps[posicaoRnpSetorP].idSetorOrigem = setorAux;
-    matrizB[setorAlimentadorP].rnps[posicaoRnpSetorP].nos[0].idNo = barraAuxP;
-    matrizB[setorAlimentadorP].rnps[posicaoRnpSetorP].nos[0].profundidade = 0;        
-    matrizB[setorAlimentadorP].rnps[posicaoRnpSetorP].nos[1].idNo = barraAlimentadorP;
-    matrizB[setorAlimentadorP].rnps[posicaoRnpSetorP].nos[1].profundidade = 1;
-    
-     //copia os dados da rnp
-    contador = 0;
-    configuracaoAuxiliar[0].rnp[0].nos[contador].idNo = setorRaiz;
-    configuracaoAuxiliar[0].rnp[0].nos[contador].profundidade = 0;
-    contador++;
-    configuracaoAuxiliar[0].rnp[0].nos[contador].idNo = setorAux;
-    configuracaoAuxiliar[0].rnp[0].nos[contador].profundidade = 1;
-    contador++;
-    //copia os setores da rnpP
-    for(contador2 = 0; contador2 < configuracoesParam[indiceConfiguracao].rnp[rnpP].numeroNos; contador2++)
-    {
-        configuracaoAuxiliar[0].rnp[0].nos[contador].idNo = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[contador2].idNo;
-        configuracaoAuxiliar[0].rnp[0].nos[contador].profundidade = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[contador2].profundidade+2;
-        if(configuracaoAuxiliar[0].rnp[0].nos[contador].idNo == setorBarraDe)
-        {
-            indiceSetorDe = contador;
-        }
-        contador++;
-    }
-    //copia os setores da rnpA
-    for(contador2 = 0; contador2 < configuracoesParam[indiceConfiguracao].rnp[rnpA].numeroNos; contador2++)
-    {
-        configuracaoAuxiliar[0].rnp[0].nos[contador].idNo = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[contador2].idNo;
-        configuracaoAuxiliar[0].rnp[0].nos[contador].profundidade = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[contador2].profundidade+2;
-        if(configuracaoAuxiliar[0].rnp[0].nos[contador].idNo == setorBarraPara)
-        {
-            indiceSetorPara = contador;
-        }
-        contador++;
-    }
-
-    //inicializa dados elétricos
-    configuracaoAuxiliar[0].dadosEletricos.iJusante = malloc((numeroBarrasParam + 4) * sizeof (__complex__ double));
-    configuracaoAuxiliar[0].dadosEletricos.corrente = malloc((numeroBarrasParam + 4) * sizeof (__complex__ double));
-    configuracaoAuxiliar[0].dadosEletricos.potencia = malloc((numeroBarrasParam + 4) * sizeof (__complex__ double));
-    configuracaoAuxiliar[0].dadosEletricos.vBarra = malloc((numeroBarrasParam + 4) * sizeof (__complex__ double));
-    
-    VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[rnpP + 1].idTrafo].tensaoReal / sqrt(3.0);
-    configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAlimentadorP] = VF;
-    noProf[configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[0].profundidade] = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[0].idNo;
-    for (contador = 1; contador < configuracoesParam[indiceConfiguracao].rnp[rnpP].numeroNos; contador++) {
-        noS = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[contador].idNo;
-        noR = noProf[configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[contador].profundidade - 1];
-       rnpSetorSR = buscaRNPSetor(matrizB, noS, noR);
-        for (contador2 = 1; contador2 < rnpSetorSR.numeroNos; contador2++) {
-            noN = rnpSetorSR.nos[contador2].idNo;
-            __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.p;
-            __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.q;
-            //transforma em modelo monofásico...
-            configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = (configuracaoAuxiliar[0].dadosEletricos.potencia[noN] * SBase) / 3.0;
-            configuracaoAuxiliar[0].dadosEletricos.vBarra[noN] = VF;
-            configuracaoAuxiliar[0].dadosEletricos.corrente[noN] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[noN] / configuracaoAuxiliar[0].dadosEletricos.vBarra[noN]);
-
-        }
-        //armazena o nó setor na sua profundidade
-        noProf[configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[contador].profundidade] = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[contador].idNo;
-    }
-    //Calcula o setor do Alimentador
-    if (configuracoesParam[indiceConfiguracao].rnp[rnpP].numeroNos > 1) {
-        noS = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[0].idNo;
-        noR = configuracoesParam[indiceConfiguracao].rnp[rnpP].nos[1].idNo;
-        rnpSetorSR = buscaRNPSetor(matrizB, noS, noR);
-        for (contador2 = 1; contador2 < rnpSetorSR.numeroNos; contador2++) {
-            noN = rnpSetorSR.nos[contador2].idNo;
-            __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.p;
-            __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.q;
-            
-            //transforma em modelo monofásico...
-            configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = (configuracaoAuxiliar[0].dadosEletricos.potencia[noN] * SBase) / 3.0;
-            configuracaoAuxiliar[0].dadosEletricos.vBarra[noN] = VF;
-            configuracaoAuxiliar[0].dadosEletricos.corrente[noN] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[noN] / configuracaoAuxiliar[0].dadosEletricos.vBarra[noN]);
-
-        }
-    }
-    VF = 1000 * dadosTrafoParam[dadosAlimentadorParam[rnpA + 1].idTrafo].tensaoReal / sqrt(3.0);
-    noProf[configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[0].profundidade] = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[0].idNo;
-    for (contador = 1; contador < configuracoesParam[indiceConfiguracao].rnp[rnpA].numeroNos; contador++) {
-        noS = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[contador].idNo;
-        noR = noProf[configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[contador].profundidade - 1];
-        rnpSetorSR = buscaRNPSetor(matrizB, noS, noR);
-        for (contador2 = 1; contador2 < rnpSetorSR.numeroNos; contador2++) {
-            noN = rnpSetorSR.nos[contador2].idNo;
-            __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.p;
-            __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.q;
-            //transforma em modelo monofásico...
-            configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = (configuracaoAuxiliar[0].dadosEletricos.potencia[noN] * SBase) / 3.0;
-            configuracaoAuxiliar[0].dadosEletricos.vBarra[noN] = VF;
-            configuracaoAuxiliar[0].dadosEletricos.corrente[noN] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[noN] / configuracaoAuxiliar[0].dadosEletricos.vBarra[noN]);
-
-        }
-        //armazena o nó setor na sua profundidade
-        noProf[configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[contador].profundidade] = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[contador].idNo;
-    }
-    //Calcula o setor do Alimentador
-    if (configuracoesParam[indiceConfiguracao].rnp[rnpA].numeroNos > 1) {
-        noS = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[0].idNo;
-        noR = configuracoesParam[indiceConfiguracao].rnp[rnpA].nos[1].idNo;
-        rnpSetorSR = buscaRNPSetor(matrizB, noS, noR);
-        for (contador2 = 1; contador2 < rnpSetorSR.numeroNos; contador2++) {
-            noN = rnpSetorSR.nos[contador2].idNo;
-            __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.p;
-            __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = grafoSDRParam[noN].valorPQ.q;
-            //transforma em modelo monofásico...
-            configuracaoAuxiliar[0].dadosEletricos.potencia[noN] = (configuracaoAuxiliar[0].dadosEletricos.potencia[noN] * SBase) / 3.0;
-            configuracaoAuxiliar[0].dadosEletricos.vBarra[noN] = VF;
-            configuracaoAuxiliar[0].dadosEletricos.corrente[noN] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[noN] / configuracaoAuxiliar[0].dadosEletricos.vBarra[noN]);
-        }
-    }
-    
-    //inicializar as barras raiz com a potencia dos outros alimentadores
-   for(contador = 1; contador <=numeroAlimentadores; contador++)
-    {
-        if ((dadosAlimentadorParam[contador].idTrafo == dadosAlimentadorParam[rnpP+1].idTrafo) && ((rnpP+1) != contador)) {
-            configuracaoAuxiliar[0].dadosEletricos.potencia[barraAlimentadorP] += (configuracoesParam[indiceConfiguracao].rnp[contador-1].fitnessRNP.potenciaAlimentador/3);
-        } else {
-            if ((dadosAlimentadorParam[contador].idTrafo == dadosAlimentadorParam[rnpA+1].idTrafo) && ((rnpA+1) != contador)) {
-                configuracaoAuxiliar[0].dadosEletricos.potencia[barraAlimentadorA] += (configuracoesParam[indiceConfiguracao].rnp[contador-1].fitnessRNP.potenciaAlimentador/3);
-            }
-        }        
-    }
-    
-    
-    configuracaoAuxiliar[0].dadosEletricos.corrente[barraAlimentadorP] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[barraAlimentadorP] / configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAlimentadorP]);
-    configuracaoAuxiliar[0].dadosEletricos.corrente[barraAlimentadorA] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[barraAlimentadorA] / configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAlimentadorA]);
-
-    //inicializa os dados eletricos das barras ficticias
-    __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraSubEstacao] = grafoSDRParam[0].valorPQ.p;
-    __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraSubEstacao] = grafoSDRParam[0].valorPQ.q;
-    configuracaoAuxiliar[0].dadosEletricos.vBarra[barraSubEstacao] = VF;
-    configuracaoAuxiliar[0].dadosEletricos.corrente[barraSubEstacao] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[0] / configuracaoAuxiliar[0].dadosEletricos.vBarra[0]);
-    
-    __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxSub] = 0;
-    __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxSub] = 0;
-    configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAuxSub] = VF;
-    configuracaoAuxiliar[0].dadosEletricos.corrente[barraAuxSub] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxSub] / configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAuxSub]);
-    
-    __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxP] = 0;
-    __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxP] = 0;
-    configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAuxP] = VF;
-    configuracaoAuxiliar[0].dadosEletricos.corrente[barraAuxP] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxP] / configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAuxP]);
-    
-    __real__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxA] = 0;
-    __imag__ configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxA] = 0;
-    configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAuxA] = VF;
-    configuracaoAuxiliar[0].dadosEletricos.corrente[barraAuxA] = conj(configuracaoAuxiliar[0].dadosEletricos.potencia[barraAuxA] / configuracaoAuxiliar[0].dadosEletricos.vBarra[barraAuxA]);
-    
-    //atualiza matriz de corrente
-    //barra 0
-    //barra 0
-    maximoCorrenteParam[barraSubEstacao].noAdjacentes[0].idNo = barraAuxSub;
-    maximoCorrenteParam[barraSubEstacao].noAdjacentes[0].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal*sqrt(3.0));
-    
-    //barraAuxSub
-    maximoCorrenteParam[barraAuxSub].noAdjacentes[0].idNo = barraSubEstacao;
-    maximoCorrenteParam[barraAuxSub].noAdjacentes[0].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal*sqrt(3.0));
-    maximoCorrenteParam[barraAuxSub].noAdjacentes[1].idNo = barraAuxP;
-    maximoCorrenteParam[barraAuxSub].noAdjacentes[1].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal*sqrt(3.0));
-    maximoCorrenteParam[barraAuxSub].noAdjacentes[2].idNo = barraAuxA;
-    maximoCorrenteParam[barraAuxSub].noAdjacentes[2].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal*sqrt(3.0));
-    
-    //barraAuxP
-    maximoCorrenteParam[barraAuxP].noAdjacentes[0].idNo = barraAlimentadorP;
-    maximoCorrenteParam[barraAuxP].noAdjacentes[0].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal*sqrt(3.0));
-    maximoCorrenteParam[barraAuxP].noAdjacentes[1].idNo = barraAuxSub;
-    maximoCorrenteParam[barraAuxP].noAdjacentes[1].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal*sqrt(3.0));
-    
-    //barraAuxA
-    maximoCorrenteParam[barraAuxA].noAdjacentes[0].idNo = barraAlimentadorA;
-    maximoCorrenteParam[barraAuxA].noAdjacentes[0].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal*sqrt(3.0));
-    maximoCorrenteParam[barraAuxA].noAdjacentes[1].idNo = barraAuxSub;
-    maximoCorrenteParam[barraAuxA].noAdjacentes[1].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal*sqrt(3.0));
-    
-    //barraAlimentadorP
-    maximoCorrenteParam[barraAlimentadorP].noAdjacentes[maximoCorrenteParam[barraAlimentadorP].numeroAdjacentes].idNo = barraAuxP;
-    maximoCorrenteParam[barraAlimentadorP].noAdjacentes[maximoCorrenteParam[barraAlimentadorP].numeroAdjacentes].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal*sqrt(3.0));
-    maximoCorrenteParam[barraAlimentadorP].numeroAdjacentes++;
-    
-    //barraAlimentadorA
-    maximoCorrenteParam[barraAlimentadorA].noAdjacentes[maximoCorrenteParam[barraAlimentadorA].numeroAdjacentes].idNo = barraAuxA;
-    maximoCorrenteParam[barraAlimentadorA].noAdjacentes[maximoCorrenteParam[barraAlimentadorA].numeroAdjacentes].valor = 999999999;//1000*dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal*sqrt(3.0));
-    maximoCorrenteParam[barraAlimentadorA].numeroAdjacentes++ ;   
-    
-    //atualiza matriz Z
-    ZParam[barraSubEstacao].noAdjacentes[0].idNo = barraAuxSub;
-    ZParam[barraSubEstacao].noAdjacentes[0].valor = 0+ 0*I;
-    
-    //barra 0
-    ZParam[barraAuxSub].noAdjacentes[0].idNo = barraSubEstacao;
-    ZParam[barraAuxSub].noAdjacentes[0].valor = 0+ 0*I;
-    ZParam[barraAuxSub].noAdjacentes[1].idNo = barraAuxP;
-    ZParam[barraAuxSub].noAdjacentes[1].valor = 0+ dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].impedancia*I;
-    ZParam[barraAuxSub].noAdjacentes[2].idNo = barraAuxA;
-    ZParam[barraAuxSub].noAdjacentes[2].valor = 0+ dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].impedancia*I;
-    
-    //barraAuxP
-    ZParam[barraAuxP].noAdjacentes[0].idNo = barraAlimentadorP;
-    ZParam[barraAuxP].noAdjacentes[0].valor = 0+0*I;
-    ZParam[barraAuxP].noAdjacentes[1].idNo = barraAuxSub;
-    ZParam[barraAuxP].noAdjacentes[1].valor = 0+ dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].impedancia*I;
-    
-    //barraAuxA
-    ZParam[barraAuxA].noAdjacentes[0].idNo = barraAlimentadorA;
-    ZParam[barraAuxA].noAdjacentes[0].valor = 0+0*I;
-    ZParam[barraAuxA].noAdjacentes[1].idNo = barraAuxSub;
-    ZParam[barraAuxA].noAdjacentes[1].valor = 0+ dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].impedancia*I;
-    
-    //barraAlimentadorP
-    ZParam[barraAlimentadorP].noAdjacentes[ZParam[barraAlimentadorP].numeroAdjacentes].idNo = barraAuxP;
-    ZParam[barraAlimentadorP].noAdjacentes[ZParam[barraAlimentadorP].numeroAdjacentes].valor = 0+0*I;
-    ZParam[barraAlimentadorP].numeroAdjacentes++;
-    
-    //barraAlimentadorA
-    ZParam[barraAlimentadorA].noAdjacentes[ZParam[barraAlimentadorA].numeroAdjacentes].idNo = barraAuxA;
-    ZParam[barraAlimentadorA].noAdjacentes[ZParam[barraAlimentadorA].numeroAdjacentes].valor = 0+0*I;
-    ZParam[barraAlimentadorA].numeroAdjacentes++;
-    
-      
-    
-    //cria reguladores de tensao
-    dadosReguladorTemp[1].ampacidade = 999999999;//dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/pow(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal,1/3.0);
-    dadosReguladorTemp[1].numeroTaps = 0;
-    //dadosReguladorTemp[0].idRegulador = 0;
-    dadosReguladorTemp[1].tipoRegulador = comFluxoReverso;
-
-    dadosReguladorTemp[2].ampacidade = 999999999;//dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].capacidade/pow(dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal,1/3.0);
-    dadosReguladorTemp[2].numeroTaps = 0;
-    //dadosReguladorTemp[1].idRegulador = 1;
-    dadosReguladorTemp[2].tipoRegulador = comFluxoReverso;
-    
-    indiceReguladores[barraAlimentadorP] = 1;
-    indiceReguladores[barraAlimentadorA] = 2;
-    indiceReguladores[barraAuxP] = 1;
-    indiceReguladores[barraAuxA] = 2;
-    indiceReguladores[0] = 0;
-    //--------------------------------------------------------------------------
-    //PASSO 1: calcula fluxo atual sem loop
-    // ****** Deve calcular o fluxo considerando a chave do loop como aberta
-    // ****** Nesse ponto calcula todos.    
-    avaliaConfiguracaoAnelCaso2(todosAlimentadores, configuracaoAuxiliar,-1, -1, 0,dadosTrafoParam, numeroTrafos, numeroAlimentadores, indiceReguladores, 
-            dadosReguladorTemp, dadosAlimentadorParam, 0,matrizB, ZParam, maximoCorrenteParam, numeroBarrasParam+3, copiaDados);
-    
-    //PASSO 2:
-    // ******* Calcula a tensão de thévenin com o resultado do Fluxo: Tensão Complexa Calculada da barra "barraDe" - Tensão Complexa Calculada da barra "barraPara"
-    VThevenin = configuracaoAuxiliar[0].dadosEletricos.vBarra[barraDe] - configuracaoAuxiliar[0].dadosEletricos.vBarra[barraPara];
-    
-    printf("\n\nVthevenin = %lf + j. %lf",__real__ VThevenin,__imag__ VThevenin );
-    
-    //--------------------------------------------------------------------------
-    //PASSO 3: calcula impedancia thevenin
-    // ******* Recebe o índice das barras "barraDe" e "barraPara" da chave que formou o loop e retorna a impedância de thévenin (Real + Imag) entre estas barras (soma de impedâncias)
-    //a ligação ocorre na mesma rnp
-    
-    ZThevenin = calculaImpedanciaTheveninMesmoAlimentador(configuracaoAuxiliar[0], matrizB,
-                    ZParam, indiceSetorDe, indiceSetorPara, 0, barraDe, barraPara);
-    printf("\nZthevenin = %lf + j. %lf\n",__real__ ZThevenin,__imag__ ZThevenin);
-    
-    CargaDe = configuracaoAuxiliar[0].dadosEletricos.potencia[barraDe];
-    CargaPara = configuracaoAuxiliar[0].dadosEletricos.potencia[barraPara];
-    
-    //--------------------------------------------------------------------------
-    //PASSO 4: verifica convergencia
-    // ******* Verifica a convergência: abs(Vthénvenin - Z_chave*Ichave) < tolerancia ---- Acredito que o Z_chave seja zero no modelo da COPEL. Este é um ponto que podemos ver com mais atenção dependendo dos dados da COPEL.
-    // ******* Inicialmente Icompesação = 0;
-    // ******* Se convergiu retornar para o main() pois a corrente não precisa de mais compensação.
-    // ******* Se não convergiu, continua com a atualização das correntes.
-    while ((cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave) > 0.01) && (itbk <= 20)) {        
-        itbk++;
-        printf("\nitbk = %d",itbk);
-        printf("\n\nV Barra de: %lf < %lf",cabs(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraDe]),carg(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraDe])*180/3.1415);
-        printf("\nV Barra para: %lf < %lf",cabs(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraPara]),carg(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraPara])*180/3.1415);
-        printf("\nDeltaV = %lf",cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave));
-        
-        //--------------------------------------------------------------------------
-        //PASSO 5: atualiza as correntes
-        // ******* A corrente a ser atualizada será: 
-        ICompensacao = (VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave)/(ZThevenin+valorZ(ZParam, barraDe, barraPara));
-        IChave += ICompensacao;
-        printf("\nIcomp = %lf + j. %lf\n",__real__ ICompensacao,__imag__ ICompensacao);
-        printf("\nIchave = %lf + j. %lf\n",__real__ IChave,__imag__ IChave);
-        
-        // ******* A atualização deve acrescentar na "barraDe" uma corrente igual a Icompensação e na "barraPara" uma corrente igual a -Icompensação:
-        // ******* 
-//        configuracoesParam[indiceConfiguracao].dadosEletricos.corrente[barraDe] += ICompensacao;
-//        configuracoesParam[indiceConfiguracao].dadosEletricos.corrente[barraPara] -= ICompensacao;
-        
-        configuracaoAuxiliar[0].dadosEletricos.potencia[barraDe] += configuracaoAuxiliar[0].dadosEletricos.vBarra[barraDe]*conj(ICompensacao);
-        configuracaoAuxiliar[0].dadosEletricos.potencia[barraPara] -= configuracaoAuxiliar[0].dadosEletricos.vBarra[barraPara]*conj(ICompensacao);
-        
-        // ******* configuracaoParam.rnp[indiceRNP].dadosEletricos["barraPara"].corrente += -Icomensação
-        // ******* 
-        // ******* Só um detalhe neste ponto da atualização. Dentro da sua rotina do Fluxo (avaliaConfiguracao), você recalcula esse valor configuracaoParam.rnp[indiceRNP].dadosEletricos["x"].corrente
-        // ******* com os valores de potência da barra (configuracaoParam.rnp[indiceRNP].dadosEletricos["x"].potencia). Então a atualização deve ser na potência para você não precisar alterar a função do fluxo de potência:
-        // ******* configuracaoParam.rnp[indiceRNP].dadosEletricos["barraDe"].potencia += configuracaoParam.rnp[indiceRNP].dadosEletricos["barraDe"].vBarra*conj(Icomensação)
-        // ******* configuracaoParam.rnp[indiceRNP].dadosEletricos["barraPara"].potencia+= configuracaoParam.rnp[indiceRNP].dadosEletricos["barraPara"].vBarra*conj(-Icomensação)
-        // ******* 
-        // ******* Retorna para o PASSO 1
-        //PASSO 1: calcula fluxo atual sem loop
-        // ****** Deve calcular o fluxo considerando a chave do loop como aberta
-        // ****** Calcular somente para alimentadores envolvidos no loop
-        avaliaConfiguracaoAnelCaso2(todosAlimentadores, configuracaoAuxiliar,-1, -1, 0,
-                dadosTrafoParam, numeroTrafos, numeroAlimentadores, indiceReguladores, 
-                dadosReguladorTemp, dadosAlimentadorParam, 0,matrizB, ZParam, 
-                maximoCorrenteParam, numeroBarrasParam, copiaDados);
-        
-        //PASSO 2:
-        // ******* Calcula a tensão de thévenin com o resultado do Fluxo: Tensão Complexa Calculada da barra "barraDe" - Tensão Complexa Calculada da barra "barraPara"
-        VThevenin = configuracaoAuxiliar[0].dadosEletricos.vBarra[barraDe] - configuracaoAuxiliar[0].dadosEletricos.vBarra[barraPara];
-    }
-    //--------------------------------------------------------------------------
-    // ******Convergência com número de iterações máximo
-    if (itbk >= 20){
-        printf("Fluxo de Potencia em Anel Divergiu.");
-        printf("\nDeltaV = %lf",cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave));
-    }
-    else{
-        printf("\nitbk = %d",itbk);
-        printf("\n\nV Barra de: %lf < %lf",cabs(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraDe]),carg(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraDe])*180/3.1415);
-        printf("\nV Barra para: %lf < %lf",cabs(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraPara]),carg(configuracaoAuxiliar[0].dadosEletricos.vBarra[barraPara])*180/3.1415);
-        printf("\nDeltaV = %lf",cabs(VThevenin - valorZ(ZParam, barraDe, barraPara) * IChave));
-        
-        printf("\nIchave = %lf + j. %lf\n",__real__ IChave,__imag__ IChave);
-    }
-    //--------------------------------------------------------------------------
-    //Retorna os valores das cargas das barras da chave ao valor inicial
-    configuracaoAuxiliar[0].dadosEletricos.potencia[barraDe] = CargaDe;
-    configuracaoAuxiliar[0].dadosEletricos.potencia[barraPara] = CargaPara;
-    
-  //  imprimeDadosEletricos(configuracaoAuxiliar,0,numeroBarrasParam+3);
-    //imprimeIndicadoresEletricos(configuracaoAuxiliar[0]);
-            
-    if(configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoRede < configuracaoAuxiliar[0].objetivo.maiorCarregamentoRede)
-        configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoRede = configuracaoAuxiliar[0].objetivo.maiorCarregamentoRede;
-    if(configuracoesParam[indiceConfiguracao].objetivo.menorTensao > configuracaoAuxiliar[0].objetivo.menorTensao)
-        configuracoesParam[indiceConfiguracao].objetivo.menorTensao = configuracaoAuxiliar[0].objetivo.menorTensao;
-    if(configuracoesParam[indiceConfiguracao].objetivo.quedaMaxima < configuracaoAuxiliar[0].objetivo.quedaMaxima)
-        configuracoesParam[indiceConfiguracao].objetivo.quedaMaxima = configuracaoAuxiliar[0].objetivo.quedaMaxima;
-    
-    //--------------------------------------------------------------------------
-    //Atualiza o objetivo de carregamento caso o carregamento da chave seja maior
-    if (configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoRede < 100*cabs(IChave) / (maximoCorrente(maximoCorrenteParam, barraDe, barraPara)))
-        configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoRede = 100*cabs(IChave) / (maximoCorrente(maximoCorrenteParam, barraDe, barraPara));
-    
-        
-    //calculo do carregamento de trafo
-    carregamentoTrafo1 = 100*cabs(configuracaoAuxiliar[0].dadosEletricos.iJusante[barraAuxP])/(1000*dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpP+1].idTrafo].tensaoReal*sqrt(3.0)));
-    carregamentoTrafo2 = 100*cabs(configuracaoAuxiliar[0].dadosEletricos.iJusante[barraAuxA])/(1000*dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].capacidade/(dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal*sqrt(3.0)));
-    if(carregamentoTrafo2 > carregamentoTrafo1)
-        configuracaoAuxiliar[0].objetivo.maiorCarregamentoTrafo = carregamentoTrafo2;
-    else
-        configuracaoAuxiliar[0].objetivo.maiorCarregamentoTrafo = carregamentoTrafo1;
-    imprimeIndicadoresEletricos(configuracaoAuxiliar[0]);
-    if (configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoTrafo < configuracaoAuxiliar[0].objetivo.maiorCarregamentoTrafo)
-        configuracoesParam[indiceConfiguracao].objetivo.maiorCarregamentoTrafo = configuracaoAuxiliar[0].objetivo.maiorCarregamentoTrafo;
- 
-    
-        
-    indiceReguladores[barraAlimentadorP] = 0;
-    indiceReguladores[barraAlimentadorA] = 0;
-
-    maximoCorrenteParam[barraAlimentadorP].numeroAdjacentes--;
-    maximoCorrenteParam[barraAlimentadorA].numeroAdjacentes--;
-    ZParam[barraAlimentadorP].numeroAdjacentes--;
-    ZParam[barraAlimentadorA].numeroAdjacentes--;
-    matrizB[setorAlimentadorA].numeroRNPs--;
-    matrizB[setorAlimentadorP].numeroRNPs--;
-}
-
-
 
 //----------------------------------------------------------------------------------
 //
@@ -7278,6 +6030,7 @@ void fluxoPotenciaAnelCaso2(GRAFO *grafoSDRParam, long int numeroBarrasParam, DA
  * @param setorBarraDe
  * @param setorBarraPara
  */
+/*
 void fluxoPotenciaAnelCaso3(GRAFO *grafoSDRParam, long int numeroBarrasParam, DADOSALIMENTADOR *dadosAlimentadorParam, DADOSTRAFO *dadosTrafoParam,
         CONFIGURACAO *configuracoesParam, long int indiceConfiguracao, RNPSETORES *matrizB, double SBase,
         MATRIZCOMPLEXA *ZParam, int *tapReguladores, DADOSREGULADOR *dadosRegulador, MATRIZMAXCORRENTE * maximoCorrenteParam, int numeroTrafos, int numeroAlimentadores,
@@ -7300,15 +6053,15 @@ void fluxoPotenciaAnelCaso3(GRAFO *grafoSDRParam, long int numeroBarrasParam, DA
     
     
     FILE *arquivo; /* Variável ponteiro para a manipulação do arquivo. */
-    char blocoLeitura[100]; /* Variável para realizar a leitura de caracteres do arquivo. */
-    char *dados; /* Variável do tipo ponteiro para char, utilizada para alterar o ponteiro da string lida do arquivo de forma a realizar o loop no sscanf. */
+    //char blocoLeitura[100]; /* Variável para realizar a leitura de caracteres do arquivo. */
+    //char *dados; /* Variável do tipo ponteiro para char, utilizada para alterar o ponteiro da string lida do arquivo de forma a realizar o loop no sscanf. */
     
     //--------------------------------------------------------------------------
     // Abertura do arquivo dados_barras_linhas_trafos.dad para leitura e associação ao ponteiro de arquivo
-    arquivo = fopen("dados_SE_diferenca_angular.dad","r");
+    //arquivo = fopen("dados_SE_diferenca_angular.dad","r");
     
     //Verifica se o arquivo foi aberto com sucesso, caso ocorra um erro retorna aviso ao usuário e encerra o programa.
-    if(arquivo == NULL)
+    /*if(arquivo == NULL)
     {
         printf("Erro ao abrir arquivo dados_SE_difernca_angular.dad !!!\n");
         printf("Maxima diferenca angular adotada como 5 graus!!!\n");
@@ -7625,7 +6378,7 @@ void fluxoPotenciaAnelCaso3(GRAFO *grafoSDRParam, long int numeroBarrasParam, DA
         
         printf("\nIchave = %lf + j. %lf\n",__real__ IChave,__imag__ IChave);
     }*/
-    configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraDe] = CargaDe;
+   /* configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraDe] = CargaDe;
     configuracoesParam[indiceConfiguracao].dadosEletricos.potencia[barraPara] = CargaPara;
     dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal = cabs(dadosTrafoParam[dadosAlimentadorParam[rnpA+1].idTrafo].tensaoReal);
     
@@ -7657,69 +6410,7 @@ void fluxoPotenciaAnelCaso3(GRAFO *grafoSDRParam, long int numeroBarrasParam, DA
   //  imprimeIndicadoresEletricos(configuracoesParam[indiceConfiguracao]);
     
 }
-/**
- * Verifica se uma configuração em anel é factível.
- * @param configuracaoParam
- * @param idSetorP
- * @param idSetorA
- * @param rnpP
- * @param rnpA
- * @param grafoSDRParam
- * @param numeroBarrasParam
- * @param dadosAlimentadorParam
- * @param dadosTrafoParam
- * @param indiceConfiguracao
- * @param matrizB
- * @param SBase
- * @param numeroSetores
- * @param ZParam
- * @param indiceReguladores
- * @param dadosRegulador
- * @param maximoCorrenteParam
- * @param numeroTrafos
- * @param numeroAlimentadores
- * @return 
- */
-BOOL verificaFactibilidadeAnel(CONFIGURACAO *configuracaoParam, long int idSetorP,
-        long int idSetorA, long int rnpP, long int rnpA,
-        GRAFO *grafoSDRParam, long int numeroBarrasParam, DADOSALIMENTADOR *dadosAlimentadorParam, DADOSTRAFO *dadosTrafoParam,
-        long int indiceConfiguracao, RNPSETORES *matrizB, double SBase, long int numeroSetores,
-        MATRIZCOMPLEXA *ZParam, int *indiceReguladores, DADOSREGULADOR *dadosRegulador,
-        MATRIZMAXCORRENTE * maximoCorrenteParam, int numeroTrafos, int numeroAlimentadores) {
-
-    long int barraDe;
-    long int barraPara;
-    RNPSETOR rnpSetor = buscaRNPSetor(matrizB, idSetorP, idSetorA);
-    barraPara = rnpSetor.nos[0].idNo;
-    barraDe = rnpSetor.nos[1].idNo;
-    //como a configuração do chaveamento possui uma RNP a mais, precisa remover essa rnp para o cálculo do fluxo em anel
-    configuracaoParam[indiceConfiguracao].numeroRNP=configuracaoParam[indiceConfiguracao].numeroRNP-1;
-    //caso 1 -- o loop é fechado no mesmo alimentador
-    if (dadosAlimentadorParam[rnpP + 1].idTrafo == dadosAlimentadorParam[rnpA + 1].idTrafo) {
-        fluxoPotenciaAnelCaso1(grafoSDRParam, numeroBarrasParam, dadosAlimentadorParam, dadosTrafoParam,
-                configuracaoParam, indiceConfiguracao, matrizB, SBase,
-                ZParam, indiceReguladores, dadosRegulador, maximoCorrenteParam, numeroTrafos, numeroAlimentadores,
-                rnpA, rnpP, barraDe, barraPara, idSetorP, idSetorA);
-
-    } else {
-        //caso 2 --  o loop é fechado com alimentadores em trafos diferentes da mesma subestação
-        if (dadosTrafoParam[dadosAlimentadorParam[rnpP + 1].idTrafo].idSubEstacao == dadosTrafoParam[dadosAlimentadorParam[rnpA + 1].idTrafo].idSubEstacao) {
-            fluxoPotenciaAnelCaso2(grafoSDRParam, numeroBarrasParam, dadosAlimentadorParam, dadosTrafoParam,
-                    configuracaoParam, indiceConfiguracao, matrizB, SBase, numeroSetores,
-                    ZParam, indiceReguladores, dadosRegulador, maximoCorrenteParam, numeroTrafos, numeroAlimentadores,
-                    rnpA, rnpP, barraDe, barraPara, idSetorP, idSetorA);
-        } else //caso 3 -- o loop é fechado com alimentadores em trafos de subestações diferentes
-        {
-            fluxoPotenciaAnelCaso3(grafoSDRParam, numeroBarrasParam, dadosAlimentadorParam, dadosTrafoParam,
-                    configuracaoParam, indiceConfiguracao, matrizB, SBase,
-                    ZParam, indiceReguladores, dadosRegulador, maximoCorrenteParam, numeroTrafos, numeroAlimentadores,
-                    rnpA, rnpP, barraDe, barraPara, idSetorP, idSetorA);
-
-        }
-    }
-    configuracaoParam[indiceConfiguracao].numeroRNP=configuracaoParam[indiceConfiguracao].numeroRNP+1;
-    return (verificaFactibilidade(configuracaoParam[indiceConfiguracao], maxCarregamentoRede, maxCarregamentoTrafoR, maxQuedaTensaoR));
-}
+*/
 /**
  * Método para gravar em arquivo a melhor configuração obtida.
  * @param configuracaoParam
@@ -8246,251 +6937,6 @@ void imprimeArquivosdeSaidaV4(int seedParam, long int *setorFaltaParam, int nume
 
 }
 
-/* Descrição:
- * Consiste na função "imprimeArquivosdeSaidaV4()" modficada para, ao verificar a factibilidade de um indivíduo, verificar também a factibilidade da sua sequência
- *
- * Imprime arquivos de saída após a execução do processo evolutivo. Os arquivos impressos são os seguintes:
-* "ArquivoSaida0": impreme as características dos configurações obtidas pelas Heuristica que chamamos vulgarmente de Busca Exaustiva (é impresso no começo da execução do programa e não por esta função)
-* "ArquivoSaida1": imprime as características da configuração pré-falta;
-* "ArquivoSaida2": imprime as características da configuração conceitualmente INICIAL do problema, ie, a configuração da rede na qual os setores em falta encontram-se isolados e todos setores saudáveis afetados encontram-se desligados;
-* "ArquivoSaida3": imprime os setores e as barras fora de serviço, dentre outras informações adicionais, da configuração conceitualmente inicial do problema;
-* "ArquivoSaida4": imprime as caractetísticas de TODOS os indivíduos salvos nas tabelas ao término do processo evolutivo;
-* "ArquivoSaida5": imprime as características exclusivamente dos indivíduos FACTÍVEIS salvos nas tabelas ao término do processo evolutivo (consiste no "ArquivoSaida4"  filtrado para impressão APENAS de indivíduos factíveis);
-* "ArquivoSaida6": imprime os setores e as barras deixadas fora de serviço, dentre outras informações adicionais, de TODOS os indivíduos salvos nas tabelas ao término do processo evolutivo
-* "ArquivoSaida7": imprime os setores e as barras deixadas fora de serviço, dentre outras informações adicionais, dos indivíduos FACTÍVEIS salvos em todas as tabelas ao término do processo evolutivo
-* "ArquivoSaida8": imprime as características das configurações selecionadas como "Soluções Finais" se esta for INFACTÍVEL;
-* "ArquivoSaida9": imprime as características das configurações selecionadas como "Soluções Finais" se esta for FACTÍVEL;
-* "ArquivoSaida10":imprime os setores e as barras deixadas fora de serviço, dentre outras informações adicionais, configurações selecionadas como "Soluções Finais"
-* "ArquivoSaida13":imprime a sequência de chaveamento dos indivíduos FACTÍVEIS salvos nas tabelas ao término do processo evolutivo de maneira didática
-* "ArquivoSaida14":imprime a sequência de chaveamento dos indivíduos FACTÍVEIS salvos nas tabelas ao término do processo evolutivo de maneira sumarizada (para análises via software)
-*
-* Obs.:
-* 1) São apresentados somente os setores e barras fora de serviços que eram possíveis de serem reconectados. Em outras palavras, não são apresentados os setores (e respectivas barras) em falta bem como os setores que, após a isolação da falta, não possuem chave normalmente aberta para reconectá-los a outro trecho da rede
-* 2) O tempo BRUTO consiste no tempo total estimado para execução das manobras considerando TAMBÉM as manobras que feitas repeditas vezes numa mesma chave. A impressão deste tempo e a comparaço dele com o tempo real, permite estimar o tempo ganho com a exclusão de repetidas manboras numa mesma chaves, as quais se anulam
-*
- *	Caractísticas impressas:
- *	"ArquivoSaida1": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras	| 10º. Manobras em Automáticas| 11º.Manobras Manuais | 12º.Energia Não Suprida TOTAL (kWh) | 13º.Energia Não Suprida Cons. P. Alta (kWh)  | 14º.Energia Não Suprida Cons. P. Intermediária (kWh) | 15º.Energia Não Suprida Cons. P. Baixa (kWh) | 16º. Energia Não Suprida Cons. Sem Prioridade (kWh) | 17º.Potência Não Suprida TOTAL (kW) | 18º.Potência Não Suprida Cons. P. Alta (kW)  | 19º.Potência Não Suprida Cons. P. Intermediária (kW) | 20º.Potência Não Suprida Cons. P. Baixa (kW) | 21º. Potência Não Suprida Cons. Sem Prioridade (kW) | 22º.Car. de Rede (%) | 23º. Queda de Tensão (%) | 24º.Car. de Trafo(%) | 25º. Perdas Resistivas (kW) | 26º.Tempo Estimado para execução das manobras (horas) | 27º.Número de vezes que um alimentador foi avaliado prlo Fluxo Carga | 28º.Valor de Função Ponderação | 29º. Menor Tensão (kV) | 30º Total de CEs transferidos | 31º Número de configurações/indivíduos gerados| 32º Numero de Gerações executadas | 33º Tempo de Execução do PROGRAMA (segundos)
- *	"ArquivoSaida2": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras	| 10º. Manobras em Automáticas| 11º.Manobras Manuais | 12º.Energia Não Suprida TOTAL (kWh) | 13º.Energia Não Suprida Cons. P. Alta (kWh)  | 14º.Energia Não Suprida Cons. P. Intermediária (kWh) | 15º.Energia Não Suprida Cons. P. Baixa (kWh) | 16º. Energia Não Suprida Cons. Sem Prioridade (kWh) | 17º.Potência Não Suprida TOTAL (kW) | 18º.Potência Não Suprida Cons. P. Alta (kW)  | 19º.Potência Não Suprida Cons. P. Intermediária (kW) | 20º.Potência Não Suprida Cons. P. Baixa (kW) | 21º. Potência Não Suprida Cons. Sem Prioridade (kW) | 22º.Car. de Rede (%) | 23º. Queda de Tensão (%) | 24º.Car. de Trafo(%) | 25º. Perdas Resistivas (kW) | 26º.Tempo Estimado para execução das manobras (horas) | 27º.Número de vezes que um alimentador foi avaliado prlo Fluxo Carga | 28º.Valor de Função Ponderação | 29º. Menor Tensão (kV) | 30º Total de CEs transferidos | 31º Número de configurações/indivíduos gerados| 32º Numero de Gerações executadas | 33º Tempo de Execução do PROGRAMA (segundos)
- *  "ArquivoSaida3": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras   | 10º. Energia Não Suprida TOTAL (kWh) | 11º.Conjunto de Setores Cortados (ver obs. 1) | 12º. Separador  | 13º.Conjunto de Barras Cortadas (ver obs. 1)
- *	"ArquivoSaida4": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras	| 10º. Manobras em Automáticas| 11º.Manobras Manuais | 12º.Energia Não Suprida TOTAL (kWh) | 13º.Energia Não Suprida Cons. P. Alta (kWh)  | 14º.Energia Não Suprida Cons. P. Intermediária (kWh) | 15º.Energia Não Suprida Cons. P. Baixa (kWh) | 16º. Energia Não Suprida Cons. Sem Prioridade (kWh) | 17º.Potência Não Suprida TOTAL (kW) | 18º.Potência Não Suprida Cons. P. Alta (kW)  | 19º.Potência Não Suprida Cons. P. Intermediária (kW) | 20º.Potência Não Suprida Cons. P. Baixa (kW) | 21º. Potência Não Suprida Cons. Sem Prioridade (kW) | 22º.Car. de Rede (%) | 23º. Queda de Tensão (%) | 24º.Car. de Trafo(%) | 25º. Perdas Resistivas (kW) | 26º.Tempo Estimado para execução das manobras (horas) | 27º.Número de vezes que um alimentador foi avaliado prlo Fluxo Carga | 28º.Valor de Função Ponderação | 29º. Menor Tensão (kV) | 30º Total de CEs transferidos | 31º Número de configurações/indivíduos gerados| 32º Numero de Gerações executadas | 33º Tempo de Execução do PROGRAMA (segundos)
- *	"ArquivoSaida5": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras	| 10º. Manobras em Automáticas| 11º.Manobras Manuais | 12º.Energia Não Suprida TOTAL (kWh) | 13º.Energia Não Suprida Cons. P. Alta (kWh)  | 14º.Energia Não Suprida Cons. P. Intermediária (kWh) | 15º.Energia Não Suprida Cons. P. Baixa (kWh) | 16º. Energia Não Suprida Cons. Sem Prioridade (kWh) | 17º.Potência Não Suprida TOTAL (kW) | 18º.Potência Não Suprida Cons. P. Alta (kW)  | 19º.Potência Não Suprida Cons. P. Intermediária (kW) | 20º.Potência Não Suprida Cons. P. Baixa (kW) | 21º. Potência Não Suprida Cons. Sem Prioridade (kW) | 22º.Car. de Rede (%) | 23º. Queda de Tensão (%) | 24º.Car. de Trafo(%) | 25º. Perdas Resistivas (kW) | 26º.Tempo Estimado para execução das manobras (horas) | 27º.Número de vezes que um alimentador foi avaliado prlo Fluxo Carga | 28º.Valor de Função Ponderação | 29º. Menor Tensão (kV) | 30º Total de CEs transferidos | 31º Número de configurações/indivíduos gerados| 32º Numero de Gerações executadas | 33º Tempo de Execução do PROGRAMA (segundos)
- *	"ArquivoSaida6": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras   | 10º. Energia Não Suprida TOTAL (kWh) | 11º.Conjunto de Setores Cortados (ver obs. 1) | 12º. Separador  | 13º.Conjunto de Barras Cortadas (ver obs. 1)
- *  "ArquivoSaida7": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras   | 10º. Energia Não Suprida TOTAL (kWh) | 11º.Conjunto de Setores Cortados (ver obs. 1) | 12º. Separador  | 13º.Conjunto de Barras Cortadas (ver obs. 1)
- *	"ArquivoSaida8": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras	| 10º. Manobras em Automáticas| 11º.Manobras Manuais | 12º.Energia Não Suprida TOTAL (kWh) | 13º.Energia Não Suprida Cons. P. Alta (kWh)  | 14º.Energia Não Suprida Cons. P. Intermediária (kWh) | 15º.Energia Não Suprida Cons. P. Baixa (kWh) | 16º. Energia Não Suprida Cons. Sem Prioridade (kWh) | 17º.Potência Não Suprida TOTAL (kW) | 18º.Potência Não Suprida Cons. P. Alta (kW)  | 19º.Potência Não Suprida Cons. P. Intermediária (kW) | 20º.Potência Não Suprida Cons. P. Baixa (kW) | 21º. Potência Não Suprida Cons. Sem Prioridade (kW) | 22º.Car. de Rede (%) | 23º. Queda de Tensão (%) | 24º.Car. de Trafo(%) | 25º. Perdas Resistivas (kW) | 26º.Tempo Estimado para execução das manobras (horas) | 27º.Número de vezes que um alimentador foi avaliado prlo Fluxo Carga | 28º.Valor de Função Ponderação | 29º. Menor Tensão (kV) | 30º Total de CEs transferidos | 31º Número de configurações/indivíduos gerados| 32º Numero de Gerações executadas | 33º Tempo de Execução do PROGRAMA (segundos)
- *	"ArquivoSaida9": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras	| 10º. Manobras em Automáticas| 11º.Manobras Manuais | 12º.Energia Não Suprida TOTAL (kWh) | 13º.Energia Não Suprida Cons. P. Alta (kWh)  | 14º.Energia Não Suprida Cons. P. Intermediária (kWh) | 15º.Energia Não Suprida Cons. P. Baixa (kWh) | 16º. Energia Não Suprida Cons. Sem Prioridade (kWh) | 17º.Potência Não Suprida TOTAL (kW) | 18º.Potência Não Suprida Cons. P. Alta (kW)  | 19º.Potência Não Suprida Cons. P. Intermediária (kW) | 20º.Potência Não Suprida Cons. P. Baixa (kW) | 21º. Potência Não Suprida Cons. Sem Prioridade (kW) | 22º.Car. de Rede (%) | 23º. Queda de Tensão (%) | 24º.Car. de Trafo(%) | 25º. Perdas Resistivas (kW) | 26º.Tempo Estimado para execução das manobras (horas) | 27º.Número de vezes que um alimentador foi avaliado prlo Fluxo Carga | 28º.Valor de Função Ponderação | 29º. Menor Tensão (kV) | 30º Total de CEs transferidos | 31º Número de configurações/indivíduos gerados| 32º Numero de Gerações executadas | 33º Tempo de Execução do PROGRAMA (segundos)
- * "ArquivoSaida10": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. "Factível" ou "Infactível" | 4º. Semente | 5º. Id. da Tabela | 6º.Posição na Tabela | 7º.Id. do indivíduo | 8º. Geração em que o indivíduo foi obtido | 9º.Total de Manobras   | 10º. Energia Não Suprida TOTAL (kWh) | 11º.Conjunto de Setores Cortados (ver obs. 1) | 12º. Separador  | 13º.Conjunto de Barras Cortadas (ver obs. 1)
- *
- * "ArquivoSaida14": 1º.Tipo da Falta ("Simples" ou "Múltiplas") | 2º.Setores em Falta | 3º. FACTBILIDADE da CONFIGURAÇÃO INTERMEDIARIA | 4º. Semente | 5º Id. do Indivíduo | 6º ABRIR (ou FECHAR) | 7º FECHAR (ou ABRIR) | 8ª.Energia Não Suprida Cons. P. Alta (kWh)  | 9º.Energia Não Suprida Cons. P. Intermediária (kWh) | 10º.Energia Não Suprida Cons. P. Baixa (kWh) | 11º. Energia Não Suprida Cons. Sem Prioridade (kWh) | 12º.Manobras Manuais  | 13º. Manobras em Automáticas | 14º.Potência Não Suprida Cons. P. Alta (kW)  | 15º.Potência Não Suprida Cons. P. Intermediária (kW) | 16º.Potência Não Suprida Cons. P. Baixa (kW) | 17º. Potência Não Suprida Cons. Sem Prioridade (kW) | 18º.Car. de Rede (%) | 19º. Queda de Tensão (%) | 20º.Car. de Trafo(%)
- * PS.: Os parâmentros 6º e 7º serão ABRIR e FECHAR se a seq. escolhida para a manobras de operações de transf. entre alimentadores for "Abre-Fecha". Caso, contrário, os parâmentros 6º e 7º serão FECHAR e ABRIR, pois a seq. escolhida para a manobras de operações de transf. entre alimentadores terá sido "Fecha-Abre
- *
- *
- *
- *  Parâmentros de entrada:
- *	@param seedParam é a semente para geração de número aleatórios que é um parametro de entrada do programa
- *	@param setorFaltaParam é o setor em falta
- *	@param numeroSetorFaltaParam é o número de faltas
- *	@param configuracoesParam é a estrutura que armazena as informações de todos os indivíduos (configurações) gerados
- *	@param populacaoParam é a estrutura de armazena as informações das tabelas de subpopulação
- *	@param idMelhorConfiguracaoParam é o identificador do indivíduo seleecionado para ser a "Solução Final"
- *	@param idPrimeiraConfiguracaoParam é o identificado da configuração conceitualmente inicial do problema
- *	@param numeroIndividuosParam é o parametro de entrada do programa que informa o número de indivíduos que devem ser gerados para formar a população inicial. Ele é utilizado nesta função para calcular a geração em que um indivíduo foi gerado
- *	@param tempoParam é o tempo de execução do programa. Não confundir com a variável tempo associada a cada indivíduo e que diz respeito ao tempo estimado necessário para implementá-lo
- *	@param flagSolucaoFinalParam é uma flag que informa que se a "Solução Final" é factível ou não
- *  @param numeroTabelasParam é o número tabelas existentes
- *  @param matrizBParam é a matriz da RNP que guarda informações sobre os nós/setores
- *  @param idConfiguracaoParam é o identificador da última configuraçõa gerada, o qual informa o número total de indivíduos/configurações gerados
- *
- *  */
-void imprimeArquivosdeSaidaV5(int seedParam, long int *setorFaltaParam, int numeroSetorFaltaParam, CONFIGURACAO *configuracoesParam, VETORTABELA *populacaoParam,
-		long int *idSolucoesFinaisParam, int numeroDesejadoSolucoesFinaisParam, long int idPrimeiraConfiguracaoParam, int numeroIndividuosPopulacaoInicialParam, double tempoParam,
-		int numeroTabelasParam, RNPSETORES *matrizBParam, long int idConfiguracaoParam, VETORPI *vetorPiParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam, long int geracoesExecutadasParam, int numeroSolucoesFinaisObtidasParam){
-
-    int contadorT,contador;
-    int geracao;
-    long int idConfiguracaoImpressao, auxiliar;
-    char factibilidade[20], tipoFalta[20], setoresFalta[2000]= "", str[20]; /*,setoresCortados[5000]= "", barrasCortadas[15000]= ""*/;
-    //long int setoresCortados[200], barrasCortadas[500];
-    char setoresCortadosString[5000], barrasCortadasString[20000];
-   //int contadorSetoresCortados, contadorBarrasCortadas;
-	int sBase=0;
-	leituraSBase(&sBase);
-
-	char nomeArquivo1[120];
-    char nomeArquivo2[120];
-    char nomeArquivo3[120];
-    char nomeArquivo4[120];
-    char nomeArquivo5[120];
-    char nomeArquivo6[120];
-	char nomeArquivo7[120];
-    char nomeArquivo8[120];
-    char nomeArquivo9[120];
-    char nomeArquivo10[120];
-    char nomeArquivo13[120];
-    char nomeArquivo14[120];
-    FILE *arquivo1;
-    FILE *arquivo2;
-    FILE *arquivo3;
-    FILE *arquivo4;
-    FILE *arquivo5;
-    FILE *arquivo6;
-    FILE *arquivo7;
-    FILE *arquivo8;
-    FILE *arquivo9;
-    FILE *arquivo10;
-    FILE *arquivo13;
-    FILE *arquivo14;
-    sprintf(nomeArquivo1, "ArquivoSaida1.txt");
-    arquivo1 = fopen(nomeArquivo1, "a");
-    sprintf(nomeArquivo2, "ArquivoSaida2.txt");
-    arquivo2 = fopen(nomeArquivo2, "a");
-    sprintf(nomeArquivo3, "ArquivoSaida3.txt");
-    arquivo3 = fopen(nomeArquivo3, "a");
-    sprintf(nomeArquivo4, "ArquivoSaida4.txt");
-    arquivo4 = fopen(nomeArquivo4, "a");
-    sprintf(nomeArquivo5, "ArquivoSaida5.txt");
-    arquivo5 = fopen(nomeArquivo5, "a");
-    sprintf(nomeArquivo6, "ArquivoSaida6.txt");
-    arquivo6 = fopen(nomeArquivo6, "a");
-    sprintf(nomeArquivo7, "ArquivoSaida7.txt");
-    arquivo7 = fopen(nomeArquivo7, "a");
-    sprintf(nomeArquivo8, "ArquivoSaida8.txt");
-    arquivo8 = fopen(nomeArquivo8, "a");
-    sprintf(nomeArquivo9, "ArquivoSaida9.txt");
-    arquivo9 = fopen(nomeArquivo9, "a");
-    sprintf(nomeArquivo10, "ArquivoSaida10.txt");
-    arquivo10 = fopen(nomeArquivo10, "a");
-    sprintf(nomeArquivo13, "ArquivoSaida13.txt");
-    arquivo13 = fopen(nomeArquivo13, "a");
-    sprintf(nomeArquivo14, "ArquivoSaida14.txt");
-    arquivo14 = fopen(nomeArquivo14, "a");
-
-//	if(sequenciaManobrasAlivioParam == abreFecha)
-//		fprintf(arquivo14, "TIPO_FALTA\tSETORES_FALTA\tFACTIBILIDADE\tSEED\tID_IND\tABRIR\tFECHAR\tENS_PA\tENS_PI\tENS_PB\tENS_SP\tMAN_M\tMAN_R\tPNS_PA\tPNS_PI\tPNS_PB\tPNS_SP\tCAR_REDE\tQUEDA_T\tCAR_SE\n");
-//	else
-//		fprintf(arquivo14, "TIPO_FALTA\tSETORES_FALTA\tFACTIBILIDADE\tSETOR_FALTA\tSEED\tID_IND\tFECHAR\tABRIR\tENS_PA\tENS_PI\tENS_PB\tENS_SP\tMAN_M\tMAN_R\tPNS_PA\tPNS_PI\tPNS_PB\tPNS_SP\tCAR_REDE\tQUEDA_T\tCAR_SE\n");
-
-
-    //DETERMINAÇÃO DE DUAS INFORMAÇÕES A SEREM IMPRESSAS
-    //Construção de uma String para armazenar o tipo da falta
-    strcpy(tipoFalta, "Multiplas_Faltas");
-    if(numeroSetorFaltaParam == 1)
-    	strcpy(tipoFalta, "Falta_Simples");
-
-    //Construção de uma string para armazenar todos os setores em falta
-    for(contador = 0; contador < numeroSetorFaltaParam; contador++){
-    	auxiliar = setorFaltaParam[contador];
-    	sprintf(str, "%ld_", auxiliar);
-    	strcat(setoresFalta, str);
-    }
-
-    // ARQUIVO DE SAÍDA 1 - imprime as características da configuração pré-falta;
-	idConfiguracaoImpressao = 0;
-	strcpy(factibilidade, "Infactivel");
-	if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoImpressao)) 	//Determina se a solução é Factível
-		strcpy(factibilidade, "Factivel");
-	fprintf(arquivo1, "%s\t%s\t%s\t%d\t-1\t-1\t%ld\t-1\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%ld\t%.2f\t%.2f\t%ld\t%ld\t%ld\t%.6f\n", tipoFalta, setoresFalta, factibilidade, seedParam, idConfiguracaoImpressao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas), configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas, configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresSemPrioridade/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade/sBase)*1, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoRede, configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoTrafo, configuracoesParam[idConfiguracaoImpressao].objetivo.perdasResistivas, configuracoesParam[idConfiguracaoImpressao].objetivo.tempo, numeroExecucoesFluxoCarga, configuracoesParam[idConfiguracaoImpressao].objetivo.ponderacao, configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao, configuracoesParam[idConfiguracaoImpressao].objetivo.consumidoresEspeciaisTransferidos, idConfiguracaoParam, geracoesExecutadasParam, tempoParam);
-	fclose(arquivo1);
-
-	// ARQUIVO DE SAÍDA 2 -  imprime as características da configuração conceitualmente inicial do problema, ie, a configuração da rede na qual os setores em falta encontram-se isolados e todos setores saudáveis afetados encontram-se desligados;
-	if(idPrimeiraConfiguracaoParam > 0){
-		idConfiguracaoImpressao = idPrimeiraConfiguracaoParam;
-		strcpy(factibilidade, "Infactivel");
-		if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoImpressao)) 	//Determina se a solução é Factível
-			strcpy(factibilidade, "Factivel");
-		fprintf(arquivo2, "%s\t%s\t%s\t%d\t-1\t-1\t%ld\t0\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%ld\t%.2f\t%.2f\t%ld\t%ld\t%ld\t%.6f\n", tipoFalta, setoresFalta, factibilidade, seedParam, idConfiguracaoImpressao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas), configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas, configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresSemPrioridade/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade/sBase)*1, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoRede, configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoTrafo, configuracoesParam[idConfiguracaoImpressao].objetivo.perdasResistivas, configuracoesParam[idConfiguracaoImpressao].objetivo.tempo, numeroExecucoesFluxoCarga, configuracoesParam[idConfiguracaoImpressao].objetivo.ponderacao, configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao, configuracoesParam[idConfiguracaoImpressao].objetivo.consumidoresEspeciaisTransferidos, idConfiguracaoParam, geracoesExecutadasParam, tempoParam);
-	}
-	fclose(arquivo2);
-
-	// ARQUIVO DE SAÍDA 3 - imprime os setores e as barras fora de serviço, dentre outras informações adicionais, configuração conceitualmente inicial do problema;
-	if(idPrimeiraConfiguracaoParam > 0){
-		idConfiguracaoImpressao = idPrimeiraConfiguracaoParam;
-		limparString(&setoresCortadosString);
-		limparString(&barrasCortadasString);
-		determinaBarrasSetoresCortadosString(idConfiguracaoImpressao, configuracoesParam, matrizBParam, &setoresCortadosString, &barrasCortadasString); //Determinação das as barras e dos setores que foram cortados
-		fprintf(arquivo3, "%s\t%s\t%s\t%d\t-1\t-1\t%ld\t0\t%d\t%.2lf\t|\tSetores_Cortados:\t%s\t|\tBarras_Cortadas:\t%s\n", tipoFalta, setoresFalta, factibilidade, seedParam, idConfiguracaoImpressao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais), (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, setoresCortadosString, barrasCortadasString );
-	}
-	fclose(arquivo3);
-
-
-    //ARQUIVOS DE SAÍDA 4, 5, 6 e 7
-    for(contadorT=0; contadorT < numeroTabelasParam; contadorT++){
-    	for (contador = 0; contador < populacaoParam[contadorT].numeroIndividuos; contador++){
-    		idConfiguracaoImpressao = populacaoParam[contadorT].tabela[contador].idConfiguracao;
-
-    		//Determina a Geração em que o indivíduo foi gerado
-    	    if(idConfiguracaoImpressao >= numeroIndividuosPopulacaoInicialParam)
-    	    	geracao = idConfiguracaoImpressao - numeroIndividuosPopulacaoInicialParam + 1;
-    	    else
-    	    	geracao = 0;
-    	    geracao = -1; //Neste AEMO_DOC_VF a quantidade de indivíduos gerados em cada geração é variável e, portanto, não é possível determinar a posteriori em qual geração um determinado indivíduo foi gerado (o que é possível em outros AEMOs, como na MRAN)
-
-    	    //Determinação das as barras e dos setores que foram cortados
-    	    limparString(&setoresCortadosString);
-    	    limparString(&barrasCortadasString);
-    	    determinaBarrasSetoresCortadosString(idConfiguracaoImpressao, configuracoesParam, matrizBParam, &setoresCortadosString, &barrasCortadasString);
-
-    	    //Determina se a solução é Factível
-    		strcpy(factibilidade, "Infactivel");
-    		if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoImpressao)){
-    			strcpy(factibilidade, "Factivel");
-    			//ARQUIVO 5 - imprime as características exclusivamente dos indivíduos FACTÍVEIS salvos nas tabelas ao término do processo evolutivo (consiste no "ArquivoSaida4"  filtrado para impressão APENAS de indivíduos factíveis);
-    			fprintf(arquivo5, "%s\t%s\t%s\t%d\t%d\t%d\t%ld\t%d\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%ld\t%.2f\t%.2f\t%ld\t%ld\t%ld\t%.6f\n", tipoFalta, setoresFalta, factibilidade, seedParam, contadorT, contador, idConfiguracaoImpressao, geracao,(configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas), configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas, configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresSemPrioridade/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade/sBase)*1, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoRede, configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoTrafo, configuracoesParam[idConfiguracaoImpressao].objetivo.perdasResistivas, configuracoesParam[idConfiguracaoImpressao].objetivo.tempo, numeroExecucoesFluxoCarga, configuracoesParam[idConfiguracaoImpressao].objetivo.ponderacao, configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao, configuracoesParam[idConfiguracaoImpressao].objetivo.consumidoresEspeciaisTransferidos, idConfiguracaoParam, geracoesExecutadasParam, tempoParam);
-    			//ARQUIVO 7 - imprime os setores e as barras deixadas fora de serviço, dentre outras informações adicionais, dos indivíduos FACTÍVEIS salvos em todas as tabelas ao término do processo evolutivo
-    			fprintf(arquivo7, "%s\t%s\t%s\t%d\t%d\t%d\t%ld\t%d\t%d\t%.2lf\t|\tSetores_Cortados:\t%s\t|\tBarras_Cortadas:\t%s\n", tipoFalta, setoresFalta, factibilidade, seedParam, contadorT, contador, idConfiguracaoImpressao, geracao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais), (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, setoresCortadosString, barrasCortadasString );
-    			//ARQUIVO 13 - imprime a sequência de chaveamento dos indivíduos FACTÍVEIS salvos nas tabelas ao término do processo evolutivo
-    			imprimeSequenciaChaveamentoIndividuo(seedParam, setorFaltaParam, numeroSetorFaltaParam, idConfiguracaoImpressao, vetorPiParam, configuracoesParam, sequenciaManobrasAlivioParam, nomeArquivo13);
-
-    			imprimeSequenciaChaveamentoIndividuoSumarizada(seedParam, tipoFalta, setoresFalta, idConfiguracaoImpressao, vetorPiParam, configuracoesParam, sequenciaManobrasAlivioParam, nomeArquivo14);
-
-    		}
-    		//ARQUIVO 4 - imprime as caractetísticas de TODOS os indivíduos salvos nas tabelas ao término do processo evolutivo;
-    		fprintf(arquivo4, "%s\t%s\t%s\t%d\t%d\t%d\t%ld\t%d\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%ld\t%.2f\t%.2f\t%ld\t%ld\t%ld\t%.6f\n", tipoFalta, setoresFalta, factibilidade, seedParam, contadorT, contador, idConfiguracaoImpressao, geracao,(configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas), configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas, configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresSemPrioridade/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade/sBase)*1, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoRede, configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoTrafo, configuracoesParam[idConfiguracaoImpressao].objetivo.perdasResistivas, configuracoesParam[idConfiguracaoImpressao].objetivo.tempo, numeroExecucoesFluxoCarga, configuracoesParam[idConfiguracaoImpressao].objetivo.ponderacao, configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao, configuracoesParam[idConfiguracaoImpressao].objetivo.consumidoresEspeciaisTransferidos, idConfiguracaoParam,  geracoesExecutadasParam, tempoParam);
-    	    //ARQUIVO 6 - imprime os setores e as barras deixadas fora de serviço, dentre outras informações adicionais, de TODOS os indivíduos salvos nas tabelas ao término do processo evolutivo
-			fprintf(arquivo6, "%s\t%s\t%s\t%d\t%d\t%d\t%ld\t%d\t%d\t%.2lf\t|\tSetores_Cortados:\t%s\t|\tBarras_Cortadas:\t%s\n", tipoFalta, setoresFalta, factibilidade, seedParam, contadorT, contador, idConfiguracaoImpressao, geracao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais), (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, setoresCortadosString, barrasCortadasString );
-    	}
-    }
-    fclose(arquivo4);
-    fclose(arquivo5);
-    fclose(arquivo6);
-    fclose(arquivo7);
-    fclose(arquivo14);
-
-    //IMPRESSÃO DOS ARQUIVOS 8, 9 E 10
-    for(contador = 0; contador < numeroSolucoesFinaisObtidasParam; contador++){
-		idConfiguracaoImpressao = idSolucoesFinaisParam[contador];
-
-		//Determinação das as barras e dos setores que foram cortados
-		limparString(&setoresCortadosString);
-		limparString(&barrasCortadasString);
-		determinaBarrasSetoresCortadosString(idConfiguracaoImpressao, configuracoesParam, matrizBParam, &setoresCortadosString, &barrasCortadasString);
-
-		//Determina a Geração em que o indivíduo foi gerado
-		if(idConfiguracaoImpressao >= numeroIndividuosPopulacaoInicialParam)
-			geracao = idConfiguracaoImpressao - numeroIndividuosPopulacaoInicialParam + 1;
-		else
-			geracao = 0;
-		geracao = -1; //Neste AEMO_DOC_VF a quantidade de indivíduos gerados em cada geração é variável e, portanto, não é possível determinar a posteriori em qual geração um determinado indivíduo foi gerado (o que é possível em outros AEMOs, como na MRAN)
-
-		strcpy(factibilidade, "Infactivel");
-		if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoImpressao)){
-			strcpy(factibilidade, "Factivel");
-			 //ARQUIVO 9 - imprime as características da configuração selecionada como "Solução Final" se esta for FACTÍVEL;
-			fprintf(arquivo9, "%s\t%s\t%s\t%d\t-1\t-1\t%ld\t0\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%ld\t%.2f\t%.2f\t%ld\t%ld\t%ld\t%.6f\n", tipoFalta, setoresFalta, factibilidade, seedParam, idConfiguracaoImpressao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas), configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas, configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresSemPrioridade/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade/sBase)*1, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoRede, configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoTrafo, configuracoesParam[idConfiguracaoImpressao].objetivo.perdasResistivas, configuracoesParam[idConfiguracaoImpressao].objetivo.tempo, numeroExecucoesFluxoCarga, configuracoesParam[idConfiguracaoImpressao].objetivo.ponderacao, configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao, configuracoesParam[idConfiguracaoImpressao].objetivo.consumidoresEspeciaisTransferidos, idConfiguracaoParam,  geracoesExecutadasParam, tempoParam);
-		}
-		else{
-			//ARQUIVO 8 - imprime as características da configuração selecionada como "Solução Final" se esta for INFACTÍVEL;
-			fprintf(arquivo8, "%s\t%s\t%s\t%d\t-1\t-1\t%ld\t0\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%ld\t%.2f\t%.2f\t%ld\t%ld\t%ld\t%.6f\n", tipoFalta, setoresFalta, factibilidade, seedParam, idConfiguracaoImpressao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas), configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas, configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.energiaNaoSuprida.consumidoresSemPrioridade/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa/sBase)*1, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade/sBase)*1, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoRede, configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoTrafo, configuracoesParam[idConfiguracaoImpressao].objetivo.perdasResistivas, configuracoesParam[idConfiguracaoImpressao].objetivo.tempo, numeroExecucoesFluxoCarga, configuracoesParam[idConfiguracaoImpressao].objetivo.ponderacao, configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao, configuracoesParam[idConfiguracaoImpressao].objetivo.consumidoresEspeciaisTransferidos, idConfiguracaoParam,  geracoesExecutadasParam,tempoParam);
-
-		}
-		//ARQUIVO 10":imprime os setores e as barras deixadas fora de serviço, dentre outras informações adicionais, da configuração selecionada como "Solução Final"
-		fprintf(arquivo10, "%s\t%s\t%s\t%d\t-1\t-1\t%ld\t0\t%d\t%.2lf\t|\tSetores_Cortados:\t%s\t|\tBarras_Cortadas:\t%s\n", tipoFalta, setoresFalta, factibilidade, seedParam, idConfiguracaoImpressao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais), (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*1, setoresCortadosString, barrasCortadasString );
-    }
-	fclose(arquivo8);
-    fclose(arquivo9);
-    fclose(arquivo10);
-
-}
-
 /* Por Leandro:
  * Método desenvolvido para impressão das soluções na fronteira de Pareto.
  *
@@ -8528,62 +6974,6 @@ void mostraFronteiraPareto(FRONTEIRAS fronteiraParetoParam, CONFIGURACAO *config
 
 
 }
-
-
-
-/* @brief Por Leandro:
- * Descrição: Imprime os indivíduos obtidos pela Busca Exaustiva:
- *
- *	Caractísticas impressas:
- *	1º.Setores em Falta | 2º. Ponderação   | 3º. Manobras Totais  | 4º.Manobras Ponderadas | 5º.Manobras Automáticas | 6º.Manobras Manuais   | 7º.Carregamento de Rede(%)  | 8º. Carregamento de Trafo(%)| 9º.Queda de tensão relativa(%) | 10º.Queda de Tensão(%) | 11º.Menor Tensão (kV) | 12º.Perdas Resistivas (kW)       | 13º. n. Total de CEs Transferidos | 14º.Potência Ativa Não Suprida-Por fase (kW) | 15º. Tempo Estimado para execução das manobras| 16º.Geração em que o Id foi obtido |
- *
- *	@param seedParam é a semente para geração de número aleatórios que é um parametro de entrada do programa
- *	@param setorFaltaParam é o setor em falta
- *	@param configuracoesParam é a estrutura que armazena as informações de todos os indivíduos (configurações) gerados
- *	@param idConfiguracaoInicialParam é o identificador da configuração Inicial
- *	@param numeroConfiguracoesParam é o número total de configurações obtidas pela busca exaustiva
- *	@param tempoParam é o tempo de execução do programa. Não confundir com a variável tempo associada a cada indivíduo e que diz respeito ao tempo estimado necessário para implementá-lo
- *	@param VFParam é a tensão nominal
- *  */
-void imprimeIndividuosBuscaExaustiva(long int *setorFaltaParam, int numeroSetorFaltaParam, CONFIGURACAO *configuracoesParam, long int idConfiguracaoInicialParam, long int numeroConfiguracoesParam, double tempoParam, VETORPI *vetorPiParam){
-	char nomeArquivo[120];
-    FILE *arquivo;
-    long int idConfiguracaoImpressao;
-    int contador, auxiliar;
-    double maximaQuedaTensaoRelativa = 0.0;
-    char factibilidade[20], tipoFalta[20], setorFalta[1000]= "", str[20];
-	int sBase;
-	leituraSBase(&sBase);
-
-    sprintf(nomeArquivo, "ArquivoSaida0.txt");
-    arquivo = fopen(nomeArquivo, "a");
-
-    strcpy(tipoFalta, "Multiplas_Faltas");
-    if(numeroSetorFaltaParam == 1)
-    	strcpy(tipoFalta, "Falta_Simples");
-
-    for(contador = 0; contador < numeroSetorFaltaParam; contador++){
-    	auxiliar = setorFaltaParam[contador];
-    	sprintf(str, "%d_", auxiliar);
-    	strcat(setorFalta, str);
-    }
-
-    for (contador = idConfiguracaoInicialParam + 1; contador < numeroConfiguracoesParam; contador++) {
-    	idConfiguracaoImpressao = configuracoesParam[contador].idConfiguracao;
-    	maximaQuedaTensaoRelativa = configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima*10;
-		//maximaQuedaTensaoRelativa = ((VFParam - configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao)/(VFParam*maxQuedaTensao/100))*100;
-
-		strcpy(factibilidade, "Infactivel");
-		if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoImpressao))
-			strcpy(factibilidade, "Factivel");
-
-	    fprintf(arquivo, "%s\t%.2lf\t%d\t%.2lf\t%d\t%d\t%.2lf\t%.2lf\t%.2lf\t%.2lf\t%.2lf\t%.2lf\t%ld\t%.2lf\t%.2lf\t%s\t%s\n", setorFalta, configuracoesParam[idConfiguracaoImpressao].objetivo.ponderacao, (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas), (configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas / fatorPonderacaoManobras + configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais), configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasAutomaticas, configuracoesParam[idConfiguracaoImpressao].objetivo.manobrasManuais, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoRede, configuracoesParam[idConfiguracaoImpressao].objetivo.maiorCarregamentoTrafo, maximaQuedaTensaoRelativa, configuracoesParam[idConfiguracaoImpressao].objetivo.quedaMaxima, configuracoesParam[idConfiguracaoImpressao].objetivo.menorTensao, configuracoesParam[idConfiguracaoImpressao].objetivo.perdasResistivas, configuracoesParam[idConfiguracaoImpressao].objetivo.consumidoresEspeciaisTransferidos, (configuracoesParam[idConfiguracaoImpressao].objetivo.potenciaTotalNaoSuprida/sBase)*3, configuracoesParam[idConfiguracaoImpressao].objetivo.tempo, factibilidade, tipoFalta);
-    }
-
-    fclose(arquivo);
-}
-
-
 
 /* Por Leandro:
  * Descrição: esta função calcula a somatória de potência ativa em todos os setores que formam a
@@ -8883,6 +7273,7 @@ double calculaSomatorioPotenciaAparenteSubarvore(CONFIGURACAO *configuracoesPara
  * @param vetorPiParam
  * @return potenciaAtivaNaoSuprida é o somatório de potência ativa calculado
  */
+/*
 double calculaSomatorioCorrenteCargaSubarvore(CONFIGURACAO *configuracoesParam, long int idConfiguracaoParam, long int noRaizParam, RNPSETORES *matrizB, MATRIZPI *matrizPiParam, VETORPI *vetorPiParam){
 	long int noS, noR, noN, indiceBarra, idNoRaiz;
 	long int noProf[200]; //armazena o ultimo nó presente em uma profundidade, é indexado pela profundidade
@@ -8913,7 +7304,8 @@ double calculaSomatorioCorrenteCargaSubarvore(CONFIGURACAO *configuracoesParam, 
     		/*Se o "noS" estiver conectado ao Nó Raiz da RNP Fictícia, então não haverá uma RNP do noS sendo alimentado por este
     		 * nó raiz, uma vez que o nó raiz é fictício. Neste caso, para percorrer as barras presentes no noS, tomar-se-á
     		 * a matrizB relativa à alimentação de noS por um noR correspondente ao Setor Origem que primeiro aparece na matriz B se noS*/
-    		indiceColuna = retornaColunaPi(matrizPiParam, vetorPiParam, noS, idConfiguracaoParam);
+    		/*
+            indiceColuna = retornaColunaPi(matrizPiParam, vetorPiParam, noS, idConfiguracaoParam);
     		if(rnp.nos[indice].profundidade == 1 && matrizPiParam[noS].colunas[indiceColuna].idRNP >= configuracoesParam[idConfiguracaoParam].numeroRNP) //Se isto é verdade, significa que o noS está numa árvore fictícia e o nó anterior a noS é fictício e por isso não há uma matrizB de noS sendo alimentador por este nó, neste caso tomar-se-á um outro nó adjacente a este
     			noR = matrizB[noS].rnps[0].idSetorOrigem;
     		else
@@ -8932,6 +7324,7 @@ double calculaSomatorioCorrenteCargaSubarvore(CONFIGURACAO *configuracoesParam, 
     //free(rnp.nos);
     return(somatorioCorrenteCarga);
 }
+*/
 /* Por Leandro:
  * Descrição: esta função calcula os valores de energia não suprida ao longo do tempo decorrido para a execução das manobras dos indivíduos que possuem manobras tanto
  * para isolar faltas quanto para restaurar consumidores (EXCLUSIVAMENTE, para outros indivíduos esta função não funcionará corretamente).
@@ -9181,28 +7574,6 @@ void marcaSetoresJusanteFalta(long int nosJusanteFaltaParam[100], int numeroAJus
 
 
 /**
- * Por Leandro: função responsável por realizar a cópia de todas as informações de um
- * indivíduo para outro, o que inclui a copia dos dados da configuração (valores
- * dos objetivos, RNPs, etc), do Vetor Pi e da Matriz PI.
- *
- *
- * @param configuracoesParam ponteiro do tipo CONFIGURACAO para a configuração original.
- * @param configuracoesParam2 ponteiro do tipo CONFIGURACAO para a configuração destino da cópia.
- * @param idIndividuoAtual inteiro com o identificador do indivíduo original
- * @param idNovoIndividuo inteiro com o identificador para a cópia
- * @param matrizPIParam ponteiro para a estrutura do tipo MATRIZPI
- */
-void copiaTodasInformacoesIndividuo(CONFIGURACAO *configuracoesCopiaParam, CONFIGURACAO *configuracoesOriginalParam,
-		long int idIndividuoOriginalParam, long int idIndividuoCopiaParam, VETORPI *vetorPiCopiaParam, VETORPI *vetorPiOriginalParam,
-		MATRIZPI *matrizPICopiaParam, MATRIZPI *matrizPIOriginalParam, RNPSETORES *rnpSetoresParam, long int numeroBarrasParam, int numeroTrafosParam){
-
-	copiaIndividuoMelhorada(configuracoesOriginalParam, configuracoesCopiaParam, idIndividuoOriginalParam, idIndividuoCopiaParam, matrizPIOriginalParam, rnpSetoresParam, numeroBarrasParam, numeroTrafosParam);
-	copiaDadosVetorPI(vetorPiOriginalParam, vetorPiCopiaParam, idIndividuoOriginalParam, idIndividuoCopiaParam);
-	//copiaColunasMatrizPI(matrizPICopiaParam, matrizPIOriginalParam, idIndividuoCopiaParam, idIndividuoOriginalParam, configuracoesOriginalParam);
-}
-
-
-/**
  * Por Leandro: Esta função é responsável por realizar a cópia das informações de dados elétricos e de objetivos
  * de uma configuração em outra.
  *
@@ -9211,6 +7582,7 @@ void copiaTodasInformacoesIndividuo(CONFIGURACAO *configuracoesCopiaParam, CONFI
  * @param idIndividuoAtual inteiro com o identificador do indivíduo original
  * @param idNovoIndividuo inteiro com o identificador para a cópia
  */
+/*
 void copiaDadosEletricosObjetivos(CONFIGURACAO *configuracoesParam, CONFIGURACAO *configuracoesParam2, long int idIndividuoAtual,
 		long int idNovoIndividuo, RNPSETORES *rnpSetoresParam, long int numeroBarrasParam, int numeroTrafosParam, BOOL copiarDadosEletricosParam){
     int contador, contadorRnp, indiceI;
@@ -9309,7 +7681,7 @@ void copiaDadosEletricosObjetivos(CONFIGURACAO *configuracoesParam, CONFIGURACAO
     configuracoesParam2[idNovoIndividuo].objetivo.energiaNaoSuprida.consumidoresSemPrioridade           = configuracoesParam[idIndividuoAtual].objetivo.energiaNaoSuprida.consumidoresSemPrioridade;
 
 }
-
+*/
 /* Por Leandro:
  * Esta função realiza a impressão de sequência de chaveamento relacionada a um indivíduo e demais informações importantes.
  * No início é feito um teste a fim de determinar se àquele indivíduo está associada uma sequência de chaveamento que foi
@@ -9403,201 +7775,6 @@ BOOL determinaFlagManobrasAlivio(CONFIGURACAO *configuracoesParam, MATRIZPI *mat
 		flagManobrasAlivio = false;
 
 	return flagManobrasAlivio;
-}
-
-
-/* Por Leandro:
- * Esta função mostra na tela a sequência de chaveamento relacionada a um indivíduo e demais informações importantes.
- *
- *@param idConfiguracaoParam é o índice do índivuo cuja sequência de chaveamento será impressa
- *@param vetorPiParam é o vetor Pi
- *@param configuracoesParam é o vetor que contém as informações de todos os indivíduos gerados pelo AEMO
- */
-void mostraSequenciaChaveamentoIndividuo(long int idConfiguracaoParam, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam){
-	int numeroConfiguracoes, indice, indice2;
-	long int *indiceConfiguracoes, idConfig;
-
-	numeroConfiguracoes = 0;
-	indiceConfiguracoes = recuperaConfiguracoesIntermediarias(vetorPiParam, idConfiguracaoParam, &numeroConfiguracoes);
-
-
-	if(sequenciaManobrasAlivioParam == abreFecha)
-		printf("\nCONFIG.\t\tABRIR\tFECHAR\t\tMAN_M\tMAN_R\t\tENS_PA\tENS_PI\tENS_PB\tENS_SP\t\tPNS_PA\tPNS_PI\tPNS_PB\tPNS_SP\t\tCAR_REDE\tQUEDA_T\tCAR_SE");
-	else
-		printf("\nCONFIG.\t\tFECHAR\tABRIR\t\tMAN_M\tMAN_R\t\tENS_PA\tENS_PI\tENS_PB\tENS_SP\t\tPNS_PA\tPNS_PI\tPNS_PB\tPNS_SP\t\tCAR_REDE\tQUEDA_T\tCAR_SE");
-
-	for(indice2 = 0; indice2 < numeroConfiguracoes; indice2++){
-		idConfig = indiceConfiguracoes[indice2];
-		for(indice = 0; indice < vetorPiParam[idConfig].numeroManobras; indice++){
-			if(indice ==  vetorPiParam[idConfig].numeroManobras - 1){
-				if(sequenciaManobrasAlivioParam == abreFecha)
-					printf("\n%ld\t\t%ld\t%ld\t\t%d\t%d\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%.2f\t%.2f\t%.2f", idConfig, vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice], configuracoesParam[idConfig].objetivo.manobrasManuais,  configuracoesParam[idConfig].objetivo.manobrasAutomaticas, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.maiorCarregamentoRede, configuracoesParam[idConfig].objetivo.quedaMaxima, configuracoesParam[idConfig].objetivo.maiorCarregamentoTrafo);
-				else
-					printf("\n%ld\t\t%ld\t%ld\t\t%d\t%d\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%.2f\t%.2f\t%.2f", idConfig, vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice], configuracoesParam[idConfig].objetivo.manobrasManuais,  configuracoesParam[idConfig].objetivo.manobrasAutomaticas, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.maiorCarregamentoRede, configuracoesParam[idConfig].objetivo.quedaMaxima, configuracoesParam[idConfig].objetivo.maiorCarregamentoTrafo);
-			}
-			else{
-				if(sequenciaManobrasAlivioParam == abreFecha)
-					printf("\n\t\t%ld\t%ld", vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice]);
-				else
-					printf("\n\t\t%ld\t%ld", vetorPiParam[idConfig].idChaveFechada[indice], vetorPiParam[idConfig].idChaveAberta[indice]);
-			}
-
-		}
-	}
-
-	printf("\n");
-	printf("\n");
-
-}
-
-/* Por Leandro:
- * Esta função imprime num arquivo a sequência de chaveamento relacionada a um indivíduo e demais informações importantes.
- *
- *@param idConfiguracaoParam é o índice do índivuo cuja sequência de chaveamento será impressa
- *@param vetorPiParam é o vetor Pi
- *@param configuracoesParam é o vetor que contém as informações de todos os indivíduos gerados pelo AEMO
- */
-void imprimeSequenciaChaveamentoIndividuo(int seedParam, long int *setorFaltaParam, int numeroSetorFaltaParam, long int idConfiguracaoParam, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam, char *nomeArquivoParam){
-	int numeroConfiguracoes, indice, indice2;
-	long int *indiceConfiguracoes, idConfig;
-	long int auxiliar;
-	char factibilidade[20];
-	FILE *arquivo1;
-
-//	sprintf(nomeArquivoParam, "ArquivoSaida19.txt");
-	arquivo1 = fopen(nomeArquivoParam, "a");
-
-    //Construção de uma string para armazenar se a solução é factível
-	strcpy(factibilidade, "Infactivel");
-	if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoParam))
-		strcpy(factibilidade, "Factivel");
-
-    fprintf(arquivo1, "\nID_INDIVIDUO: %ld (%s)\n", idConfiguracaoParam, factibilidade);
-
-	numeroConfiguracoes = 0;
-	indiceConfiguracoes = recuperaConfiguracoesIntermediarias(vetorPiParam, idConfiguracaoParam, &numeroConfiguracoes);
-
-	if(sequenciaManobrasAlivioParam == abreFecha)
-		fprintf(arquivo1, "ABRIR\tFECHAR\t\tENS_PA\tENS_PI\tENS_PB\tENS_SP\t\tMAN_M\tMAN_R\t\tPNS_PA\tPNS_PI\tPNS_PB\tPNS_SP\t\tCAR_REDE\tQUEDA_T\tCAR_SE\tFACTIBILIDADE\n");
-	else
-		fprintf(arquivo1, "FECHAR\tABRIR\t\tENS_PA\tENS_PI\tENS_PB\tENS_SP\t\tMAN_M\tMAN_R\t\tPNS_PA\tPNS_PI\tPNS_PB\tPNS_SP\t\tCAR_REDE\tQUEDA_T\tCAR_SE\tFACTIBILIDADE\n");
-
-	for(indice2 = 0; indice2 < numeroConfiguracoes; indice2++){
-		idConfig = indiceConfiguracoes[indice2];
-	    //Construção de uma string para armazenar se a solução é factível
-		strcpy(factibilidade, "Infactivel");
-		if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoParam))
-			strcpy(factibilidade, "Factível");
-//		else{
-//			if(verificaFactibilidade(configuracoesParam[idConfiguracaoParam], maxCarregamentoRedeR, maxCarregamentoTrafoR, maxQuedaTensaoR ))
-//				strcpy(factibilidade, "Factível Relaxada");
-//		}
-
-		for(indice = 0; indice < vetorPiParam[idConfig].numeroManobras; indice++){
-			if(indice ==  vetorPiParam[idConfig].numeroManobras - 1){
-				if(sequenciaManobrasAlivioParam == abreFecha)
-					fprintf(arquivo1, "%ld\t%ld\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%d\t%d\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%.2f\t%.2f\t%.2f\t%s\n", vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice], configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.manobrasManuais,  configuracoesParam[idConfig].objetivo.manobrasAutomaticas, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.maiorCarregamentoRede, configuracoesParam[idConfig].objetivo.quedaMaxima, configuracoesParam[idConfig].objetivo.maiorCarregamentoTrafo, factibilidade);
-				else
-					fprintf(arquivo1, "%ld\t%ld\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%d\t%d\t\t%.2f\t%.2f\t%.2f\t%.2f\t\t%.2f\t%.2f\t%.2f\t%s\n", vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice], configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.manobrasManuais,  configuracoesParam[idConfig].objetivo.manobrasAutomaticas, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.maiorCarregamentoRede, configuracoesParam[idConfig].objetivo.quedaMaxima, configuracoesParam[idConfig].objetivo.maiorCarregamentoTrafo, factibilidade);
-			}
-			else{
-				if(sequenciaManobrasAlivioParam == abreFecha)
-					fprintf(arquivo1, "%ld\t%ld\n", vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice]);
-				else
-					fprintf(arquivo1, "%ld\t%ld\n", vetorPiParam[idConfig].idChaveFechada[indice], vetorPiParam[idConfig].idChaveAberta[indice]);
-			}
-
-		}
-	}
-
-	fclose(arquivo1);
-
-}
-/* Por Leandro:
- * Esta função imprime num arquivo a sequência de chaveamento relacionada a um indivíduo e demais informações importantes DE MANEIRA SUMARIZA A FIM DE FACILITAR ANÁLISES
- * DA SEQUÊNCIA DE CHAVEAMENTO VIA SOFTWARE.
- *
- *@param idConfiguracaoParam é o índice do índivuo cuja sequência de chaveamento será impressa
- *@param vetorPiParam é o vetor Pi
- *@param configuracoesParam é o vetor que contém as informações de todos os indivíduos gerados pelo AEMO
- */
-void imprimeSequenciaChaveamentoIndividuoSumarizada(int seedParam, char tipoFaltaParam[20], char setoresFaltaParam[2000], long int idConfiguracaoParam, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam, char *nomeArquivoParam){
-	int numeroConfiguracoes, indice, indice2;
-	long int *indiceConfiguracoes, idConfig;
-	char factibilidade[20];
-	FILE *arquivo1;
-
-	arquivo1 = fopen(nomeArquivoParam, "a");
-    //Construção de uma string para armazenar se a solução é factível
-	strcpy(factibilidade, "Infactivel");
-	if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoParam))
-		strcpy(factibilidade, "Factivel");
-
-	numeroConfiguracoes = 0;
-	indiceConfiguracoes = recuperaConfiguracoesIntermediarias(vetorPiParam, idConfiguracaoParam, &numeroConfiguracoes);
-
-
-	for(indice2 = 0; indice2 < numeroConfiguracoes; indice2++){
-		idConfig = indiceConfiguracoes[indice2];
-	    //Construção de uma string para armazenar se a solução é factível
-		strcpy(factibilidade, "Infactivel");
-		if(verificaFactibilidadeSequenciaChaveamento(configuracoesParam, vetorPiParam, idConfiguracaoParam))
-			strcpy(factibilidade, "Factível");
-
-
-		for(indice = 0; indice < vetorPiParam[idConfig].numeroManobras; indice++){
-			if(indice ==  vetorPiParam[idConfig].numeroManobras - 1){
-				if(sequenciaManobrasAlivioParam == abreFecha)
-					fprintf(arquivo1, "%s\t%s\t%s\t%d\t%ld\t%ld\t%ld\t%.2f\t%.2f\t%.2f\t%.2f\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\n", tipoFaltaParam, setoresFaltaParam, factibilidade, seedParam, idConfiguracaoParam, vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice], configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.manobrasManuais,  configuracoesParam[idConfig].objetivo.manobrasAutomaticas, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.maiorCarregamentoRede, configuracoesParam[idConfig].objetivo.quedaMaxima, configuracoesParam[idConfig].objetivo.maiorCarregamentoTrafo);
-				else
-					fprintf(arquivo1, "%s\t%s\t%s\t%d\t%ld\t%ld\t%ld\t%.2f\t%.2f\t%.2f\t%.2f\t%d\t%d\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\t%.2f\n", tipoFaltaParam, setoresFaltaParam, factibilidade, seedParam, idConfiguracaoParam, vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice], configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.energiaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.manobrasManuais,  configuracoesParam[idConfig].objetivo.manobrasAutomaticas, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeAlta, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeIntermediaria, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresPrioridadeBaixa, configuracoesParam[idConfig].objetivo.potenciaNaoSuprida.consumidoresSemPrioridade, configuracoesParam[idConfig].objetivo.maiorCarregamentoRede, configuracoesParam[idConfig].objetivo.quedaMaxima, configuracoesParam[idConfig].objetivo.maiorCarregamentoTrafo);
-			}
-			else{
-				if(sequenciaManobrasAlivioParam == abreFecha)
-					fprintf(arquivo1, "%s\t%s\t%s\t%d\t%ld\t%ld\t%ld\n", tipoFaltaParam, setoresFaltaParam, factibilidade, seedParam, idConfiguracaoParam, vetorPiParam[idConfig].idChaveAberta[indice], vetorPiParam[idConfig].idChaveFechada[indice]);
-				else
-					fprintf(arquivo1, "%s\t%s\t%s\t%d\t%ld\t%ld\t%ld\n", tipoFaltaParam, setoresFaltaParam, factibilidade, seedParam, idConfiguracaoParam, vetorPiParam[idConfig].idChaveFechada[indice], vetorPiParam[idConfig].idChaveAberta[indice]);
-			}
-
-		}
-	}
-
-	fclose(arquivo1);
-
-}
-
-void imprimeSequenciaChaveamentoSolucoesFinais(int seedParam, long int *setorFaltaParam, int numeroSetorFaltaParam, FRONTEIRAS fronteiraParetoParam, long int *idIndividuosFinaisParam, int numeroSolucoesFinaisObtidas, VETORPI *vetorPiParam, CONFIGURACAO *configuracoesParam, SEQUENCIAMANOBRASALIVIO sequenciaManobrasAlivioParam){
-	int indice, indiceIndividuo;
-	long int idConfiguracao, auxiliar;
-	char setoresFalta[2000]= "", str[20], tipoFalta[20], nomeArquivo[120];
-	FILE *arquivo1;
-
-	sprintf(nomeArquivo, "ArquivoSaida12.txt");
-	arquivo1 = fopen(nomeArquivo, "a");
-
-    //Construção de uma String para armazenar o tipo da falta
-    strcpy(tipoFalta, "Multiplas_Faltas");
-    if(numeroSetorFaltaParam == 1)
-    	strcpy(tipoFalta, "Falta_Simples");
-
-    //Construção de uma string para armazenar todos os setores em falta
-    for(indice = 0; indice < numeroSetorFaltaParam; indice++){
-    	auxiliar = setorFaltaParam[indice];
-    	sprintf(str, "%ld_", auxiliar);
-    	strcat(setoresFalta, str);
-    }
-
-    fprintf(arquivo1, "\n\n%s\t%s\t%d\n", tipoFalta, setoresFalta, seedParam);
-    fclose(arquivo1);
-
-
-	for(indice = 0; indice < numeroSolucoesFinaisObtidas; indice++){
-		indiceIndividuo = idIndividuosFinaisParam[indice];
-		idConfiguracao = fronteiraParetoParam.individuos[indiceIndividuo].idConfiguracao;
-
-		imprimeSequenciaChaveamentoIndividuo(seedParam, setorFaltaParam, numeroSetorFaltaParam, idConfiguracao, vetorPiParam, configuracoesParam, sequenciaManobrasAlivioParam, nomeArquivo);
-	}
-
 }
 
 /* Por Leandro:

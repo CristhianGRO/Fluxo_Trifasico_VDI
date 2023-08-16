@@ -667,12 +667,15 @@ typedef struct{
  * @brief Estrutura dos dados elétricos da configuração.
  *
  * Estrutura para armazenar os dados elétricos da configuração que serão utilizados para calcular o fluxo de carga. É um campo do indivíduo.
+ * Cristhian: adicionada a dimensão tripla para considerar os dados nas três fases.
+ * Cristhian: adicionada a variável do tipo TIPOFASES para considerar  as fases conectadas ao nó
  */
 typedef struct{
-  __complex__ double *corrente; /**<Armazena os valores de corrente em cada trecho do SDR.*/
-  __complex__ double *iJusante;/**<Armazena os valores de corrente jusante do SDR.*/
-  __complex__ double *vBarra;/**<Armazena os valores cálculados de potência das barras.*/
-  __complex__ double *potencia;/**<Armazena os valores de potência.*/
+  __complex__ double *corrente[3]; /**<Armazena os valores de corrente em cada trecho do SDR.*/
+  __complex__ double *iJusante[3];/**<Armazena os valores de corrente jusante do SDR.*/
+  __complex__ double *vBarra[3];/**<Armazena os valores cálculados de potência das barras.*/
+  __complex__ double *potencia[3];/**<Armazena os valores de potência.*/
+  TIPOFASES *tipoFases;
 }DADOSELETRICOS;
 
 /**
