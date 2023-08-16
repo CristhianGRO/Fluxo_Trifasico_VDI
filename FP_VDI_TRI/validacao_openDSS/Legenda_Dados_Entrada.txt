@@ -1,0 +1,31 @@
+#LEGENDA DOS DADOS DE ENTRADA:
+
+-------------------------------------
+- data_bus.csv:
+-------------------------------------
+nBus
+ID, FASES, Pa, Qa, Pb, Qb, Pc, Qc
+
+Onde:
+
+- nBus: numero de barras do modelo
+- ID: identidicador numérico, inteiro
+- FASES: 0 (A), 1 (B), 2 (C), 3 (AB), 4 (AC), 5(BC), 6 (ABC)
+- Px: carga de potência ativa conectada a fase x
+- Qx: carga de potência reativa conectada a fase x
+
+-------------------------------------
+- data_branch.csv:
+-------------------------------------
+nBranch
+ID, De, Para, Ampacidade, raa, xaa, rab, xab, rac, xac, rbb, xbb, rbc, xbc, rcc, xcc
+
+Onde:
+
+- nBranch: numero de trechos do modelo
+- ID: identidicador numérico, inteiro
+- De: Barra de origem do trecho
+- Para: Barra destino do trecho
+- Ampacidade: capacidade de conducao de corrente do trecho
+- rij: Parte real do elemento Zij da matriz de impedancia trifasica
+- xij: parte imaginaria do elemento Zij da matriz de impedancia trifasica

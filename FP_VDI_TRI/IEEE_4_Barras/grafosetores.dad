@@ -1,0 +1,21 @@
+numero	setores	4
+Setor	1	numero	adjacentes	1
+Consumidores:	0	Consumidores	Especiais:	0
+Adjacentes	 2
+Chaves	 1
+CodOp. Chaves	 1
+Setor	2	numero	adjacentes	2
+Consumidores:	1	Consumidores	Especiais:	0
+Adjacentes	 1  3
+Chaves	 1  2
+CodOp. Chaves	 1  2
+Setor	3	numero	adjacentes	2
+Consumidores:	1	Consumidores	Especiais:	0
+Adjacentes	 2  4
+Chaves	 2  3
+CodOp. Chaves	 2  3
+Setor	4	numero	adjacentes	1
+Consumidores:	1	Consumidores	Especiais:	0
+Adjacentes	 3
+Chaves	 3
+CodOp. Chaves	 3

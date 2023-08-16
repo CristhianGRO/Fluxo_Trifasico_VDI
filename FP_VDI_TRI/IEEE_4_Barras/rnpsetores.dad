@@ -1,0 +1,22 @@
+Identificador	Setor:	1	RNPs	1
+Origem	2	numero	nos	2
+2	1
+0	1
+Identificador	Setor:	2	RNPs	2
+Origem	1	numero	nos	2
+1	2
+0	1
+Origem	3	numero	nos	2
+3	2
+0	1
+Identificador	Setor:	3	RNPs	2
+Origem	2	numero	nos	2
+2	3
+0	1
+Origem	4	numero	nos	2
+4	3
+0	1
+Identificador	Setor:	4	RNPs	1
+Origem	3	numero	nos	2
+3	4
+0	1

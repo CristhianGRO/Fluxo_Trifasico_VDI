@@ -1,0 +1,76 @@
+Clear
+
+New circuit.redeMT_MiranteDoLago bus1=SourceBus.1 basekv=13.8 pu=1.0 angle=0 phases=1 mvasc1= 99999 mvasc3= 99999
+
+Set voltagebases=[ 23 ]
+calcvoltagebases
+
+new Wiredata.caboMT_ACSR_ALUBAR GMR=0.00135    RDC=0.5343
+~   Runits=km  gmrunits=m
+
+new Linegeometry.linhaMT    nconds=3    nphases=3
+~   cond=1 Wire=caboMT_ACSR_ALUBAR x=0  h=8.25  units=m
+~   cond=2 Wire=caboMT_ACSR_ALUBAR x=1.2  h=8.25  units=m
+~   cond=3 Wire=caboMT_ACSR_ALUBAR x=1.8  h=8.25  units=m
+
+new Line.1  Bus1=1 Bus2=2
+~   Geometry=linhaMT
+~   Length=0.07132 units=km
+
+new Line.2  Bus1=2 Bus2=7
+~   Geometry=linhaMT
+~   Length=0.07979 units=km
+
+new Line.3  Bus1=2 Bus2=3
+~   Geometry=linhaMT
+~   Length=0.23455 units=km
+
+new Line.4  Bus1=3 Bus2=4
+~   Geometry=linhaMT
+~   Length=0.03842 units=km
+
+new Line.5  Bus1=4 Bus2=5
+~   Geometry=linhaMT
+~   Length=0.08182 units=km
+
+new Line.6  Bus1=5 Bus2=6
+~   Geometry=linhaMT
+~   Length=0.02749 units=km
+
+new Line.7  Bus1=2 Bus2=8
+~   Geometry=linhaMT
+~   Length=0.10823 units=km
+
+new Line.8  Bus1=8 Bus2=9
+~   Geometry=linhaMT
+~   Length=0.11442 units=km
+
+new Line.9  Bus1=9 Bus2=10
+~   Geometry=linhaMT
+~   Length=0.03518 units=km
+
+new Line.10  Bus1=10 Bus2=11
+~   Geometry=linhaMT
+~   Length=0.03726 units=km
+
+new Line.11  Bus1=9 Bus2=12
+~   Geometry=linhaMT
+~   Length=0.03686 units=km
+
+new Line.12  Bus1=9 Bus2=13
+~   Geometry=linhaMT
+~   Length=0.06737 units=km
+
+new Line.13  Bus1=13 Bus2=14
+~   Geometry=linhaMT
+~   Length=0.02185 units=km
+
+new Line.14  Bus1=13 Bus2=16
+~   Geometry=linhaMT
+~   Length=0.03634 units=km
+
+new Line.15  Bus1=16 Bus2=17
+~   Geometry=linhaMT
+~   Length=0.04004 units=km
+
+show lineconstants freq=60 units=km
